@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Child's Pose">
+  <rect x="20" y="105" width="200" height="20" fill="currentColor" opacity="0.05" stroke="none"/>
+  <line x1="20" y1="118" x2="220" y2="118" stroke-width="1.5" opacity="0.4"/>
+  <path d="M 165 115 Q 168 112 165 108 L 145 105"/>
+  <path d="M 145 105 Q 110 96 80 108"/>
+  <line x1="80" y1="108" x2="50" y2="115"/>
+  <circle cx="55" cy="111" r="7" fill="currentColor" stroke="none"/>
+</svg>

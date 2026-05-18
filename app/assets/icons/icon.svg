@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Rosary Yoga">
+  <rect width="512" height="512" fill="#0e0a0a"/>
+  <g fill="#c8a45a">
+    <rect x="244" y="158" width="24" height="172" rx="3"/>
+    <rect x="198" y="216" width="116" height="24" rx="3"/>
+    <circle cx="256" cy="364" r="14" opacity="0.85"/>
+  </g>
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#8a2a2a" stroke-width="2" opacity="0.35"/>
+</svg>

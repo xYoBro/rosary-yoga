@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "prayers": {
+    "creed": {
+      "name": "Apostles' Creed",
+      "short": "Creed",
+      "text": "I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead. I believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen."
+    },
+    "our_father": {
+      "name": "Our Father",
+      "short": "Our Father",
+      "text": "Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen."
+    },
+    "hail_mary": {
+      "name": "Hail Mary",
+      "short": "Hail Mary",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    },
+    "glory_be": {
+      "name": "Glory Be",
+      "short": "Glory Be",
+      "text": "Glory be to the Father, and to the Son, and to the Holy Spirit; as it was in the beginning, is now, and ever shall be, world without end. Amen."
+    },
+    "hail_holy_queen": {
+      "name": "Hail Holy Queen",
+      "short": "Salve Regina",
+      "text": "Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn, then, most gracious advocate, thine eyes of mercy toward us, and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary. Amen."
+    },
+    "sign_of_cross": {
+      "name": "Sign of the Cross",
+      "short": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    }
+  },
+  "poses": {
+    "seated_forward_fold": {
+      "id": "seated_forward_fold",
+      "name": "Seated Forward Fold",
+      "latin": "Paschimottanasana",
+      "image": "assets/poses/seated_forward_fold.svg",
+      "duration": "3–5 min",
+      "setup": "Sit with legs extended. Bend the knees as much as you need. Fold forward from the hips. Let the head and shoulders hang heavy.",
+      "hold": "A long pull along the back of the legs and the spine. Soft. Never forced.",
+      "target": "Posterior chain — hamstrings, low back, spine"
+    },
+    "child_pose": {
+      "id": "child_pose",
+      "name": "Child's Pose",
+      "latin": "Balasana",
+      "image": "assets/poses/child_pose.svg",
+      "duration": "3 min",
+      "setup": "Kneel with big toes touching. Knees wide or together. Sink the hips toward the heels. Stretch the arms forward. Forehead rests on the mat.",
+      "hold": "Grounded, sheltered. The spine lengthens, the hips release, the breath slows.",
+      "target": "Low back, hips, shoulders"
+    },
+    "supported_butterfly": {
+      "id": "supported_butterfly",
+      "name": "Supported Butterfly",
+      "latin": "Supta Baddha Konasana",
+      "image": "assets/poses/supported_butterfly.svg",
+      "duration": "5 min",
+      "setup": "Lie on your back. Soles of the feet together, knees fall open. Place a pillow or folded towel under each knee. Arms rest at the sides, palms up.",
+      "hold": "An opening through the inner thighs and front of the hips. Heavy. Yielding.",
+      "target": "Adductors, front of hips"
+    },
+    "banana": {
+      "id": "banana",
+      "name": "Reclined Side Stretch",
+      "latin": "Bananasana",
+      "image": "assets/poses/banana.svg",
+      "duration": "2 min each side",
+      "setup": "On your back, arms overhead. Walk both feet and the upper body to one side so the body forms a long curve. Both shoulders and hips stay on the floor. Hold one side, then switch.",
+      "hold": "A long opening down the side of the body — ribs, waist, hip. The pose most sequences skip. Critical for the low back.",
+      "target": "QL, lateral chain, side body"
+    },
+    "savasana": {
+      "id": "savasana",
+      "name": "Savasana",
+      "latin": "Threshold",
+      "image": "assets/poses/savasana.svg",
+      "duration": "1–2 min",
+      "setup": "Lie flat. Legs fall open naturally. Arms slightly out from the body, palms up. Let everything be where it falls.",
+      "hold": "The pause before the mysteries begin. Body held by the ground. Mind held by the breath.",
+      "target": "Settle, transition"
+    },
+    "knees_to_chest": {
+      "id": "knees_to_chest",
+      "name": "Knees-to-Chest",
+      "latin": "Apanasana",
+      "image": "assets/poses/knees_to_chest.svg",
+      "duration": "1–2 min",
+      "setup": "Lying on your back, draw both knees toward the chest. Hands on the shins or behind the thighs. Breathe.",
+      "hold": "A gentle decompression of the low back. Returns the body to neutral between decades.",
+      "target": "Low back release"
+    },
+    "neutral_back": {
+      "id": "neutral_back",
+      "name": "Neutral on Back",
+      "latin": "Hands on belly",
+      "image": "assets/poses/neutral_back.svg",
+      "duration": "1 min",
+      "setup": "Lie flat, legs extended, hands resting on the belly so you can feel the breath rise and fall.",
+      "hold": "One minute. The Glory Be. Then the next mystery is announced.",
+      "target": "Reset between decades"
+    },
+    "figure_four": {
+      "id": "figure_four",
+      "name": "Reclined Figure-Four",
+      "latin": "Supta Sucirandhrasana",
+      "image": "assets/poses/figure_four.svg",
+      "duration": "~5 min (half each side)",
+      "setup": "Lie on the back. Cross one ankle over the opposite thigh. Draw the bottom thigh toward the chest, threading the hands behind it (or use a towel as a strap). Hold five Hail Marys per side.",
+      "hold": "A deep release through the outer hip and glute. The body's most common source of low-back stiffness lives here.",
+      "target": "Outer hip, glute, piriformis"
+    },
+    "supported_bridge": {
+      "id": "supported_bridge",
+      "name": "Supported Bridge",
+      "latin": "Setu Bandha Sarvangasana",
+      "image": "assets/poses/supported_bridge.svg",
+      "duration": "~5 min",
+      "setup": "Lie on the back, knees bent, feet flat. Lift the hips and slide a block or folded towel under the sacrum — the bony plate above the tailbone, not the lower back. Lower onto the prop.",
+      "hold": "An unwinding of the hip flexors. A quiet opening across the chest. The whole front body softens.",
+      "target": "Hip flexors, chest, anterior shoulder"
+    },
+    "happy_baby": {
+      "id": "happy_baby",
+      "name": "Happy Baby",
+      "latin": "Ananda Balasana",
+      "image": "assets/poses/happy_baby.svg",
+      "duration": "~5 min",
+      "setup": "Lying on the back, draw the knees toward the chest. Grab the outside edges of the feet (or the shins, or behind the knees). Stack ankles over knees. Gently pull the knees toward the armpits.",
+      "hold": "A childlike decompression of the lower back. A wide opening through the hips. Release the grip whenever it tires — the pose is the position, not the grip.",
+      "target": "Inner hips, low back decompression"
+    },
+    "supported_fish": {
+      "id": "supported_fish",
+      "name": "Supported Fish",
+      "latin": "Matsyasana",
+      "image": "assets/poses/supported_fish.svg",
+      "duration": "~5 min",
+      "setup": "Place a block or firmly rolled towel lengthwise along the spine — short edge at the bottom tip of the shoulder blades. Lie back over it. Head rests on the floor or on a second, lower prop. Legs long, arms open.",
+      "hold": "A passive opening across the chest and front of the shoulders. The upper back gently arches. If the low back grumbles, the prop is too low — move it higher.",
+      "target": "Thoracic spine, chest, anterior shoulders"
+    },
+    "legs_up_wall": {
+      "id": "legs_up_wall",
+      "name": "Legs Up the Wall",
+      "latin": "Viparita Karani",
+      "image": "assets/poses/legs_up_wall.svg",
+      "duration": "~5 min (full decade)",
+      "setup": "Sit close to a wall, hip touching it. Swing the legs up as you lower the back to the floor. The body forms an L. Hips flat or supported on a folded blanket. Arms open.",
+      "hold": "The legs flush. The heart rate drops. The nervous system shifts toward sleep. The closing hold.",
+      "target": "Recovery, lymphatic flush, sleep"
+    }
+  },
+  "mysteries": {
+    "joyful": {
+      "name": "The Joyful Mysteries",
+      "items": [
+        { "name": "The Annunciation", "reflection": "Gabriel appears to Mary. The Word is offered." },
+        { "name": "The Visitation", "reflection": "Mary visits Elizabeth. The unborn John leaps in recognition." },
+        { "name": "The Nativity", "reflection": "Christ is born in Bethlehem. The world meets him as an infant." },
+        { "name": "The Presentation", "reflection": "The infant Christ is presented in the temple. Simeon prophesies." },
+        { "name": "The Finding in the Temple", "reflection": "The boy Christ, lost three days, is found teaching." }
+      ]
+    },
+    "sorrowful": {
+      "name": "The Sorrowful Mysteries",
+      "items": [
+        { "name": "The Agony in the Garden", "reflection": "Christ prays in Gethsemane. The cup will not pass." },
+        { "name": "The Scourging at the Pillar", "reflection": "Pilate orders the scourging. The body is broken before the cross." },
+        { "name": "The Crowning with Thorns", "reflection": "The soldiers mock him. The crown of suffering is given." },
+        { "name": "The Carrying of the Cross", "reflection": "Christ bears the cross to Calvary. Simon helps. Veronica wipes his face." },
+        { "name": "The Crucifixion", "reflection": "Christ dies on the cross. The veil of the temple is torn." }
+      ]
+    },
+    "glorious": {
+      "name": "The Glorious Mysteries",
+      "items": [
+        { "name": "The Resurrection", "reflection": "Christ rises on the third day. The stone is rolled away." },
+        { "name": "The Ascension", "reflection": "Christ ascends to the Father." },
+        { "name": "The Descent of the Holy Spirit", "reflection": "Pentecost. The Spirit comes upon the apostles." },
+        { "name": "The Assumption", "reflection": "Mary is taken body and soul into heaven." },
+        { "name": "The Coronation of Mary", "reflection": "Mary is crowned Queen of Heaven." }
+      ]
+    },
+    "luminous": {
+      "name": "The Luminous Mysteries",
+      "items": [
+        { "name": "The Baptism of Jesus", "reflection": "In the Jordan. The Spirit descends as a dove." },
+        { "name": "The Wedding at Cana", "reflection": "Water becomes wine. The first sign." },
+        { "name": "The Proclamation of the Kingdom", "reflection": "Repent and believe the good news." },
+        { "name": "The Transfiguration", "reflection": "On the mountain. Christ shines." },
+        { "name": "The Institution of the Eucharist", "reflection": "At the Last Supper. Take and eat." }
+      ]
+    }
+  },
+  "day_to_mystery_set": {
+    "0": "glorious",
+    "1": "joyful",
+    "2": "sorrowful",
+    "3": "glorious",
+    "4": "luminous",
+    "5": "sorrowful",
+    "6": "joyful"
+  },
+  "deep_holds": [
+    "figure_four",
+    "supported_bridge",
+    "happy_baby",
+    "supported_fish",
+    "legs_up_wall"
+  ]
+}

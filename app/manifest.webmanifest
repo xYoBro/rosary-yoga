@@ -1,0 +1,20 @@
+{
+  "name": "Rosary Yoga",
+  "short_name": "Rosary Yoga",
+  "description": "A nightly anchor for body, mind, and the work ahead.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0e0a0a",
+  "theme_color": "#0e0a0a",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
