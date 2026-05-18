@@ -28,7 +28,7 @@
   --line-height-prayer: 1.6;
 
   /* layout */
-  --max-card-width: 540px;
+  --max-card-width: 420px;
   --card-radius: 4px;
   --card-padding: 1.5rem;
   --bar-height: 3rem;
@@ -520,6 +520,7 @@ body {
     --size-pose: 1.6rem;
     --size-mystery: 1.95rem;
     --card-padding: 2rem;
+    --max-card-width: 460px;
   }
 
   #app {
@@ -530,7 +531,7 @@ body {
 
 @media (min-width: 901px) {
   :root {
-    --max-card-width: 600px;
+    --max-card-width: 500px;
     --size-prayer: 1.4rem;
   }
 }
