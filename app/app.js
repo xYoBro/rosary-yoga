@@ -10,9 +10,6 @@ const TRANSITION_HALF = 200;          // ms — half of CSS card transition
 const SESSION_TTL_MS = 60 * 60 * 1000; // 1 hour
 const STATE_KEY = "rosary-yoga.state.v1";
 
-const PRAYER_LENGTH_LONG = 320;
-const PRAYER_LENGTH_VERY_LONG = 600;
-
 // ---------- data loading -----------------------------------------------
 
 async function loadData() {
@@ -29,6 +26,18 @@ function mysterySetForToday(data, override) {
   return data.day_to_mystery_set[dow] || "joyful";
 }
 
+// Bead types used by the rosary visualization.
+// Each station carries a beadType + beadGroup so the strip knows how to render it.
+const BEAD = {
+  CROSS: "cross",
+  OF: "of",         // Our Father bead
+  HM: "hm",         // Hail Mary bead
+  GB: "gb",         // Glory Be (small marker, between)
+  MEDALLION: "medallion",
+  MYSTERY: "mystery",
+  CLOSING: "closing",
+};
+
 function buildSequence(data, mysterySetKey) {
   const mysteries = data.mysteries[mysterySetKey].items;
   const setName = data.mysteries[mysterySetKey].name;
@@ -42,6 +51,7 @@ function buildSequence(data, mysterySetKey) {
     posePhase: "start",
     label: "Opening · The Cross",
     section: "opening",
+    bead: { type: BEAD.CROSS, group: "pendant" },
   });
   seq.push({
     kind: "prayer",
@@ -50,6 +60,7 @@ function buildSequence(data, mysterySetKey) {
     posePhase: "start",
     label: "Opening · Our Father",
     section: "opening",
+    bead: { type: BEAD.OF, group: "pendant" },
   });
   for (let i = 1; i <= 3; i++) {
     seq.push({
@@ -59,6 +70,7 @@ function buildSequence(data, mysterySetKey) {
       posePhase: i === 1 ? "start" : "continue",
       label: `Opening · Hail Mary ${i} of 3`,
       section: "opening",
+      bead: { type: BEAD.HM, group: "pendant" },
     });
   }
   seq.push({
@@ -69,6 +81,7 @@ function buildSequence(data, mysterySetKey) {
     label: "Opening · Glory Be · both sides",
     section: "opening",
     note: "Hold the first side for one minute. Switch sides for the second.",
+    bead: { type: BEAD.OF, group: "pendant" },
   });
   seq.push({
     kind: "interlude",
@@ -77,6 +90,7 @@ function buildSequence(data, mysterySetKey) {
     section: "opening",
     title: "Threshold",
     body: "The pause before the mysteries begin.\nBody held by the ground.\nMind held by the breath.",
+    bead: { type: BEAD.MEDALLION, group: "medallion" },
   });
 
   // --- five decades ---
@@ -95,6 +109,7 @@ function buildSequence(data, mysterySetKey) {
       decadeNum,
       label: ordinal(decadeNum) + " Decade",
       section: "decade",
+      bead: { type: BEAD.MYSTERY, group: `decade-${decadeNum}` },
     });
 
     // anchor — Our Father with Knees-to-Chest
@@ -105,6 +120,7 @@ function buildSequence(data, mysterySetKey) {
       posePhase: "start",
       label: `Decade ${decadeNum} · Our Father`,
       section: "decade",
+      bead: { type: BEAD.OF, group: `decade-${decadeNum}` },
     });
 
     // 10 Hail Marys in the deep hold
@@ -123,6 +139,7 @@ function buildSequence(data, mysterySetKey) {
         label: `Decade ${decadeNum} · Hail Mary ${h} of 10`,
         section: "decade",
         note: sideNote,
+        bead: { type: BEAD.HM, group: `decade-${decadeNum}` },
       });
     }
 
@@ -134,6 +151,7 @@ function buildSequence(data, mysterySetKey) {
       posePhase: isLastDecade ? "continue" : "start",
       label: `Decade ${decadeNum} · Glory Be`,
       section: "decade",
+      bead: { type: BEAD.GB, group: `decade-${decadeNum}` },
     });
   }
 
@@ -145,6 +163,7 @@ function buildSequence(data, mysterySetKey) {
     posePhase: "continue",
     label: "Closing · Hail Holy Queen",
     section: "closing",
+    bead: { type: BEAD.CLOSING, group: "closing" },
   });
 
   seq.push({
@@ -154,7 +173,7 @@ function buildSequence(data, mysterySetKey) {
     section: "closing",
     title: "Practice Complete",
     body: "Rest here as long as you wish.\nWhen you are ready, roll to one side and rise slowly.",
-    ornament: true,
+    bead: { type: BEAD.CLOSING, group: "closing" },
   });
 
   return seq;
@@ -162,6 +181,75 @@ function buildSequence(data, mysterySetKey) {
 
 function ordinal(n) {
   return ["First", "Second", "Third", "Fourth", "Fifth"][n - 1] || String(n);
+}
+
+// ---------- rosary visualization ---------------------------------------
+
+// Visual constants for the rosary strip.
+const ROSARY = {
+  bead_r: { cross: 4, of: 3.5, hm: 2.2, gb: 2, medallion: 5, mystery: 3, closing: 3 },
+  bead_gap: 5,
+  group_gap: 14,
+  cross_arm: 5,
+  height: 36,
+};
+
+// Build an SVG showing every station in sequence as a bead.
+// The current and completed states are applied as classes, not redrawn.
+function renderRosaryStrip(seq, currentIndex) {
+  let x = 8;
+  const ys = ROSARY.height / 2;
+  const positions = [];
+
+  // Walk sequence and lay out positions left → right
+  let prevGroup = null;
+  seq.forEach((st, i) => {
+    if (prevGroup && st.bead.group !== prevGroup) {
+      x += ROSARY.group_gap;
+    }
+    const type = st.bead.type;
+    const r = ROSARY.bead_r[type] || 2.5;
+    positions.push({ x, y: ys, r, type, index: i });
+    x += r * 2 + ROSARY.bead_gap;
+    prevGroup = st.bead.group;
+  });
+
+  const totalWidth = x + 8;
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} ${ROSARY.height}" preserveAspectRatio="xMidYMid meet" class="rosary-svg">`;
+
+  // Chain — a faint horizontal line connecting beads, drawn first so beads sit on top
+  svg += `<line x1="${positions[0].x}" y1="${ys}" x2="${positions[positions.length - 1].x}" y2="${ys}" class="rosary-chain"/>`;
+
+  // Beads
+  positions.forEach((p) => {
+    const state =
+      p.index < currentIndex ? "done" : p.index === currentIndex ? "current" : "todo";
+    if (p.type === BEAD.CROSS) {
+      const a = ROSARY.cross_arm;
+      svg += `<g class="rosary-bead rosary-cross is-${state}" data-index="${p.index}">`;
+      svg += `<rect x="${p.x - 1.4}" y="${p.y - a}" width="2.8" height="${a * 2}" rx="0.6"/>`;
+      svg += `<rect x="${p.x - a + 0.6}" y="${p.y - 1.4}" width="${a * 2 - 1.2}" height="2.8" rx="0.6"/>`;
+      svg += `</g>`;
+    } else if (p.type === BEAD.MYSTERY) {
+      // A small 4-point star
+      const r = p.r;
+      svg += `<g class="rosary-bead rosary-mystery is-${state}" data-index="${p.index}">`;
+      svg += `<path d="M ${p.x} ${p.y - r} L ${p.x + r * 0.4} ${p.y - r * 0.4} L ${p.x + r} ${p.y} L ${p.x + r * 0.4} ${p.y + r * 0.4} L ${p.x} ${p.y + r} L ${p.x - r * 0.4} ${p.y + r * 0.4} L ${p.x - r} ${p.y} L ${p.x - r * 0.4} ${p.y - r * 0.4} Z"/>`;
+      svg += `</g>`;
+    } else if (p.type === BEAD.MEDALLION) {
+      svg += `<g class="rosary-bead rosary-medallion is-${state}" data-index="${p.index}">`;
+      svg += `<circle cx="${p.x}" cy="${p.y}" r="${p.r}"/>`;
+      svg += `<circle cx="${p.x}" cy="${p.y}" r="${p.r - 1.8}" class="rosary-inner"/>`;
+      svg += `</g>`;
+    } else {
+      const cls = `rosary-bead rosary-${p.type} is-${state}`;
+      svg += `<circle class="${cls}" data-index="${p.index}" cx="${p.x}" cy="${p.y}" r="${p.r}"/>`;
+    }
+  });
+
+  svg += `</svg>`;
+  return svg;
 }
 
 // ---------- rendering ---------------------------------------------------
@@ -184,7 +272,6 @@ function render(station, data) {
 
   if (station.kind === "mystery") {
     card.classList.add("is-mystery");
-    // wipe the standard layout, render mystery block
     const existing = card.querySelector(".mystery-block");
     if (existing) existing.remove();
     const block = document.createElement("div");
@@ -205,8 +292,15 @@ function render(station, data) {
 
   const pose = data.poses[station.poseId];
 
-  // pose figure — fetched lazily and inlined for clean SVG color inheritance
-  loadPoseSvg(pose.image, poseFigure);
+  // Photo first, SVG fallback
+  if (pose.photo) {
+    poseFigure.classList.add("is-photo");
+    poseFigure.innerHTML = `<img src="${escapeHtml(pose.photo)}" alt="${escapeHtml(pose.name)}" loading="lazy"/>`;
+  } else {
+    poseFigure.classList.remove("is-photo");
+    loadPoseSvg(pose.image, poseFigure);
+  }
+
   if (station.posePhase === "continue") {
     poseFigure.classList.add("is-small");
   } else {
@@ -218,8 +312,7 @@ function render(station, data) {
 
   if (station.kind === "interlude") {
     prayerLabel.textContent = station.title.toUpperCase();
-    prayerText.textContent = station.body;
-    prayerText.className = "prayer-text is-long";
+    renderPrayerText(prayerText, station.body);
     cueToggle.hidden = true;
     cueArea.hidden = true;
     return;
@@ -227,7 +320,6 @@ function render(station, data) {
 
   // prayer card
   cueToggle.hidden = false;
-
   const prayer = data.prayers[station.prayerKey];
   prayerLabel.textContent = prayer.short;
 
@@ -235,23 +327,31 @@ function render(station, data) {
   if (station.note) {
     body += `\n\n— ${station.note}`;
   }
+  renderPrayerText(prayerText, body);
 
-  prayerText.textContent = body;
-  prayerText.className = "prayer-text";
-  if (body.length > PRAYER_LENGTH_VERY_LONG) {
-    prayerText.classList.add("is-very-long");
-  } else if (body.length > PRAYER_LENGTH_LONG) {
-    prayerText.classList.add("is-long");
-  }
+  setupCue.textContent = pose.setup;
+  holdCue.textContent = pose.hold;
+}
 
-  // setup/hold cues only shown on pose-start cards by default
-  if (station.posePhase === "start") {
-    setupCue.textContent = pose.setup;
-    holdCue.textContent = pose.hold;
-  } else {
-    setupCue.textContent = pose.setup;
-    holdCue.textContent = pose.hold;
-  }
+// Render prayer text with line-break support.
+// "\n" → line break inside a stanza
+// "\n\n" → stanza separator (creates a new <p>)
+function renderPrayerText(container, text) {
+  container.innerHTML = "";
+  const stanzas = text.split(/\n\n+/);
+  stanzas.forEach((stanza) => {
+    if (!stanza.trim()) return;
+    const p = document.createElement("p");
+    const lines = stanza.split("\n");
+    lines.forEach((line, idx) => {
+      if (idx > 0) p.appendChild(document.createElement("br"));
+      p.appendChild(document.createTextNode(line));
+    });
+    container.appendChild(p);
+  });
+
+  // reset scroll on every render so the user starts at the top
+  container.scrollTop = 0;
 }
 
 const svgCache = new Map();
@@ -296,10 +396,32 @@ let state = {
   transitionLock: false,
 };
 
-function updateProgress() {
-  const fill = document.getElementById("progressFill");
-  const pct = ((state.currentIndex + 1) / state.sequence.length) * 100;
-  fill.style.width = `${pct}%`;
+function updateRosary() {
+  const container = document.getElementById("rosaryStrip");
+  container.innerHTML = renderRosaryStrip(state.sequence, state.currentIndex);
+
+  // Wire taps on beads to jump-navigate
+  container.querySelectorAll("[data-index]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const idx = parseInt(el.getAttribute("data-index"), 10);
+      if (!isNaN(idx) && idx !== state.currentIndex) {
+        goTo(idx, idx > state.currentIndex ? 1 : -1);
+      }
+    });
+  });
+
+  // Auto-scroll so the current bead is centered horizontally.
+  requestAnimationFrame(() => {
+    const current = container.querySelector(".rosary-bead.is-current");
+    if (!current) return;
+    const bbox = current.getBoundingClientRect();
+    const cbox = container.getBoundingClientRect();
+    const targetCenter = bbox.left + bbox.width / 2;
+    const containerCenter = cbox.left + cbox.width / 2;
+    const delta = targetCenter - containerCenter;
+    container.scrollBy({ left: delta, behavior: "smooth" });
+  });
+
   document.getElementById("prevButton").disabled = state.currentIndex === 0;
   document.getElementById("nextButton").disabled =
     state.currentIndex === state.sequence.length - 1;
@@ -320,7 +442,7 @@ function goTo(index, direction) {
     state.currentIndex = index;
     render(state.sequence[state.currentIndex], state.data);
     saveState();
-    updateProgress();
+    updateRosary();
 
     card.classList.remove("is-leaving-left", "is-leaving-right");
     card.classList.add(direction > 0 ? "is-entering-right" : "is-entering-left");
@@ -329,7 +451,6 @@ function goTo(index, direction) {
       requestAnimationFrame(() => {
         card.classList.remove("is-entering-right", "is-entering-left");
         card.classList.add("is-here");
-        // collapse cues on every card transition
         document.getElementById("cueArea").hidden = true;
         document.getElementById("cueToggle").textContent = "Show pose cues";
       });
@@ -357,6 +478,9 @@ function attachGestures() {
 
   stage.addEventListener("pointerdown", (e) => {
     if (e.target.closest("button")) return;
+    // Track the gesture even when it starts inside scrollable prayer text;
+    // the horizontal-vs-vertical ratio check in pointerup keeps scrolls from
+    // accidentally advancing the card.
     start = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId };
   });
 
@@ -421,7 +545,7 @@ function attachButtons() {
         clearState();
         state.currentIndex = 0;
         render(state.sequence[0], state.data);
-        updateProgress();
+        updateRosary();
       } else if (action === "mysteries") {
         closeMenu();
         openMysteryPicker();
@@ -464,7 +588,7 @@ function openMysteryPicker() {
       state.currentIndex = 0;
       render(state.sequence[0], state.data);
       saveState();
-      updateProgress();
+      updateRosary();
       closeMysteryPicker();
     });
     options.appendChild(btn);
@@ -543,7 +667,7 @@ async function boot() {
   state.currentIndex = saved ? Math.min(saved.currentIndex || 0, state.sequence.length - 1) : 0;
   render(state.sequence[state.currentIndex], state.data);
   document.getElementById("card").classList.add("is-here");
-  updateProgress();
+  updateRosary();
 
   attachGestures();
   attachKeyboard();
