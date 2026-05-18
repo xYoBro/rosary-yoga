@@ -72,6 +72,7 @@ body {
   margin: 0 auto;
   height: 100dvh;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
@@ -339,13 +340,17 @@ body {
   justify-content: center;
   padding: 0.4rem 0.75rem 0.85rem;
   min-height: var(--bar-height);
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* --- rosary strip --------------------------------------------------- */
 
 .rosary-strip {
   width: 100%;
+  max-width: 100%;
   min-width: 0;
+  flex: 1 1 0;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
