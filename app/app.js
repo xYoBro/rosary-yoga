@@ -262,10 +262,6 @@ function render(station, data) {
   const poseLatin = document.getElementById("poseLatin");
   const prayerLabel = document.getElementById("prayerLabel");
   const prayerText = document.getElementById("prayerText");
-  const cueArea = document.getElementById("cueArea");
-  const cueToggle = document.getElementById("cueToggle");
-  const setupCue = document.getElementById("setupCue");
-  const holdCue = document.getElementById("holdCue");
 
   positionLabel.textContent = station.label || "";
   card.classList.remove("is-mystery");
@@ -313,13 +309,10 @@ function render(station, data) {
   if (station.kind === "interlude") {
     prayerLabel.textContent = station.title.toUpperCase();
     renderPrayerText(prayerText, station.body);
-    cueToggle.hidden = true;
-    cueArea.hidden = true;
     return;
   }
 
   // prayer card
-  cueToggle.hidden = false;
   const prayer = data.prayers[station.prayerKey];
   prayerLabel.textContent = prayer.short;
 
@@ -328,9 +321,6 @@ function render(station, data) {
     body += `\n\n— ${station.note}`;
   }
   renderPrayerText(prayerText, body);
-
-  setupCue.textContent = pose.setup;
-  holdCue.textContent = pose.hold;
 }
 
 // Render prayer text with line-break support.
@@ -422,9 +412,10 @@ function updateRosary() {
     container.scrollBy({ left: delta, behavior: "smooth" });
   });
 
-  document.getElementById("prevButton").disabled = state.currentIndex === 0;
-  document.getElementById("nextButton").disabled =
-    state.currentIndex === state.sequence.length - 1;
+  const prev = document.getElementById("tapZonePrev");
+  const next = document.getElementById("tapZoneNext");
+  if (prev) prev.disabled = state.currentIndex === 0;
+  if (next) next.disabled = state.currentIndex === state.sequence.length - 1;
 }
 
 function goTo(index, direction) {
@@ -451,8 +442,6 @@ function goTo(index, direction) {
       requestAnimationFrame(() => {
         card.classList.remove("is-entering-right", "is-entering-left");
         card.classList.add("is-here");
-        document.getElementById("cueArea").hidden = true;
-        document.getElementById("cueToggle").textContent = "Show pose cues";
       });
     });
 
@@ -472,16 +461,17 @@ function prev() {
 
 // ---------- gesture handling --------------------------------------------
 
+// When a swipe is detected, suppress the click that some browsers fire
+// afterward on the tap-zone underneath the gesture start.
+let suppressNextClick = false;
+
 function attachGestures() {
   const stage = document.getElementById("cardStage");
   let start = null;
 
   stage.addEventListener("pointerdown", (e) => {
-    if (e.target.closest("button")) return;
-    // Track the gesture even when it starts inside scrollable prayer text;
-    // the horizontal-vs-vertical ratio check in pointerup keeps scrolls from
-    // accidentally advancing the card.
     start = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId };
+    suppressNextClick = false;
   });
 
   stage.addEventListener("pointerup", (e) => {
@@ -494,6 +484,9 @@ function attachGestures() {
     const horizontal = Math.abs(dx) > Math.abs(dy) * SWIPE_RATIO;
     const fast = dt < SWIPE_TIME_THRESHOLD;
     const long = Math.abs(dx) > SWIPE_THRESHOLD;
+    const moved = Math.abs(dx) > 8 || Math.abs(dy) > 8;
+
+    if (moved) suppressNextClick = true;
 
     if (horizontal && long && fast) {
       if (dx < 0) next();
@@ -504,6 +497,16 @@ function attachGestures() {
   stage.addEventListener("pointercancel", () => {
     start = null;
   });
+}
+
+function tapZoneClick(handler) {
+  return (e) => {
+    if (suppressNextClick) {
+      suppressNextClick = false;
+      return;
+    }
+    handler();
+  };
 }
 
 function attachKeyboard() {
@@ -522,16 +525,8 @@ function attachKeyboard() {
 }
 
 function attachButtons() {
-  document.getElementById("nextButton").addEventListener("click", next);
-  document.getElementById("prevButton").addEventListener("click", prev);
-
-  document.getElementById("cueToggle").addEventListener("click", () => {
-    const cueArea = document.getElementById("cueArea");
-    const cueToggle = document.getElementById("cueToggle");
-    const isHidden = cueArea.hidden;
-    cueArea.hidden = !isHidden;
-    cueToggle.textContent = isHidden ? "Hide pose cues" : "Show pose cues";
-  });
+  document.getElementById("tapZoneNext").addEventListener("click", tapZoneClick(next));
+  document.getElementById("tapZonePrev").addEventListener("click", tapZoneClick(prev));
 
   document.getElementById("menuButton").addEventListener("click", openMenu);
 
