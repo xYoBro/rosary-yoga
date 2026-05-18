@@ -62,9 +62,18 @@
       <div class="menu-actions">
         <button class="menu-action" data-action="restart" type="button">Restart from the beginning</button>
         <button class="menu-action" data-action="mysteries" type="button">Change tonight's mysteries</button>
+        <button class="menu-action" data-action="body" type="button">How is your body tonight?</button>
         <button class="menu-action" data-action="close" type="button">Close menu</button>
       </div>
       <p class="menu-footer">The poses do not change with the day.<br/>The body learns the cue.</p>
+    </div>
+  </div>
+
+  <div class="body-overlay" id="bodyOverlay" hidden>
+    <div class="body-panel" role="dialog" aria-modal="true" aria-label="Body check">
+      <h2 class="body-title">How is your body tonight?</h2>
+      <p class="body-subtitle">A teacher would ask. Answer honestly — the practice will adjust.</p>
+      <div class="body-options" id="bodyOptions"></div>
     </div>
   </div>
 

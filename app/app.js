@@ -69,9 +69,14 @@ function mysterySetForToday(data, override) {
 // it represents (start to end inclusive); the rosary strip highlights that
 // range as "current". `duration` is the auto-advance time in seconds; omit
 // it to require manual advance.
-function buildSequence(data, mysterySetKey) {
+//
+// bodyState: one of "easy", "tender", "hurt" — alters deep-hold durations
+//   and substitutes risky poses for safer ones.
+function buildSequence(data, mysterySetKey, bodyState) {
   const mysteries = data.mysteries[mysterySetKey].items;
   const setName = data.mysteries[mysterySetKey].name;
+  const mysterySet = data.mysteries[mysterySetKey];
+  const mods = (data.body_states[bodyState] || data.body_states.easy).modifications || {};
   const seq = [];
   let i = 0;
 
@@ -102,12 +107,13 @@ function buildSequence(data, mysterySetKey) {
     beadStart: i, beadEnd: i,
   }); i += 1;
 
+  // --- threshold — pranayama before the mysteries ---
   seq.push({
     kind: "interlude", poseId: "savasana",
-    label: "Opening · Threshold",
+    label: "Opening · Threshold · Nadi Shodhana",
     title: "Threshold",
-    body: "The pause before the mysteries begin.\nBody held by the ground.\nMind held by the breath.",
-    duration: 90,
+    body: "Four cycles of alternate-nostril breath.\n\nClose the right nostril with the thumb. Inhale through the left.\nClose the left nostril with the ring finger. Exhale through the right.\nInhale through the right. Close it.\nExhale through the left.\n\nOne cycle. Repeat three more times.\nThen rest. The body settles. The mind comes into balance.",
+    duration: 120,
     beadStart: i, beadEnd: i,
   }); i += 1;
 
@@ -115,17 +121,34 @@ function buildSequence(data, mysterySetKey) {
   for (let d = 0; d < 5; d++) {
     const decadeNum = d + 1;
     const mystery = mysteries[d];
-    const deepHoldId = data.deep_holds[d];
     const isLastDecade = d === 4;
+
+    // determine deep hold pose + duration (allowing body-state substitutions)
+    let deepHoldId = data.deep_holds[d];
+    let deepDuration = 300;
+    if (d === 2) { // happy baby
+      deepDuration = mods.happy_baby_duration || 180;
+      if (mods.decade_3_pose) {
+        deepHoldId = mods.decade_3_pose;
+        deepDuration = mods.decade_3_duration || deepDuration;
+      }
+    } else if (d === 3) { // supported fish
+      deepDuration = mods.supported_fish_duration || 210;
+      if (mods.decade_4_pose) {
+        deepHoldId = mods.decade_4_pose;
+        deepDuration = mods.decade_4_duration || deepDuration;
+      }
+    }
 
     seq.push({
       kind: "mystery",
       mysterySetName: setName,
       mysteryName: mystery.name,
       mysteryReflection: mystery.reflection,
+      breath: mysterySet.breath,
       decadeNum,
       label: ordinal(decadeNum) + " Decade",
-      duration: 15,
+      duration: 20,
       beadStart: i, beadEnd: i,
     }); i += 1;
 
@@ -139,18 +162,23 @@ function buildSequence(data, mysterySetKey) {
       kind: "prayer", poseId: deepHoldId, prayerKey: "hail_mary",
       label: `Decade ${decadeNum} · Ten Hail Marys`,
       count: 10,
-      duration: 300,
+      duration: deepDuration,
       note: deepHoldId === "figure_four"
         ? "Switch sides halfway — five Hail Marys per side."
         : null,
       beadStart: i, beadEnd: i + 9,
     }); i += 10;
 
+    // Glory Be after each decade. The 4th decade's neutral hold is slightly
+    // longer to fully release the spine after Supported Fish before Legs Up
+    // the Wall.
+    const gbDuration = d === 3 ? 90 : 60;
     seq.push({
       kind: "prayer",
       poseId: isLastDecade ? "legs_up_wall" : "neutral_back",
       prayerKey: "glory_be",
-      label: `Decade ${decadeNum} · Glory Be`, duration: 60,
+      label: `Decade ${decadeNum} · Glory Be`,
+      duration: gbDuration,
       beadStart: i, beadEnd: i,
     }); i += 1;
   }
@@ -162,12 +190,21 @@ function buildSequence(data, mysterySetKey) {
     beadStart: i, beadEnd: i,
   }); i += 1;
 
+  // Intention — Krishnamacharya's samkalpa, the Jesuit dedication.
+  seq.push({
+    kind: "interlude", poseId: "legs_up_wall",
+    label: "Closing · Intention",
+    title: "Intention",
+    body: "For whom is tonight's practice offered?\n\nHold them in mind.\nLet the breath carry the offering.",
+    duration: 60,
+    beadStart: i, beadEnd: i,
+  }); i += 1;
+
   seq.push({
     kind: "interlude", poseId: "legs_up_wall",
     label: "Closing · Practice Complete",
     title: "Practice Complete",
     body: "Rest here as long as you wish.\nWhen you are ready, roll to one side and rise slowly.",
-    // no duration — user finishes manually
     beadStart: i, beadEnd: i,
   });
 
@@ -312,11 +349,22 @@ function render(station, data) {
     if (existing) existing.remove();
     const block = document.createElement("div");
     block.className = "mystery-block";
+    let breathBlock = "";
+    if (station.breath) {
+      breathBlock = `
+        <div class="breath-quality">
+          <div class="breath-label">Breath</div>
+          <div class="breath-name">${escapeHtml(station.breath.name)}</div>
+          <div class="breath-description">${escapeHtml(station.breath.description)}</div>
+        </div>
+      `;
+    }
     block.innerHTML = `
       <div class="set-name">${escapeHtml(station.mysterySetName)}</div>
       <div class="ornament">✦</div>
       <div class="mystery-name">${escapeHtml(station.mysteryName)}</div>
       <div class="mystery-reflection">${escapeHtml(station.mysteryReflection)}</div>
+      ${breathBlock}
     `;
     card.appendChild(block);
     return;
@@ -358,6 +406,11 @@ function render(station, data) {
   renderPrayerText(prayerText, body);
 }
 
+// Breath markers at the start of each prayer line:
+//   ↑  inhale
+//   ↓  exhale
+//   ✦  seal / Amen (no breath count)
+// Lines without a marker render as plain continuation.
 function renderPrayerText(container, text) {
   container.innerHTML = "";
   const stanzas = text.split(/\n\n+/);
@@ -365,10 +418,31 @@ function renderPrayerText(container, text) {
     if (!stanza.trim()) return;
     const p = document.createElement("p");
     const lines = stanza.split("\n");
-    lines.forEach((line, idx) => {
-      if (idx > 0) p.appendChild(document.createElement("br"));
-      p.appendChild(document.createTextNode(line));
+    lines.forEach((line) => {
+      const lineEl = document.createElement("span");
+      lineEl.className = "prayer-line";
+
+      const trimmed = line.trimStart();
+      let marker = null;
+      let body = line;
+      if (trimmed.startsWith("↑ ")) { marker = "in"; body = trimmed.slice(2); }
+      else if (trimmed.startsWith("↓ ")) { marker = "out"; body = trimmed.slice(2); }
+      else if (trimmed.startsWith("✦ ")) { marker = "seal"; body = trimmed.slice(2); }
+
+      if (marker) {
+        const mEl = document.createElement("span");
+        mEl.className = `breath-marker breath-marker-${marker}`;
+        mEl.setAttribute("aria-hidden", "true");
+        mEl.textContent = marker === "in" ? "in" : marker === "out" ? "out" : "·";
+        lineEl.appendChild(mEl);
+      }
+
+      lineEl.appendChild(document.createTextNode(body));
+      p.appendChild(lineEl);
+      p.appendChild(document.createElement("br"));
     });
+    // remove trailing <br>
+    if (p.lastChild && p.lastChild.tagName === "BR") p.removeChild(p.lastChild);
     container.appendChild(p);
   });
   container.scrollTop = 0;
@@ -392,8 +466,36 @@ let state = {
   sequence: [],
   currentIndex: 0,
   mysterySetOverride: null,
+  bodyState: "easy",
   transitionLock: false,
 };
+
+const BODY_STATE_KEY = "rosary-yoga.body-state";
+
+function loadBodyState() {
+  try {
+    const raw = localStorage.getItem(BODY_STATE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // expire on a new calendar day
+    const today = new Date().toISOString().slice(0, 10);
+    if (parsed.date !== today) return null;
+    return parsed.value;
+  } catch (e) {
+    return null;
+  }
+}
+
+function saveBodyState(value) {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    localStorage.setItem(BODY_STATE_KEY, JSON.stringify({ value, date: today }));
+  } catch (e) {}
+}
+
+function clearBodyState() {
+  try { localStorage.removeItem(BODY_STATE_KEY); } catch (e) {}
+}
 
 let autoAdvanceTimer = null;
 let countdownInterval = null;
@@ -614,6 +716,11 @@ function attachButtons() {
       } else if (action === "mysteries") {
         closeMenu();
         openMysteryPicker();
+      } else if (action === "body") {
+        closeMenu();
+        clearAutoAdvance();
+        clearBodyState();
+        showBodyCheck();
       }
     });
   });
@@ -649,7 +756,11 @@ function openMysteryPicker() {
     btn.textContent = key === todayKey ? `${label} · tonight` : label;
     btn.addEventListener("click", () => {
       state.mysterySetOverride = key === todayKey ? null : key;
-      state.sequence = buildSequence(state.data, mysterySetForToday(state.data, state.mysterySetOverride));
+      state.sequence = buildSequence(
+        state.data,
+        mysterySetForToday(state.data, state.mysterySetOverride),
+        state.bodyState
+      );
       clearAutoAdvance();
       state.currentIndex = 0;
       render(state.sequence[0], state.data);
@@ -706,6 +817,51 @@ function registerServiceWorker() {
   });
 }
 
+// ---------- body-check overlay -----------------------------------------
+
+function showBodyCheck() {
+  const overlay = document.getElementById("bodyOverlay");
+  const options = document.getElementById("bodyOptions");
+  options.innerHTML = "";
+
+  for (const key of ["easy", "tender", "hurt"]) {
+    const bs = state.data.body_states[key];
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "body-action";
+    btn.innerHTML = `
+      <span class="body-action-name">${escapeHtml(bs.name)}</span>
+      <span class="body-action-desc">${escapeHtml(bs.description)}</span>
+    `;
+    btn.addEventListener("click", () => {
+      ensureAudio();
+      state.bodyState = key;
+      saveBodyState(key);
+      overlay.hidden = true;
+      startPractice();
+    });
+    options.appendChild(btn);
+  }
+  overlay.hidden = false;
+}
+
+function startPractice() {
+  state.sequence = buildSequence(
+    state.data,
+    mysterySetForToday(state.data, state.mysterySetOverride),
+    state.bodyState
+  );
+
+  const saved = loadState();
+  state.currentIndex = saved ? Math.min(saved.currentIndex || 0, state.sequence.length - 1) : 0;
+
+  const station = state.sequence[state.currentIndex];
+  render(station, state.data);
+  document.getElementById("card").classList.add("is-here");
+  updateRosary();
+  scheduleAutoAdvance(station);
+}
+
 // ---------- boot --------------------------------------------------------
 
 async function boot() {
@@ -722,22 +878,19 @@ async function boot() {
   const saved = loadState();
   if (saved) state.mysterySetOverride = saved.mysterySetOverride || null;
 
-  state.sequence = buildSequence(
-    state.data,
-    mysterySetForToday(state.data, state.mysterySetOverride)
-  );
-  state.currentIndex = saved ? Math.min(saved.currentIndex || 0, state.sequence.length - 1) : 0;
-
-  const station = state.sequence[state.currentIndex];
-  render(station, state.data);
-  document.getElementById("card").classList.add("is-here");
-  updateRosary();
-  scheduleAutoAdvance(station);
-
+  // We need gestures wired up before the body-check overlay buttons can dispatch.
   attachGestures();
   attachKeyboard();
   attachButtons();
   registerServiceWorker();
+
+  const savedBodyState = loadBodyState();
+  if (savedBodyState && state.data.body_states[savedBodyState]) {
+    state.bodyState = savedBodyState;
+    startPractice();
+  } else {
+    showBodyCheck();
+  }
 }
 
 boot();

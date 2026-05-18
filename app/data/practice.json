@@ -1,35 +1,35 @@
 {
-  "version": 2,
+  "version": 3,
   "prayers": {
     "creed": {
       "name": "Apostles' Creed",
       "short": "Creed",
-      "text": "I believe in God, the Father almighty,\nCreator of heaven and earth,\nand in Jesus Christ, his only Son, our Lord,\nwho was conceived by the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died and was buried;\nhe descended into hell;\non the third day he rose again from the dead;\nhe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting.\n\nAmen."
+      "text": "↑ I believe in God, the Father almighty,\n↓ Creator of heaven and earth,\n↑ and in Jesus Christ, his only Son, our Lord,\n↓ who was conceived by the Holy Spirit,\n↑ born of the Virgin Mary,\n↓ suffered under Pontius Pilate,\n↑ was crucified, died and was buried;\n↓ he descended into hell;\n↑ on the third day he rose again from the dead;\n↓ he ascended into heaven,\n↑ and is seated at the right hand of God the Father almighty;\n↓ from there he will come to judge the living and the dead.\n\n↑ I believe in the Holy Spirit,\n↓ the holy catholic Church,\n↑ the communion of saints,\n↓ the forgiveness of sins,\n↑ the resurrection of the body,\n↓ and life everlasting.\n\n✦ Amen."
     },
     "our_father": {
       "name": "Our Father",
       "short": "Our Father",
-      "text": "Our Father, who art in heaven,\nhallowed be thy name;\n\nthy kingdom come,\nthy will be done,\non earth as it is in heaven.\n\nGive us this day our daily bread,\nand forgive us our trespasses,\nas we forgive those who trespass against us;\n\nand lead us not into temptation,\nbut deliver us from evil.\n\nAmen."
+      "text": "↑ Our Father, who art in heaven,\n↓ hallowed be thy name;\n\n↑ thy kingdom come,\n↓ thy will be done,\n↑ on earth as it is in heaven.\n\n↑ Give us this day our daily bread,\n↓ and forgive us our trespasses,\n↑ as we forgive those who trespass against us;\n\n↓ and lead us not into temptation,\n↑ but deliver us from evil.\n\n✦ Amen."
     },
     "hail_mary": {
       "name": "Hail Mary",
       "short": "Hail Mary",
-      "text": "Hail Mary, full of grace,\nthe Lord is with thee.\nBlessed art thou among women,\nand blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\n\nAmen."
+      "text": "↑ Hail Mary, full of grace,\n↓ the Lord is with thee.\n↑ Blessed art thou among women,\n↓ and blessed is the fruit of thy womb, Jesus.\n\n↑ Holy Mary, Mother of God,\n↓ pray for us sinners,\n↑ now and at the hour of our death.\n\n✦ Amen."
     },
     "glory_be": {
       "name": "Glory Be",
       "short": "Glory Be",
-      "text": "Glory be to the Father,\nand to the Son,\nand to the Holy Spirit;\n\nas it was in the beginning,\nis now,\nand ever shall be,\nworld without end.\n\nAmen."
+      "text": "↑ Glory be to the Father,\n↓ and to the Son,\n↑ and to the Holy Spirit;\n\n↓ as it was in the beginning,\n↑ is now,\n↓ and ever shall be,\n↑ world without end.\n\n✦ Amen."
     },
     "hail_holy_queen": {
       "name": "Hail Holy Queen",
       "short": "Salve Regina",
-      "text": "Hail, holy Queen, Mother of mercy,\nour life, our sweetness and our hope.\n\nTo thee do we cry,\npoor banished children of Eve;\nto thee do we send up our sighs,\nmourning and weeping in this valley of tears.\n\nTurn, then, most gracious advocate,\nthine eyes of mercy toward us,\nand after this our exile\nshow unto us the blessed fruit of thy womb, Jesus.\n\nO clement, O loving, O sweet Virgin Mary.\n\nAmen."
+      "text": "↑ Hail, holy Queen, Mother of mercy,\n↓ our life, our sweetness and our hope.\n\n↑ To thee do we cry,\n↓ poor banished children of Eve;\n↑ to thee do we send up our sighs,\n↓ mourning and weeping in this valley of tears.\n\n↑ Turn, then, most gracious advocate,\n↓ thine eyes of mercy toward us,\n↑ and after this our exile\n↓ show unto us the blessed fruit of thy womb, Jesus.\n\n↑ O clement, O loving, O sweet Virgin Mary.\n\n✦ Amen."
     },
     "sign_of_cross": {
       "name": "Sign of the Cross",
       "short": "Sign of the Cross",
-      "text": "In the name of the Father,\nand of the Son,\nand of the Holy Spirit.\n\nAmen."
+      "text": "↑ In the name of the Father,\n↓ and of the Son,\n↑ and of the Holy Spirit.\n\n✦ Amen."
     }
   },
   "poses": {
@@ -137,7 +137,7 @@
       "photo": "assets/poses/photos/supported_bridge.jpg",
       "photo_credit": "AI-generated illustration",
       "duration": "~5 min",
-      "setup": "Lie on the back, knees bent, feet flat. Lift the hips and slide a block or folded towel under the sacrum — the bony plate above the tailbone, not the lower back. Lower onto the prop.",
+      "setup": "Lie on the back, knees bent, feet flat. Lift the hips and slide a low block or folded towel under the sacrum — the bony plate above the tailbone, not the lower back. Use the lowest prop height that supports you. If you feel a pinch in the low back, slide the prop down toward the tailbone or remove it entirely.",
       "hold": "An unwinding of the hip flexors. A quiet opening across the chest. The whole front body softens.",
       "target": "Hip flexors, chest, anterior shoulder"
     },
@@ -148,7 +148,7 @@
       "image": "assets/poses/happy_baby.svg",
       "photo": "assets/poses/photos/happy_baby.jpg",
       "photo_credit": "AI-generated illustration",
-      "duration": "~5 min",
+      "duration": "~3 min",
       "setup": "Lying on the back, draw the knees toward the chest. Grab the outside edges of the feet (or the shins, or behind the knees). Stack ankles over knees. Gently pull the knees toward the armpits.",
       "hold": "A childlike decompression of the lower back. A wide opening through the hips. Release the grip whenever it tires — the pose is the position, not the grip.",
       "target": "Inner hips, low back decompression"
@@ -160,8 +160,8 @@
       "image": "assets/poses/supported_fish.svg",
       "photo": "assets/poses/photos/supported_fish.jpg",
       "photo_credit": "AI-generated illustration",
-      "duration": "~5 min",
-      "setup": "Place a block or firmly rolled towel lengthwise along the spine — short edge at the bottom tip of the shoulder blades. Lie back over it. Head rests on the floor or on a second, lower prop. Legs long, arms open.",
+      "duration": "~3:30",
+      "setup": "Place a folded blanket or low block lengthwise along the spine — short edge at the bottom tip of the shoulder blades. Lie back over it. Head rests on the floor or on a second, lower prop. Legs long, arms open. Keep the prop low — the neck should not strain.",
       "hold": "A passive opening across the chest and front of the shoulders. The upper back gently arches. If the low back grumbles, the prop is too low — move it higher.",
       "target": "Thoracic spine, chest, anterior shoulders"
     },
@@ -181,6 +181,10 @@
   "mysteries": {
     "joyful": {
       "name": "The Joyful Mysteries",
+      "breath": {
+        "name": "Ujjayi",
+        "description": "Oceanic breath. Slow, full, audible at the back of the throat. Expansive. The throat is awake."
+      },
       "items": [
         { "name": "The Annunciation", "reflection": "Gabriel appears to Mary. The Word is offered." },
         { "name": "The Visitation", "reflection": "Mary visits Elizabeth. The unborn John leaps in recognition." },
@@ -191,6 +195,10 @@
     },
     "sorrowful": {
       "name": "The Sorrowful Mysteries",
+      "breath": {
+        "name": "Long exhale",
+        "description": "Short inhale through the nose. Long, slow exhale through the mouth. The breath receives. Lord, into Thy hands."
+      },
       "items": [
         { "name": "The Agony in the Garden", "reflection": "Christ prays in Gethsemane. The cup will not pass." },
         { "name": "The Scourging at the Pillar", "reflection": "Pilate orders the scourging. The body is broken before the cross." },
@@ -201,6 +209,10 @@
     },
     "glorious": {
       "name": "The Glorious Mysteries",
+      "breath": {
+        "name": "Victorious breath",
+        "description": "Full, deep inhale that opens the chest. Slow release. The breath of resurrection."
+      },
       "items": [
         { "name": "The Resurrection", "reflection": "Christ rises on the third day. The stone is rolled away." },
         { "name": "The Ascension", "reflection": "Christ ascends to the Father." },
@@ -211,6 +223,10 @@
     },
     "luminous": {
       "name": "The Luminous Mysteries",
+      "breath": {
+        "name": "Nadi Shodhana",
+        "description": "Alternate-nostril breath. Inhale left, exhale right; inhale right, exhale left. Light entering both sides of the mind."
+      },
       "items": [
         { "name": "The Baptism of Jesus", "reflection": "In the Jordan. The Spirit descends as a dove." },
         { "name": "The Wedding at Cana", "reflection": "Water becomes wine. The first sign." },
@@ -235,5 +251,30 @@
     "happy_baby",
     "supported_fish",
     "legs_up_wall"
-  ]
+  ],
+  "body_states": {
+    "easy": {
+      "name": "Easy",
+      "description": "Body feels neutral or open tonight.",
+      "modifications": {}
+    },
+    "tender": {
+      "name": "Tender",
+      "description": "Some stiffness or mild ache. Soften the practice.",
+      "modifications": {
+        "happy_baby_duration": 180,
+        "supported_fish_duration": 150
+      }
+    },
+    "hurt": {
+      "name": "Hurt",
+      "description": "Sharp or persistent pain. Replace the risky holds.",
+      "modifications": {
+        "decade_3_pose": "knees_to_chest",
+        "decade_3_duration": 180,
+        "decade_4_pose": "knees_to_chest",
+        "decade_4_duration": 180
+      }
+    }
+  }
 }

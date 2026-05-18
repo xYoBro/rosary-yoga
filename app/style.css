@@ -282,6 +282,27 @@ body {
   margin-bottom: 0;
 }
 
+.prayer-line {
+  display: inline;
+}
+
+.breath-marker {
+  display: inline-block;
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.55em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 0.5em;
+  vertical-align: 0.18em;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.breath-marker-in { color: var(--gold); opacity: 0.55; }
+.breath-marker-out { color: var(--accent); opacity: 0.55; }
+.breath-marker-seal { color: var(--ink-faint); opacity: 0.45; }
+
 /* --- mystery card --------------------------------------------------- */
 
 .card.is-mystery .pose-figure { display: none; }
@@ -532,6 +553,126 @@ body {
   color: var(--ink-faint);
   margin-top: 0.5rem;
   line-height: 1.5;
+}
+
+/* --- breath quality block on mystery card --------------------------- */
+
+.breath-quality {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 1.4rem;
+  margin-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+  align-items: center;
+}
+
+.breath-quality .breath-label {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: var(--size-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.breath-quality .breath-name {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.breath-quality .breath-description {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 32ch;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* --- body-check overlay --------------------------------------------- */
+
+.body-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 12;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.body-overlay[hidden] { display: none; }
+
+.body-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 2rem 1.5rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.body-title {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.body-subtitle {
+  font-style: italic;
+  font-size: var(--size-small);
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.body-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.body-action {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 0.9rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: border-color 180ms, color 180ms;
+}
+
+.body-action:hover, .body-action:active {
+  border-color: var(--gold);
+}
+
+.body-action-name {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.body-action-desc {
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
 }
 
 /* --- responsive ----------------------------------------------------- */
