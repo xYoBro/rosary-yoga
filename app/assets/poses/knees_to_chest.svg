@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Knees to Chest">
-  <rect x="20" y="105" width="200" height="20" fill="currentColor" opacity="0.05" stroke="none"/>
-  <line x1="20" y1="118" x2="220" y2="118" stroke-width="1.5" opacity="0.4"/>
-  <line x1="50" y1="113" x2="125" y2="113"/>
-  <path d="M 125 113 L 155 82 L 130 78"/>
-  <path d="M 125 113 L 145 78"/>
-  <circle cx="45" cy="108" r="8" fill="currentColor" stroke="none"/>
-  <path d="M 130 78 Q 138 70 145 78"/>
-</svg>

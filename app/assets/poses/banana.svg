@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Reclined Side Stretch (Banana)">
-  <rect x="20" y="30" width="200" height="80" fill="currentColor" opacity="0.05" stroke="none"/>
-  <path d="M 30 70 Q 80 35 140 50 Q 195 65 215 95"/>
-  <path d="M 30 70 Q 35 78 42 75"/>
-  <path d="M 215 95 Q 210 100 204 99"/>
-  <circle cx="32" cy="62" r="7" fill="currentColor" stroke="none"/>
-</svg>
