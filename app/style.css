@@ -115,6 +115,51 @@ body {
 
 .countdown[hidden] { display: none; }
 
+.amen-count {
+  font-family: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  font-size: var(--size-label);
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.amen-count[hidden] { display: none; }
+
+.mic-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--ink-faint);
+  opacity: 0.7;
+  transition: color 200ms var(--ease), opacity 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.mic-indicator[hidden] { display: none; }
+
+.mic-indicator.is-listening {
+  color: var(--accent);
+  opacity: 1;
+  animation: mic-pulse 1.8s ease-in-out infinite;
+}
+
+.mic-indicator.is-speaking {
+  color: var(--gold);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes mic-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mic-indicator.is-listening { animation: none; opacity: 0.9; }
+}
+
 .menu-button {
   background: transparent;
   border: 0;

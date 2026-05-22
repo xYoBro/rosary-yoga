@@ -9,6 +9,7 @@ const SWIPE_TIME_THRESHOLD = 600;
 const TRANSITION_HALF = 200;
 const SESSION_TTL_MS = 60 * 60 * 1000;
 const STATE_KEY = "rosary-yoga.state.v2";
+const HANDS_FREE_KEY = "rosary-yoga.hands-free";
 
 // ---------- data loading -----------------------------------------------
 
@@ -329,6 +330,250 @@ function playChime(variant) {
   });
 }
 
+// ---------- voice (TTS cues + SR command/amen listening) ---------------
+//
+// Hands-free mode speaks a short cue at each station ("Child's pose. Our
+// Father.") and listens for the prayer-ending "amen" to advance prayer
+// cards. For multi-count prayer cards it counts amens up to station.count.
+// Mystery/interlude cards have no prayer, so they keep timer auto-advance
+// and respond to the "next" voice command.
+
+const VOICE_CMD = {
+  NEXT: /\b(next|advance|forward|move on)\b/,
+  BACK: /\b(back|previous|prev|undo)\b/,
+  PAUSE: /\b(pause|stop|hold on|wait)\b/,
+  RESUME: /\b(resume|continue|go on|keep going)\b/,
+  REPEAT: /\b(repeat|again|say (it )?again|what was that)\b/,
+  HELP: /\b(help|cues|setup|how (do i|to))\b/,
+  AMEN: /\bam[ei]n\b/g,
+};
+
+const NUM_WORD = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+
+function numberWord(n) { return NUM_WORD[n] || String(n); }
+
+function cueForStation(station, data) {
+  if (station.kind === "mystery") {
+    return `${ordinal(station.decadeNum)} decade. ${station.mysteryName}.`;
+  }
+  const pose = data.poses[station.poseId];
+  const poseName = pose ? pose.name : "";
+  if (station.kind === "interlude") {
+    return `${poseName}. ${station.title || ""}.`.replace(/\s+\./g, ".").trim();
+  }
+  const prayer = data.prayers[station.prayerKey];
+  const prayerName = prayer ? prayer.short : "";
+  if (station.count && station.count > 1) {
+    const plural = prayerName.endsWith("y") && !/[aeiou]y$/i.test(prayerName)
+      ? prayerName.replace(/y$/, "ys")
+      : prayerName + "s";
+    return `${poseName}. ${capitalize(numberWord(station.count))} ${plural}.`;
+  }
+  return `${poseName}. ${prayerName}.`;
+}
+
+function capitalize(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }
+
+function helpTextForStation(station, data) {
+  if (station.kind === "mystery") return station.mysteryReflection || "";
+  const pose = data.poses[station.poseId];
+  if (!pose) return "";
+  return `${pose.setup} ${pose.hold}`;
+}
+
+let synth = window.speechSynthesis || null;
+let preferredVoice = null;
+
+function pickVoice() {
+  if (!synth) return null;
+  const voices = synth.getVoices();
+  if (!voices.length) return null;
+  // Prefer a natural English voice. iOS labels good voices "Enhanced" or "Premium".
+  const en = voices.filter((v) => /^en[-_]/i.test(v.lang));
+  const enhanced = en.find((v) => /enhanced|premium|siri/i.test(v.name));
+  return enhanced || en[0] || voices[0];
+}
+
+if (synth) {
+  // Voices load asynchronously on first call.
+  synth.onvoiceschanged = () => { preferredVoice = pickVoice(); };
+  preferredVoice = pickVoice();
+}
+
+function speakCue(text) {
+  if (!synth || !text) return;
+  state.lastCueText = text;
+  try { synth.cancel(); } catch (e) {}
+  const u = new SpeechSynthesisUtterance(text);
+  if (preferredVoice) u.voice = preferredVoice;
+  u.rate = 1.0;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+  u.onstart = () => { state.ttsSpeaking = true; setMicIndicator("speaking"); };
+  u.onend = () => { state.ttsSpeaking = false; setMicIndicator(state.handsFree ? "listening" : "off"); };
+  u.onerror = () => { state.ttsSpeaking = false; setMicIndicator(state.handsFree ? "listening" : "off"); };
+  synth.speak(u);
+}
+
+let recognition = null;
+let recognitionWanted = false;
+
+function ensureRecognition() {
+  if (recognition) return recognition;
+  const Ctor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Ctor) return null;
+  recognition = new Ctor();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = "en-US";
+
+  recognition.onresult = (event) => {
+    if (state.ttsSpeaking) return; // ignore our own voice
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      const result = event.results[i];
+      if (!result.isFinal) continue;
+      const text = result[0].transcript.toLowerCase();
+      handleTranscript(text);
+    }
+  };
+
+  recognition.onerror = (e) => {
+    // "no-speech" and "aborted" are routine; "not-allowed" means user denied mic.
+    if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+      recognitionWanted = false;
+      setMicIndicator("off");
+    }
+  };
+
+  recognition.onend = () => {
+    if (recognitionWanted) {
+      // iOS Safari auto-stops; restart to keep listening.
+      try { recognition.start(); } catch (e) {}
+    } else {
+      setMicIndicator("off");
+    }
+  };
+
+  return recognition;
+}
+
+function startListening() {
+  const r = ensureRecognition();
+  if (!r) return false;
+  recognitionWanted = true;
+  try { r.start(); } catch (e) { /* already started */ }
+  setMicIndicator("listening");
+  return true;
+}
+
+function stopListening() {
+  recognitionWanted = false;
+  if (recognition) {
+    try { recognition.stop(); } catch (e) {}
+  }
+  setMicIndicator("off");
+}
+
+function handleTranscript(text) {
+  // Commands first — they always work regardless of station kind.
+  if (VOICE_CMD.NEXT.test(text)) { voiceAdvance(); return; }
+  if (VOICE_CMD.BACK.test(text)) { prev(); return; }
+  if (VOICE_CMD.PAUSE.test(text)) { pauseHandsFree(); return; }
+  if (VOICE_CMD.RESUME.test(text)) { resumeHandsFree(); return; }
+  if (VOICE_CMD.REPEAT.test(text)) { speakCue(state.lastCueText); return; }
+  if (VOICE_CMD.HELP.test(text)) {
+    const station = state.sequence[state.currentIndex];
+    const help = helpTextForStation(station, state.data);
+    if (help) speakCue(help);
+    return;
+  }
+
+  // Amen counting only matters on prayer cards.
+  const station = state.sequence[state.currentIndex];
+  if (!station || station.kind !== "prayer") return;
+
+  const matches = text.match(VOICE_CMD.AMEN);
+  if (!matches) return;
+
+  if (state.amenStation !== state.currentIndex) {
+    state.amenCount = 0;
+    state.amenStation = state.currentIndex;
+  }
+  state.amenCount += matches.length;
+  const needed = station.count || 1;
+  updateAmenIndicator(state.amenCount, needed);
+
+  if (state.amenCount >= needed) {
+    state.amenCount = 0;
+    state.amenStation = -1;
+    voiceAdvance();
+  }
+}
+
+function voiceAdvance() {
+  const station = state.sequence[state.currentIndex];
+  playChime(chimeVariantForStation(station));
+  next();
+}
+
+function pauseHandsFree() {
+  stopListening();
+  clearAutoAdvance();
+}
+
+function resumeHandsFree() {
+  if (!state.handsFree) return;
+  startListening();
+  scheduleAutoAdvance(state.sequence[state.currentIndex]);
+}
+
+// ---------- wake lock --------------------------------------------------
+
+async function acquireWakeLock() {
+  if (!("wakeLock" in navigator)) return;
+  try {
+    state.wakeLock = await navigator.wakeLock.request("screen");
+    state.wakeLock.addEventListener("release", () => { state.wakeLock = null; });
+  } catch (e) { /* user may have backgrounded the tab */ }
+}
+
+function releaseWakeLock() {
+  if (state.wakeLock) {
+    try { state.wakeLock.release(); } catch (e) {}
+    state.wakeLock = null;
+  }
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && state.handsFree && !state.wakeLock) {
+    acquireWakeLock();
+  }
+});
+
+// ---------- mic indicator ----------------------------------------------
+
+function setMicIndicator(mode) {
+  const el = document.getElementById("micIndicator");
+  if (!el) return;
+  el.classList.remove("is-listening", "is-speaking");
+  if (mode === "listening") { el.hidden = false; el.classList.add("is-listening"); }
+  else if (mode === "speaking") { el.hidden = false; el.classList.add("is-speaking"); }
+  else { el.hidden = true; }
+}
+
+function updateAmenIndicator(count, needed) {
+  const el = document.getElementById("amenCount");
+  if (!el) return;
+  if (needed <= 1) { el.hidden = true; return; }
+  el.hidden = false;
+  el.textContent = `${count} / ${needed}`;
+}
+
+function hideAmenIndicator() {
+  const el = document.getElementById("amenCount");
+  if (el) el.hidden = true;
+}
+
 // ---------- rendering ---------------------------------------------------
 
 function render(station, data) {
@@ -468,6 +713,12 @@ let state = {
   mysterySetOverride: null,
   bodyState: "easy",
   transitionLock: false,
+  handsFree: false,
+  amenCount: 0,
+  amenStation: -1,
+  lastCueText: "",
+  ttsSpeaking: false,
+  wakeLock: null,
 };
 
 const BODY_STATE_KEY = "rosary-yoga.body-state";
@@ -495,6 +746,14 @@ function saveBodyState(value) {
 
 function clearBodyState() {
   try { localStorage.removeItem(BODY_STATE_KEY); } catch (e) {}
+}
+
+function loadHandsFree() {
+  try { return localStorage.getItem(HANDS_FREE_KEY) === "1"; } catch (e) { return false; }
+}
+
+function saveHandsFree(on) {
+  try { localStorage.setItem(HANDS_FREE_KEY, on ? "1" : "0"); } catch (e) {}
 }
 
 let autoAdvanceTimer = null;
@@ -539,6 +798,10 @@ function hideCountdown() {
 function scheduleAutoAdvance(station) {
   clearAutoAdvance();
   if (!station.duration) return;
+  // In hands-free mode, prayer cards wait for the spoken "amen" — no timer
+  // auto-advance. Mystery/interlude cards keep their timers so silent
+  // contemplation still flows on its own.
+  if (state.handsFree && station.kind === "prayer") return;
   showCountdown(station.duration);
   autoAdvanceTimer = setTimeout(() => {
     const variant = chimeVariantForStation(station);
@@ -605,6 +868,11 @@ function goTo(index, direction) {
     saveState();
     updateRosary();
 
+    // Reset per-station voice state.
+    state.amenCount = 0;
+    state.amenStation = -1;
+    hideAmenIndicator();
+
     card.classList.remove("is-leaving-left", "is-leaving-right");
     card.classList.add(direction > 0 ? "is-entering-right" : "is-entering-left");
 
@@ -613,6 +881,7 @@ function goTo(index, direction) {
         card.classList.remove("is-entering-right", "is-entering-left");
         card.classList.add("is-here");
         scheduleAutoAdvance(station);
+        if (state.handsFree) speakCue(cueForStation(station, state.data));
       });
     });
 
@@ -721,6 +990,10 @@ function attachButtons() {
         clearAutoAdvance();
         clearBodyState();
         showBodyCheck();
+      } else if (action === "hands-free") {
+        closeMenu();
+        if (state.handsFree) disableHandsFree();
+        else enableHandsFree(false);
       }
     });
   });
@@ -733,6 +1006,7 @@ function openMenu() {
   const subtitle = document.getElementById("menuSubtitle");
   const setKey = mysterySetForToday(state.data, state.mysterySetOverride);
   subtitle.textContent = state.data.mysteries[setKey].name;
+  updateHandsFreeMenuLabel();
   overlay.hidden = false;
 }
 
@@ -860,6 +1134,47 @@ function startPractice() {
   document.getElementById("card").classList.add("is-here");
   updateRosary();
   scheduleAutoAdvance(station);
+  if (state.handsFree) {
+    enableHandsFree(true);
+    // Speak the opening cue once everything is on screen.
+    setTimeout(() => speakCue(cueForStation(station, state.data)), 250);
+  }
+}
+
+async function enableHandsFree(skipSpeak) {
+  state.handsFree = true;
+  saveHandsFree(true);
+  updateHandsFreeMenuLabel();
+  ensureAudio();
+  await acquireWakeLock();
+  startListening();
+  if (!skipSpeak) {
+    const station = state.sequence[state.currentIndex];
+    if (station) speakCue(cueForStation(station, state.data));
+  }
+  // If we just entered hands-free on a prayer card, kill the pending timer.
+  const station = state.sequence[state.currentIndex];
+  if (station && station.kind === "prayer") clearAutoAdvance();
+}
+
+function disableHandsFree() {
+  state.handsFree = false;
+  saveHandsFree(false);
+  updateHandsFreeMenuLabel();
+  stopListening();
+  releaseWakeLock();
+  if (synth) { try { synth.cancel(); } catch (e) {} }
+  hideAmenIndicator();
+  // If we disabled mid-prayer, restart the regular auto-advance.
+  const station = state.sequence[state.currentIndex];
+  if (station) scheduleAutoAdvance(station);
+}
+
+function updateHandsFreeMenuLabel() {
+  const btn = document.querySelector('[data-action="hands-free"]');
+  if (!btn) return;
+  btn.textContent = state.handsFree ? "Hands-free mode · on" : "Hands-free mode · off";
+  btn.classList.toggle("is-current", state.handsFree);
 }
 
 // ---------- boot --------------------------------------------------------
@@ -877,6 +1192,8 @@ async function boot() {
 
   const saved = loadState();
   if (saved) state.mysterySetOverride = saved.mysterySetOverride || null;
+
+  state.handsFree = loadHandsFree();
 
   // We need gestures wired up before the body-check overlay buttons can dispatch.
   attachGestures();

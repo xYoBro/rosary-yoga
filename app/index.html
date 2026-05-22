@@ -23,7 +23,11 @@
     <header class="top-bar">
       <div class="position-label" id="positionLabel"></div>
       <div class="top-bar-right">
+        <div class="amen-count" id="amenCount" hidden aria-label="Prayers counted"></div>
         <div class="countdown" id="countdown" hidden></div>
+        <div class="mic-indicator" id="micIndicator" hidden aria-label="Listening" title="Listening">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z" fill="currentColor"/></svg>
+        </div>
         <button class="menu-button" id="menuButton" aria-label="Open menu" type="button">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
         </button>
@@ -60,6 +64,7 @@
       <h1 class="menu-title">Rosary Yoga</h1>
       <p class="menu-subtitle" id="menuSubtitle"></p>
       <div class="menu-actions">
+        <button class="menu-action" data-action="hands-free" type="button">Hands-free mode · off</button>
         <button class="menu-action" data-action="restart" type="button">Restart from the beginning</button>
         <button class="menu-action" data-action="mysteries" type="button">Change tonight's mysteries</button>
         <button class="menu-action" data-action="body" type="button">How is your body tonight?</button>
