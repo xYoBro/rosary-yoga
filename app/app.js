@@ -164,16 +164,22 @@ function buildSequence(data, mysterySetKey, bodyState) {
       beadStart: i, beadEnd: i,
     }); i += 1;
 
-    seq.push({
-      kind: "prayer", poseId: deepHoldId, prayerKey: "hail_mary",
-      label: `Decade ${decadeNum} · Ten Hail Marys`,
-      count: 10,
-      duration: deepDuration,
-      note: deepHoldId === "figure_four"
-        ? "Switch sides halfway — five Hail Marys per side."
-        : null,
-      beadStart: i, beadEnd: i + 9,
-    }); i += 10;
+    // Ten individual Hail Mary cards — one bead per card. In hands-free
+    // mode, "amen" advances each. In non-hands-free mode, each card
+    // auto-advances after deepDuration/10. The first card carries the
+    // pose cue; subsequent identical cards have their TTS suppressed by
+    // goTo's cue-equality check. Hail Mary 6 of the figure-four decade
+    // gets a "Switch sides" note so the user knows when to switch.
+    const perHmDuration = Math.max(15, Math.round(deepDuration / 10));
+    for (let h = 0; h < 10; h++) {
+      seq.push({
+        kind: "prayer", poseId: deepHoldId, prayerKey: "hail_mary",
+        label: `Decade ${decadeNum} · Hail Mary ${h + 1} of 10`,
+        duration: perHmDuration,
+        note: deepHoldId === "figure_four" && h === 5 ? "Switch sides." : null,
+        beadStart: i, beadEnd: i,
+      }); i += 1;
+    }
 
     // Glory Be after each decade. The 4th decade's neutral hold is slightly
     // longer to fully release the spine after Supported Fish before Legs Up
@@ -304,10 +310,27 @@ function ensureAudio() {
 }
 
 // A soft "bowl" — two stacked sine tones, gentle attack, long decay.
+// The "tick" variant is a single short high tone for repeated-prayer
+// advances (e.g. between Hail Marys) so 10 chimes per decade don't fatigue.
 function playChime(variant) {
   const ctx = ensureAudio();
   if (!ctx) return;
   const now = ctx.currentTime;
+
+  if (variant === "tick") {
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.connect(g);
+    g.connect(ctx.destination);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(659.25, now); // E5
+    g.gain.setValueAtTime(0.0, now);
+    g.gain.linearRampToValueAtTime(0.08, now + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    osc.start(now);
+    osc.stop(now + 0.4);
+    return;
+  }
 
   // Different variants for different transition types
   const tones = variant === "deep"
@@ -368,13 +391,21 @@ function cueForStation(station, data) {
   }
   const prayer = data.prayers[station.prayerKey];
   const prayerName = prayer ? prayer.short : "";
+  let cue;
   if (station.count && station.count > 1) {
     const plural = prayerName.endsWith("y") && !/[aeiou]y$/i.test(prayerName)
       ? prayerName.replace(/y$/, "ys")
       : prayerName + "s";
-    return `${poseName}. ${capitalize(numberWord(station.count))} ${plural}.`;
+    cue = `${poseName}. ${capitalize(numberWord(station.count))} ${plural}.`;
+  } else {
+    cue = `${poseName}. ${prayerName}.`;
   }
-  return `${poseName}. ${prayerName}.`;
+  // Station notes (e.g. "Switch sides" on Hail Mary 6 of figure-four)
+  // prepend to the cue so the user hears the instruction first AND so the
+  // cue text differs from the surrounding repeats — meaning it won't be
+  // suppressed by the same-cue check in goTo.
+  if (station.note) cue = `${station.note} ${cue}`;
+  return cue;
 }
 
 function capitalize(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }
@@ -564,8 +595,17 @@ function countAmenAndMaybeAdvance(text) {
 }
 
 function voiceAdvance() {
-  const station = state.sequence[state.currentIndex];
-  playChime(chimeVariantForStation(station));
+  const cur = state.sequence[state.currentIndex];
+  const nxt = state.sequence[state.currentIndex + 1];
+  // A short "tick" between identical repeated prayers (Hail Mary → Hail
+  // Mary). The regular chime when crossing into a new prayer/pose.
+  let variant;
+  if (cur && nxt && cur.prayerKey && cur.prayerKey === nxt.prayerKey && cur.poseId === nxt.poseId) {
+    variant = "tick";
+  } else {
+    variant = chimeVariantForStation(cur);
+  }
+  playChime(variant);
   next();
 }
 
@@ -930,6 +970,13 @@ function goTo(index, direction) {
   if (index < 0 || index >= state.sequence.length) return;
   if (index === state.currentIndex) return;
 
+  // Capture the previous station's intended cue so we can compare it to
+  // the new station's cue and skip speech when they're identical (the
+  // common case for the 10 Hail Marys of a decade).
+  const prevStation = state.sequence[state.currentIndex];
+  const prevCue = state.handsFree && prevStation
+    ? cueForStation(prevStation, state.data) : null;
+
   clearAutoAdvance();
   state.transitionLock = true;
   const card = document.getElementById("card");
@@ -958,7 +1005,10 @@ function goTo(index, direction) {
         card.classList.remove("is-entering-right", "is-entering-left");
         card.classList.add("is-here");
         scheduleAutoAdvance(station);
-        if (state.handsFree) speakCue(cueForStation(station, state.data));
+        if (state.handsFree) {
+          const newCue = cueForStation(station, state.data);
+          if (newCue && newCue !== prevCue) speakCue(newCue);
+        }
       });
     });
 
