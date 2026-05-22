@@ -388,10 +388,19 @@ function pickVoice() {
   if (!synth) return null;
   const voices = synth.getVoices();
   if (!voices.length) return null;
-  // Prefer a natural English voice. iOS labels good voices "Enhanced" or "Premium".
+  // Prefer the most natural-sounding English voice we can find.
+  // On iOS the quality ladder is Siri >> Premium >> Enhanced >> default Samantha.
   const en = voices.filter((v) => /^en[-_]/i.test(v.lang));
-  const enhanced = en.find((v) => /enhanced|premium|siri/i.test(v.name));
-  return enhanced || en[0] || voices[0];
+  if (!en.length) return voices[0];
+  const score = (v) => {
+    const n = v.name.toLowerCase();
+    if (n.includes("siri")) return 5;
+    if (n.includes("premium")) return 4;
+    if (n.includes("enhanced")) return 3;
+    if (n.includes("samantha") || n.includes("ava") || n.includes("allison")) return 2;
+    return 1;
+  };
+  return en.sort((a, b) => score(b) - score(a))[0];
 }
 
 if (synth) {
@@ -406,7 +415,7 @@ function speakCue(text) {
   try { synth.cancel(); } catch (e) {}
   const u = new SpeechSynthesisUtterance(text);
   if (preferredVoice) u.voice = preferredVoice;
-  u.rate = 1.0;
+  u.rate = 1.15;
   u.pitch = 1.0;
   u.volume = 1.0;
   u.onstart = () => { state.ttsSpeaking = true; setMicIndicator("speaking"); };
@@ -798,10 +807,9 @@ function hideCountdown() {
 function scheduleAutoAdvance(station) {
   clearAutoAdvance();
   if (!station.duration) return;
-  // In hands-free mode, prayer cards wait for the spoken "amen" — no timer
-  // auto-advance. Mystery/interlude cards keep their timers so silent
-  // contemplation still flows on its own.
-  if (state.handsFree && station.kind === "prayer") return;
+  // Hands-free mode is fully self-paced — voice ("amen", "next") or touch
+  // drives every advance. No timer.
+  if (state.handsFree) return;
   showCountdown(station.duration);
   autoAdvanceTimer = setTimeout(() => {
     const variant = chimeVariantForStation(station);
@@ -959,6 +967,7 @@ function attachKeyboard() {
     } else if (e.key === "Escape") {
       closeMenu();
       closeMysteryPicker();
+      closeHelp();
     }
   });
 }
@@ -974,6 +983,8 @@ function attachButtons() {
       const action = btn.getAttribute("data-action");
       if (action === "close") closeMenu();
       else if (action === "close-mystery") closeMysteryPicker();
+      else if (action === "close-help") closeHelp();
+      else if (action === "commands") { closeMenu(); openHelp(); }
       else if (action === "restart") {
         closeMenu();
         clearState();
@@ -1051,6 +1062,14 @@ function openMysteryPicker() {
 
 function closeMysteryPicker() {
   document.getElementById("mysteryOverlay").hidden = true;
+}
+
+function openHelp() {
+  document.getElementById("helpOverlay").hidden = false;
+}
+
+function closeHelp() {
+  document.getElementById("helpOverlay").hidden = true;
 }
 
 // ---------- persistence -------------------------------------------------

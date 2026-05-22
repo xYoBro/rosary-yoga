@@ -65,6 +65,7 @@
       <p class="menu-subtitle" id="menuSubtitle"></p>
       <div class="menu-actions">
         <button class="menu-action" data-action="hands-free" type="button">Hands-free mode · off</button>
+        <button class="menu-action" data-action="commands" type="button">Voice &amp; touch commands</button>
         <button class="menu-action" data-action="restart" type="button">Restart from the beginning</button>
         <button class="menu-action" data-action="mysteries" type="button">Change tonight's mysteries</button>
         <button class="menu-action" data-action="body" type="button">How is your body tonight?</button>
@@ -87,6 +88,34 @@
       <h2 class="mystery-title">Tonight's mysteries</h2>
       <div class="mystery-options" id="mysteryOptions"></div>
       <button class="menu-action" data-action="close-mystery" type="button">Cancel</button>
+    </div>
+  </div>
+
+  <div class="help-overlay" id="helpOverlay" hidden>
+    <div class="help-panel" role="dialog" aria-modal="true" aria-label="Commands">
+      <h2 class="help-title">Commands</h2>
+      <div class="help-section">
+        <div class="help-section-title">Say</div>
+        <dl class="help-list">
+          <dt>amen</dt><dd>advance after each prayer</dd>
+          <dt>next</dt><dd>skip to the next card</dd>
+          <dt>back</dt><dd>return to the previous card</dd>
+          <dt>repeat</dt><dd>re-speak the current cue</dd>
+          <dt>help</dt><dd>read the pose's setup and hold</dd>
+          <dt>pause</dt><dd>stop listening</dd>
+          <dt>resume</dt><dd>start listening again</dd>
+        </dl>
+      </div>
+      <div class="help-section">
+        <div class="help-section-title">Touch</div>
+        <dl class="help-list">
+          <dt>tap right</dt><dd>next card</dd>
+          <dt>tap left</dt><dd>previous card</dd>
+          <dt>swipe</dt><dd>same as tap</dd>
+          <dt>tap a bead</dt><dd>jump to that point in the rosary</dd>
+        </dl>
+      </div>
+      <button class="menu-action" data-action="close-help" type="button">Close</button>
     </div>
   </div>
 

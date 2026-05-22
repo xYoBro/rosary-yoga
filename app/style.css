@@ -520,7 +520,7 @@ body {
 
 /* --- menu overlay --------------------------------------------------- */
 
-.menu-overlay, .mystery-overlay {
+.menu-overlay, .mystery-overlay, .help-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.8);
@@ -533,9 +533,9 @@ body {
   -webkit-backdrop-filter: blur(6px);
 }
 
-.menu-overlay[hidden], .mystery-overlay[hidden] { display: none; }
+.menu-overlay[hidden], .mystery-overlay[hidden], .help-overlay[hidden] { display: none; }
 
-.menu-panel, .mystery-panel {
+.menu-panel, .mystery-panel, .help-panel {
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   border-radius: 4px;
@@ -598,6 +598,54 @@ body {
   color: var(--ink-faint);
   margin-top: 0.5rem;
   line-height: 1.5;
+}
+
+/* --- help overlay --------------------------------------------------- */
+
+.help-title {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.help-section {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.help-section-title {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: var(--size-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+}
+
+.help-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.help-list dt {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.help-list dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-style: italic;
 }
 
 /* --- breath quality block on mystery card --------------------------- */
