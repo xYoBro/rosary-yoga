@@ -926,18 +926,11 @@ function hideCountdown() {
   if (el) el.hidden = true;
 }
 
-function scheduleAutoAdvance(station) {
+function scheduleAutoAdvance(_station) {
+  // Timer auto-advance is gone. The practice is fully self-paced now:
+  // voice (amen, next) and touch (tap/swipe) are the only advance paths.
+  // Kept as a no-op so call sites don't need to change.
   clearAutoAdvance();
-  if (!station.duration) return;
-  // Hands-free mode is fully self-paced — voice ("amen", "next") or touch
-  // drives every advance. No timer.
-  if (state.handsFree) return;
-  showCountdown(station.duration);
-  autoAdvanceTimer = setTimeout(() => {
-    const variant = chimeVariantForStation(station);
-    playChime(variant);
-    next();
-  }, station.duration * 1000);
 }
 
 function chimeVariantForStation(station) {
