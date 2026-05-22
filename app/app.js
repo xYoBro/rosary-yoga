@@ -449,13 +449,22 @@ function isEnglishVoice(v) {
   return false;
 }
 
-function getEnglishVoices() {
+// Show every voice Safari/Chrome actually exposes via getVoices(). If a
+// downloaded voice (e.g. Premium Zoe) is missing here, it means iOS isn't
+// exposing it to web JS — a platform limitation, not something we can
+// filter our way around. Sorting puts Siri/Premium/Enhanced first so
+// high-quality voices float to the top regardless of language.
+function getDisplayVoices() {
   if (!synth) return [];
   const all = synth.getVoices();
-  const en = all.filter(isEnglishVoice);
-  // Fallback: if we somehow filtered to nothing but voices exist, show all.
-  const pool = en.length ? en : all;
-  return pool.slice().sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+  return all.slice().sort((a, b) => {
+    // Prefer English voices among same-quality voices.
+    const enA = isEnglishVoice(a) ? 1 : 0;
+    const enB = isEnglishVoice(b) ? 1 : 0;
+    return voiceQualityScore(b) - voiceQualityScore(a)
+      || enB - enA
+      || a.name.localeCompare(b.name);
+  });
 }
 
 function findVoiceByURI(uri) {
@@ -468,8 +477,10 @@ function pickVoice() {
   // Honor user-saved choice first.
   const saved = findVoiceByURI(state.ttsVoiceURI);
   if (saved) return saved;
-  const en = getEnglishVoices();
-  return en[0] || synth.getVoices()[0] || null;
+  const all = getDisplayVoices();
+  // First English voice (which is also the highest-quality English voice
+  // thanks to the sort in getDisplayVoices), else just the top of the list.
+  return all.find(isEnglishVoice) || all[0] || null;
 }
 
 if (synth) {
@@ -1197,11 +1208,18 @@ function renderVoiceList() {
   if (!container) return;
   container.innerHTML = "";
 
-  const voices = getEnglishVoices();
+  const voices = getDisplayVoices();
   if (!voices.length) {
     container.innerHTML = `<p class="voice-empty">No voices available yet.</p>`;
     return;
   }
+
+  // Diagnostic line. If a downloaded voice is missing from the picker,
+  // it likely isn't being exposed to web JS by iOS Safari.
+  const diag = document.createElement("p");
+  diag.className = "voice-diag";
+  diag.textContent = `${voices.length} voice${voices.length === 1 ? "" : "s"} available`;
+  container.appendChild(diag);
 
   // "Auto" lets us fall back to the quality-scored default.
   const autoBtn = document.createElement("button");

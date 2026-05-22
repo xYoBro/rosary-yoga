@@ -769,6 +769,17 @@ body {
   text-align: center;
 }
 
+.voice-diag {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  margin: 0 0 0.35rem;
+  opacity: 0.7;
+}
+
 .voice-hint {
   font-style: italic;
   font-size: 0.78rem;
