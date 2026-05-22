@@ -452,6 +452,11 @@ function speakCue(text) {
 
 let recognition = null;
 let recognitionWanted = false;
+// Tracks which recognition result-slot indices we've already counted amens
+// for. This lets us act on interim transcripts (avoiding iOS Safari's
+// ~1.5s endpoint-detection delay) without double-firing when the same
+// slot later transitions to isFinal. Cleared on each station change.
+const handledAmenSlots = new Set();
 
 function ensureRecognition() {
   if (recognition) return recognition;
@@ -466,9 +471,20 @@ function ensureRecognition() {
     if (state.ttsSpeaking) return; // ignore our own voice
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const result = event.results[i];
-      if (!result.isFinal) continue;
       const text = result[0].transcript.toLowerCase();
-      handleTranscript(text);
+      // Amen: fire on interim transcripts the moment we see the word.
+      // iOS Safari's endpoint detection adds ~1.5s before isFinal flips,
+      // and that lag is what feels sluggish during the practice.
+      if (!handledAmenSlots.has(i)) {
+        const station = state.sequence[state.currentIndex];
+        if (station && station.kind === "prayer" && VOICE_CMD.AMEN.test(text)) {
+          handledAmenSlots.add(i);
+          countAmenAndMaybeAdvance(text);
+        }
+      }
+      // Commands: only on final transcripts, since they're rarer words and
+      // partial matches ("the next mystery") could false-trigger.
+      if (result.isFinal) handleCommandTranscript(text);
     }
   };
 
@@ -509,8 +525,7 @@ function stopListening() {
   setMicIndicator("off");
 }
 
-function handleTranscript(text) {
-  // Commands first — they always work regardless of station kind.
+function handleCommandTranscript(text) {
   if (VOICE_CMD.NEXT.test(text)) { voiceAdvance(); return; }
   if (VOICE_CMD.BACK.test(text)) { prev(); return; }
   if (VOICE_CMD.PAUSE.test(text)) { pauseHandsFree(); return; }
@@ -520,13 +535,12 @@ function handleTranscript(text) {
     const station = state.sequence[state.currentIndex];
     const help = helpTextForStation(station, state.data);
     if (help) speakCue(help);
-    return;
   }
+}
 
-  // Amen counting only matters on prayer cards.
+function countAmenAndMaybeAdvance(text) {
   const station = state.sequence[state.currentIndex];
   if (!station || station.kind !== "prayer") return;
-
   const matches = text.match(VOICE_CMD.AMEN);
   if (!matches) return;
 
@@ -534,7 +548,11 @@ function handleTranscript(text) {
     state.amenCount = 0;
     state.amenStation = state.currentIndex;
   }
-  state.amenCount += matches.length;
+  // Each slot contributes ONE amen — its match-count from the interim
+  // transcript doesn't matter, since the recognizer revises the same
+  // utterance as it tightens its hypothesis. We've already dedupped on
+  // result-slot index in onresult.
+  state.amenCount += 1;
   const needed = station.count || 1;
   updateAmenIndicator(state.amenCount, needed);
 
@@ -929,6 +947,7 @@ function goTo(index, direction) {
     // Reset per-station voice state.
     state.amenCount = 0;
     state.amenStation = -1;
+    handledAmenSlots.clear();
     hideAmenIndicator();
 
     card.classList.remove("is-leaving-left", "is-leaving-right");
