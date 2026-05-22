@@ -10,6 +10,11 @@ const TRANSITION_HALF = 200;
 const SESSION_TTL_MS = 60 * 60 * 1000;
 const STATE_KEY = "rosary-yoga.state.v2";
 const HANDS_FREE_KEY = "rosary-yoga.hands-free";
+const TTS_RATE_KEY = "rosary-yoga.tts.rate";
+const TTS_VOICE_KEY = "rosary-yoga.tts.voice";
+const TTS_RATE_DEFAULT = 1.15;
+const TTS_RATE_MIN = 0.7;
+const TTS_RATE_MAX = 1.6;
 
 // ---------- data loading -----------------------------------------------
 
@@ -384,38 +389,59 @@ function helpTextForStation(station, data) {
 let synth = window.speechSynthesis || null;
 let preferredVoice = null;
 
+function voiceQualityScore(v) {
+  const n = v.name.toLowerCase();
+  if (n.includes("siri")) return 5;
+  if (n.includes("premium")) return 4;
+  if (n.includes("enhanced")) return 3;
+  if (n.includes("samantha") || n.includes("ava") || n.includes("allison")) return 2;
+  return 1;
+}
+
+function voiceQualityLabel(v) {
+  const n = v.name.toLowerCase();
+  if (n.includes("siri")) return "Siri";
+  if (n.includes("premium")) return "Premium";
+  if (n.includes("enhanced")) return "Enhanced";
+  return "Standard";
+}
+
+function getEnglishVoices() {
+  if (!synth) return [];
+  return synth.getVoices()
+    .filter((v) => /^en[-_]/i.test(v.lang))
+    .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+}
+
+function findVoiceByURI(uri) {
+  if (!synth || !uri) return null;
+  return synth.getVoices().find((v) => v.voiceURI === uri) || null;
+}
+
 function pickVoice() {
   if (!synth) return null;
-  const voices = synth.getVoices();
-  if (!voices.length) return null;
-  // Prefer the most natural-sounding English voice we can find.
-  // On iOS the quality ladder is Siri >> Premium >> Enhanced >> default Samantha.
-  const en = voices.filter((v) => /^en[-_]/i.test(v.lang));
-  if (!en.length) return voices[0];
-  const score = (v) => {
-    const n = v.name.toLowerCase();
-    if (n.includes("siri")) return 5;
-    if (n.includes("premium")) return 4;
-    if (n.includes("enhanced")) return 3;
-    if (n.includes("samantha") || n.includes("ava") || n.includes("allison")) return 2;
-    return 1;
-  };
-  return en.sort((a, b) => score(b) - score(a))[0];
+  // Honor user-saved choice first.
+  const saved = findVoiceByURI(state.ttsVoiceURI);
+  if (saved) return saved;
+  const en = getEnglishVoices();
+  return en[0] || synth.getVoices()[0] || null;
 }
 
 if (synth) {
-  // Voices load asynchronously on first call.
+  // Voices load asynchronously on first call; refresh selection when ready.
+  // (We can't call pickVoice() at module load because `state` is declared
+  // further down the file and would be in the TDZ.)
   synth.onvoiceschanged = () => { preferredVoice = pickVoice(); };
-  preferredVoice = pickVoice();
 }
 
 function speakCue(text) {
   if (!synth || !text) return;
+  if (!preferredVoice) preferredVoice = pickVoice();
   state.lastCueText = text;
   try { synth.cancel(); } catch (e) {}
   const u = new SpeechSynthesisUtterance(text);
   if (preferredVoice) u.voice = preferredVoice;
-  u.rate = 1.15;
+  u.rate = state.ttsRate || TTS_RATE_DEFAULT;
   u.pitch = 1.0;
   u.volume = 1.0;
   u.onstart = () => { state.ttsSpeaking = true; setMicIndicator("speaking"); };
@@ -728,6 +754,8 @@ let state = {
   lastCueText: "",
   ttsSpeaking: false,
   wakeLock: null,
+  ttsRate: TTS_RATE_DEFAULT,
+  ttsVoiceURI: null,
 };
 
 const BODY_STATE_KEY = "rosary-yoga.body-state";
@@ -763,6 +791,28 @@ function loadHandsFree() {
 
 function saveHandsFree(on) {
   try { localStorage.setItem(HANDS_FREE_KEY, on ? "1" : "0"); } catch (e) {}
+}
+
+function loadTtsSettings() {
+  try {
+    const r = parseFloat(localStorage.getItem(TTS_RATE_KEY));
+    if (!isNaN(r) && r >= TTS_RATE_MIN && r <= TTS_RATE_MAX) state.ttsRate = r;
+    const v = localStorage.getItem(TTS_VOICE_KEY);
+    if (v) state.ttsVoiceURI = v;
+  } catch (e) {}
+}
+
+function saveTtsRate(rate) {
+  state.ttsRate = rate;
+  try { localStorage.setItem(TTS_RATE_KEY, String(rate)); } catch (e) {}
+}
+
+function saveTtsVoice(uri) {
+  state.ttsVoiceURI = uri;
+  try {
+    if (uri) localStorage.setItem(TTS_VOICE_KEY, uri);
+    else localStorage.removeItem(TTS_VOICE_KEY);
+  } catch (e) {}
 }
 
 let autoAdvanceTimer = null;
@@ -968,6 +1018,7 @@ function attachKeyboard() {
       closeMenu();
       closeMysteryPicker();
       closeHelp();
+      closeVoiceSettings();
     }
   });
 }
@@ -984,7 +1035,10 @@ function attachButtons() {
       if (action === "close") closeMenu();
       else if (action === "close-mystery") closeMysteryPicker();
       else if (action === "close-help") closeHelp();
+      else if (action === "close-voice") closeVoiceSettings();
+      else if (action === "voice-sample") sampleVoice();
       else if (action === "commands") { closeMenu(); openHelp(); }
+      else if (action === "voice") { closeMenu(); openVoiceSettings(); }
       else if (action === "restart") {
         closeMenu();
         clearState();
@@ -1070,6 +1124,101 @@ function openHelp() {
 
 function closeHelp() {
   document.getElementById("helpOverlay").hidden = true;
+}
+
+const VOICE_SAMPLE_TEXT = "Child's pose. Our Father.";
+
+function openVoiceSettings() {
+  ensureAudio();
+  document.getElementById("voiceOverlay").hidden = false;
+  // Voices may not be loaded yet on first open; re-render on voiceschanged.
+  renderVoiceList();
+  if (synth) {
+    synth.onvoiceschanged = () => {
+      preferredVoice = pickVoice();
+      renderVoiceList();
+    };
+  }
+  const slider = document.getElementById("voiceRate");
+  const readout = document.getElementById("voiceRateReadout");
+  slider.value = String(state.ttsRate);
+  readout.textContent = `${state.ttsRate.toFixed(2)}×`;
+}
+
+function closeVoiceSettings() {
+  document.getElementById("voiceOverlay").hidden = true;
+  if (synth) { try { synth.cancel(); } catch (e) {} }
+}
+
+function renderVoiceList() {
+  const container = document.getElementById("voiceList");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const voices = getEnglishVoices();
+  if (!voices.length) {
+    container.innerHTML = `<p class="voice-empty">No voices available yet.</p>`;
+    return;
+  }
+
+  // "Auto" lets us fall back to the quality-scored default.
+  const autoBtn = document.createElement("button");
+  autoBtn.type = "button";
+  autoBtn.className = "voice-option";
+  if (!state.ttsVoiceURI) autoBtn.classList.add("is-current");
+  autoBtn.innerHTML = `<span class="voice-option-name">Automatic</span><span class="voice-option-tag">best available</span>`;
+  autoBtn.addEventListener("click", () => {
+    saveTtsVoice(null);
+    preferredVoice = pickVoice();
+    refreshVoiceCurrent();
+    sampleVoice();
+  });
+  container.appendChild(autoBtn);
+
+  voices.forEach((v) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "voice-option";
+    if (state.ttsVoiceURI === v.voiceURI) btn.classList.add("is-current");
+    btn.dataset.uri = v.voiceURI;
+    btn.innerHTML = `
+      <span class="voice-option-name">${escapeHtml(v.name)}</span>
+      <span class="voice-option-tag">${escapeHtml(voiceQualityLabel(v))} · ${escapeHtml(v.lang)}</span>
+    `;
+    btn.addEventListener("click", () => {
+      saveTtsVoice(v.voiceURI);
+      preferredVoice = v;
+      refreshVoiceCurrent();
+      sampleVoice();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function refreshVoiceCurrent() {
+  document.querySelectorAll("#voiceList .voice-option").forEach((el) => {
+    const uri = el.dataset.uri || null;
+    el.classList.toggle("is-current", uri === state.ttsVoiceURI);
+  });
+}
+
+function sampleVoice() {
+  if (!synth) return;
+  try { synth.cancel(); } catch (e) {}
+  speakCue(VOICE_SAMPLE_TEXT);
+}
+
+function attachVoiceSettingsHandlers() {
+  const slider = document.getElementById("voiceRate");
+  const readout = document.getElementById("voiceRateReadout");
+  if (!slider) return;
+  slider.addEventListener("input", () => {
+    const r = parseFloat(slider.value);
+    saveTtsRate(r);
+    readout.textContent = `${r.toFixed(2)}×`;
+  });
+  // Speak a sample when the user releases the slider, not on every tick.
+  slider.addEventListener("change", () => sampleVoice());
 }
 
 // ---------- persistence -------------------------------------------------
@@ -1213,11 +1362,13 @@ async function boot() {
   if (saved) state.mysterySetOverride = saved.mysterySetOverride || null;
 
   state.handsFree = loadHandsFree();
+  loadTtsSettings();
 
   // We need gestures wired up before the body-check overlay buttons can dispatch.
   attachGestures();
   attachKeyboard();
   attachButtons();
+  attachVoiceSettingsHandlers();
   registerServiceWorker();
 
   const savedBodyState = loadBodyState();
