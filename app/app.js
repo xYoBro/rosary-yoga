@@ -887,51 +887,11 @@ function saveTtsVoice(uri) {
   } catch (e) {}
 }
 
-let autoAdvanceTimer = null;
-let countdownInterval = null;
-
-function clearAutoAdvance() {
-  if (autoAdvanceTimer) {
-    clearTimeout(autoAdvanceTimer);
-    autoAdvanceTimer = null;
-  }
-  if (countdownInterval) {
-    clearInterval(countdownInterval);
-    countdownInterval = null;
-  }
-  hideCountdown();
-}
-
-function showCountdown(seconds) {
-  const el = document.getElementById("countdown");
-  if (!el) return;
-  el.hidden = false;
-  let remaining = seconds;
-  const update = () => {
-    if (remaining <= 0) {
-      hideCountdown();
-      return;
-    }
-    const mm = Math.floor(remaining / 60);
-    const ss = String(remaining % 60).padStart(2, "0");
-    el.textContent = `${mm}:${ss}`;
-    remaining -= 1;
-  };
-  update();
-  countdownInterval = setInterval(update, 1000);
-}
-
-function hideCountdown() {
-  const el = document.getElementById("countdown");
-  if (el) el.hidden = true;
-}
-
-function scheduleAutoAdvance(_station) {
-  // Timer auto-advance is gone. The practice is fully self-paced now:
-  // voice (amen, next) and touch (tap/swipe) are the only advance paths.
-  // Kept as a no-op so call sites don't need to change.
-  clearAutoAdvance();
-}
+// Timer auto-advance has been removed; the practice is voice + touch only.
+// clearAutoAdvance and scheduleAutoAdvance remain as no-ops so call sites
+// (boot, station change, menu actions) don't have to be edited.
+function clearAutoAdvance() {}
+function scheduleAutoAdvance(_station) {}
 
 function chimeVariantForStation(station) {
   if (station.kind === "mystery") return "open";

@@ -103,18 +103,6 @@ body {
   gap: 0.6rem;
 }
 
-.countdown {
-  font-family: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
-  font-size: var(--size-label);
-  letter-spacing: 0.12em;
-  color: var(--ink-faint);
-  font-variant-numeric: tabular-nums;
-  min-width: 3ch;
-  text-align: right;
-}
-
-.countdown[hidden] { display: none; }
-
 .amen-count {
   font-family: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
   font-size: var(--size-label);
