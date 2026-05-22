@@ -420,28 +420,42 @@ function helpTextForStation(station, data) {
 let synth = window.speechSynthesis || null;
 let preferredVoice = null;
 
+// iOS often hides the quality marker in voiceURI rather than name —
+// e.g. "Zoe" has name "Zoe" but URI "com.apple.voice.premium.en-GB.Zoe".
+// We check both so Premium voices don't get mis-scored as Standard.
 function voiceQualityScore(v) {
+  const tag = `${v.name} ${v.voiceURI || ""}`.toLowerCase();
+  if (tag.includes("siri")) return 5;
+  if (tag.includes("premium")) return 4;
+  if (tag.includes("enhanced")) return 3;
   const n = v.name.toLowerCase();
-  if (n.includes("siri")) return 5;
-  if (n.includes("premium")) return 4;
-  if (n.includes("enhanced")) return 3;
   if (n.includes("samantha") || n.includes("ava") || n.includes("allison")) return 2;
   return 1;
 }
 
 function voiceQualityLabel(v) {
-  const n = v.name.toLowerCase();
-  if (n.includes("siri")) return "Siri";
-  if (n.includes("premium")) return "Premium";
-  if (n.includes("enhanced")) return "Enhanced";
+  const tag = `${v.name} ${v.voiceURI || ""}`.toLowerCase();
+  if (tag.includes("siri")) return "Siri";
+  if (tag.includes("premium")) return "Premium";
+  if (tag.includes("enhanced")) return "Enhanced";
   return "Standard";
+}
+
+function isEnglishVoice(v) {
+  if (/^en($|[-_])/i.test(v.lang || "")) return true;
+  // Safety net for voices whose `lang` is mislabeled but whose URI clearly
+  // identifies an English variant.
+  if (/[._-]en[-_]/i.test(v.voiceURI || "")) return true;
+  return false;
 }
 
 function getEnglishVoices() {
   if (!synth) return [];
-  return synth.getVoices()
-    .filter((v) => /^en[-_]/i.test(v.lang))
-    .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+  const all = synth.getVoices();
+  const en = all.filter(isEnglishVoice);
+  // Fallback: if we somehow filtered to nothing but voices exist, show all.
+  const pool = en.length ? en : all;
+  return pool.slice().sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
 }
 
 function findVoiceByURI(uri) {
@@ -1200,7 +1214,9 @@ const VOICE_SAMPLE_TEXT = "Child's pose. Our Father.";
 function openVoiceSettings() {
   ensureAudio();
   document.getElementById("voiceOverlay").hidden = false;
-  // Voices may not be loaded yet on first open; re-render on voiceschanged.
+  // Nudge iOS to refresh its voice inventory — newly-downloaded voices
+  // sometimes need a `cancel()` poke before they appear in getVoices().
+  if (synth) { try { synth.cancel(); } catch (e) {} }
   renderVoiceList();
   if (synth) {
     synth.onvoiceschanged = () => {
@@ -1208,6 +1224,10 @@ function openVoiceSettings() {
       renderVoiceList();
     };
   }
+  // Re-render shortly after open: some iOS versions populate the voice
+  // list asynchronously after the panel mounts.
+  setTimeout(renderVoiceList, 300);
+  setTimeout(renderVoiceList, 1200);
   const slider = document.getElementById("voiceRate");
   const readout = document.getElementById("voiceRateReadout");
   slider.value = String(state.ttsRate);
