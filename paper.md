@@ -1,76 +1,83 @@
 # Rosary Yoga — The Paper Kit
 
-> **Status: optional fallback layer (revised May 2026).** Earlier drafts treated paper as the source of truth. The project has since pivoted app-first — the app is canonical, and the paper kit is reduced to (a) dice and pencil for moments when the phone shouldn't be involved, and (b) an optional heirloom Codex for operators who want the inheritance object. The three-book kit specified below remains the complete artifact set for the no-tech path. See `app.md` for the central design.
+> **Status: optional fallback layer (revised May 2026).** The app (`app.md`) is canonical. The paper layer exists for moments when the phone shouldn't be involved — vigil, mid-workout, retreat — and for operators who want the practice to leave a tangible trace. Everything below prints on a standard home or office printer and gets stapled by hand. No specialty binding, no POD vendors, no commissions.
 
-*The physical artifacts that carry the training when the phone is not the right tool. Pencil, paper, and a die — sufficient on their own. The app, by default, holds the canonical record.*
+*Standard US Letter. Duplex print. Fold in half. Staple the spine. A booklet.*
 
-> *Operator. The codex is in your hands. Make the connection.*
-> — RELAY, on Mary's first transmission
-
----
-
-## Why paper is primary
-
-The training runs at work, on planes, in places where phones are not welcome. Paper does not require permission, a battery, or a signal. Paper survives operating-system migrations, vendor collapses, and the thirty-year horizon the practice is calibrated for. A binder from 1995 is still legible. No app from 1995 still runs.
-
-The codex inheritance arc only makes literal sense as a physical object. Mary's hand cannot be inherited as a JSON blob. RELAY writes by ink. The operator's codex will pass to whoever walks the Rosary next, in the same form.
-
-The app, when it is built, is a recorder and a printer. It is not the source of truth. The protocol must work without electronics from day one and remain workable without them in year thirty.
+> *Operator. The codec is in your pocket. If you need it on paper, paper is allowed.*
+> — RELAY
 
 ---
 
-## Three books, three timescales
+## Why paper persists
 
-| Book | Role | Lives | Timescale |
-|------|------|-------|-----------|
-| **The Manual** | Everything you LOOK UP. Rules, modality tables, dice tables, exercise menus per modality, boss protocols, load tables. Tabbed. Printed. Never changes mid-year. | Bag / jacket pocket | Eternal (per protocol version) |
-| **The Logbook** | Everything you WRITE. One spread per bead, pre-printed with mystery, phase, load targets, and RELAY's morning headers. You fill in dice, work, scores, notes. | Desk at home | The present year |
-| **The Codex** | Everything that LASTS. Boss spreads only — RELAY's first contact, fight protocol, fight log across years. Hand-bound or print-on-demand. | Shelf | Ancestral — decades, handed forward |
+The app is canonical and sufficient. Paper exists because:
 
-The whole kit can be described in one sentence: *you carry the Manual, you write in the Logbook, you inscribe the Codex.*
+- A phone is intrusive during the vigil and the Sanctum. A booklet is not.
+- Mid-workout pencil-on-paper is faster than tapping a screen with chalky hands.
+- Some moments deserve ink. Boss-fight transmissions, year-end reflections.
+- An operator who wants the inheritance arc — handing a paper trail to whoever walks the Rosary next — needs an artifact. The booklets are that artifact.
 
-All three books share a single trim — **5.5 × 8.5"** (US Digest / Half-Letter). They coordinate on the shelf as a set. Binding differs by role: the Manual and Codex are sewn (closed, canonical), the Logbook is wire-bound (lay-flat, made for writing).
+None of these are required. The paper layer is opt-in.
 
-No loose cards. No binders to lose. No accessories to forget. Three objects. Each one obvious.
+---
+
+## The kit
+
+A small stack of stapled booklets, plus a die and a pencil. The whole kit fits in a slim folio or a coat pocket.
+
+| Item | What it is | How many in Year One |
+|------|-----------|----------------------|
+| **The Manual** | Quick-reference. Dice tables, boss protocols, AF scoring grid, protocol-at-a-glance. ~24–32pp. | 1 booklet |
+| **The Logbook** | One stapled booklet per decade. Six daily spreads + Sanctum + decade cover. ~24pp. | 7 booklets (pendant + 5 decades + closing) |
+| **The Codex** | Boss spreads only. One per Year-One encounter, plus RELAY's first contact and the fight log. ~28–32pp. | 1 booklet |
+| The die | A d6. Wooden or plastic. | 1 |
+| The pencil | A pencil. Or a pen. Operator's call. | 1 |
+
+Nine booklets total at year's end. Each one a finished object. The stack is the year.
+
+---
+
+## How to print and staple
+
+All booklets are produced by the same workflow.
+
+1. **Print.** Standard 8.5 × 11" white printer paper, 20–24 lb. Any duplex-capable laser or inkjet. The LaTeX sources emit a PDF imposed for booklet printing — two pages per side, ordered so that when the stack is folded in half, the pages read in sequence.
+2. **Fold.** Stack the printed sheets. Fold the whole stack in half along the short edge. Crease firmly with a bone folder or the back of a pencil. Finished trim is 5.5 × 8.5" (US Half-Letter / Digest).
+3. **Staple.** Two staples along the spine. A long-arm stapler (Swingline 615, Bostitch B440LR — ~$20 at any office store) reaches the spine of a folded booklet. A standard desk stapler can also work for thin booklets if you open it flat, position the spine over a soft surface, and press the staple through.
+4. **Trim (optional).** A guillotine cutter or a ruler-and-blade pass tidies the foredge if the fold-up creates uneven page edges. Not required.
+
+Page count must be a multiple of four (each folded sheet contributes four pages). Practical maximum per booklet, with a long-arm stapler, is around 48 pages — beyond that, switch to multiple booklets.
 
 ---
 
 ## The Manual
 
-The reference book. Read in the first weeks until the protocol lives in the body; carried thereafter only when something needs looking up. It is also the book the operator hands to anyone who asks what the practice is.
+A single quick-reference booklet. Carried until the protocol is memorized; consulted thereafter.
 
 ### Contents
 
-1. **Protocol at a glance** — one spread. The 62-bead rosary, the weekly modality, the year cycle.
-2. **The week** — modality by day, one page each.
-3. **The decade** — bead-position phase table, load multipliers.
-4. **The pendant** — the seven onboarding weeks, week by week.
-5. **The five mysteries (Year One)** — names and boss names. One page per mystery.
-6. **The dice** — how, when, what overrides what. Dice tables per modality. (Absorbs what was previously loose Dice Cards.)
-7. **The bosses** — fight protocol and scoring grid for each of the seven Year-One encounters. (Absorbs what was previously loose Boss Cards.)
-8. **The AF PT scoring table** — for the operator's current age/gender bracket. Reprinted every five years as the bracket changes.
-9. **The Sunday Sanctum** — the weekly close-out ritual.
-10. **The Vigil** — the morning warmup. *(Pending research.)*
+1. Protocol at a glance — one spread.
+2. The week — modality by day-of-week, one page.
+3. The decade — bead-position phase and load multiplier table, one page.
+4. The pendant — the seven onboarding weeks, two pages.
+5. The dice tables — one page per modality (Joyful, Sorrowful, Glorious, Luminous), plus a modifier page. Five pages.
+6. The bosses — one page per Year-One encounter (7 pages), fight protocol and target score for the operator's bracket.
+7. The AF PT scoring grid — for the operator's current age/sex bracket. One spread.
+8. The Sanctum — one page.
+9. The Vigil — one or two pages once specified.
 
-### Print spec
+Total: ~24–28 pages of content + 4 pages of cover/title/version → 28 or 32 pages. Saddle-stitchable comfortably.
 
-- **Trim.** 5.5 × 8.5" (US Digest / Half-Letter). Standard KDP, IngramSpark, Lulu, and B&N Press hardcover trim.
-- **Pages.** 100–140, depending on appendix size. Within the 75–550-page hardcover window for all major US POD services.
-- **Binding.** Smyth-sewn case-laminate hardcover. Cloth spine if the printer offers it (Lulu does; KDP does not).
-- **Paper.** 80 lb cream text stock (≈118 gsm), low-glare, low show-through.
-- **Ink.** Black throughout. One accent color (deep red, dedicated plate or single-pass) for chapter heads and tab markers if the service permits at this trim.
-- **Tabs.** Printed tab markers along the foredge for: Week · Decade · Mysteries · Dice · Bosses · Scoring · Sanctum. (True die-cut tabs are not POD-standard; printed tabs read identically once thumb-stained.)
-- **Cover.** *ROSARY · MANUAL · v1* foil-stamped or printed. The version number lives on the cover so an outdated Manual is visibly outdated.
-
-A new edition each protocol revision.
+The Manual is reprinted whenever the protocol changes. Version number on the cover; outdated Manuals are visibly outdated.
 
 ---
 
-## The Logbook
+## The Logbook (per-decade booklets)
 
-The book you write in every day. One spread per bead, pre-printed. Sixty-two spreads for Year One (six pendant + fifty-five loop + one closing). A single bound book — not a binder, not loose pages.
+One booklet per decade. Seven booklets cover Year One: the pendant booklet (6 onboarding beads + 1 trial = 7 spreads), the five decade booklets (10 beads each, with the tenth being a boss bead), and the closing booklet (1 bead).
 
-### Layout (one spread)
+### Layout of one bead spread (two facing pages inside the booklet)
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────┐
@@ -97,57 +104,33 @@ The book you write in every day. One spread per bead, pre-printed. Sixty-two spr
 │   [SAT · JOYFUL · RECOVERY — same block]                                   │
 ├───────────────────────────────────────────────────────────────────────────┤
 │ SUN · SANCTUM                                                              │
-│   Bead closed [_]   Weight ____kg   Sleep avg ____h                        │
+│   Bead closed [_]   Weight ____lb   Sleep avg ____h                        │
 │   RELAY post-bead: ____________________________________________________   │
 │   Operator note:   ____________________________________________________   │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
 
-Each spread is one bead. Two facing pages. Pre-printed static content includes the QR identifier (top-left), the mystery and phase, the load targets (computed from the bead's phase), and RELAY's morning header for each day. The operator fills in everything else by hand.
+### Per booklet
 
-### Field schema
+- **Cover (4 pages of the outer sheet).** Decade name and mystery on the front. Modality-by-day quick table on the inside-front. Decade-end ledger (cumulative scores, weight trend, dice histogram) on the inside-back. Sanctum-of-Sundays-collected list on the back.
+- **Interior (20 pages = 10 spreads).** One bead per spread.
 
-| Field | Type | Source | Required |
-|-------|------|--------|----------|
-| QR identifier | Encoded | Pre-printed | Yes |
-| Mystery, decade, bead, phase | Text | Pre-printed | Yes |
-| Week-of date | Date | Operator | Yes |
-| Load targets | Table | Pre-printed (computed from phase) | Yes |
-| RELAY morning header | Text | Pre-printed per day | Yes |
-| Dice roll | Numeric box | Operator | Yes |
-| Modifier flag | Tick box | Operator | If triggered |
-| Work performed | Free text | Operator | Yes |
-| Scores | Numeric boxes | Operator | When applicable |
-| Notes | Free text | Operator | Optional |
-| Sanctum fields | Mixed | Operator + RELAY hand | Yes |
+Total: 24 pages per Logbook booklet. The boss bead's spread looks identical to a normal bead but cues the operator (and the QR carries `TBoss`) to enter the encounter mode in the app.
 
-### Print spec
-
-- **Trim.** 5.5 × 8.5" (US Digest / Half-Letter). Matches the Manual and Codex.
-- **Pages.** ~150 (62 spreads × 2 pages, plus ~10 pages front matter — protocol summary, modality-at-a-glance, year ledger header — and ~16 pages back matter — annual ledger, weight chart, year-end Sanctum).
-- **Binding.** Wire-O (twin-loop wire) hardcover. Lays perfectly flat, both pages writable, durable for daily handling. Available from Lulu, Mixam, and most regional book printers. (Smyth-sewn is the second choice if Wire-O isn't available at the user's print service — lays nearly flat after break-in.)
-- **Paper.** 100 lb text cream (≈148 gsm), heavier than the Manual to handle daily writing in pen without ghosting.
-- **Ink.** Black for pre-printed content. Operator writes in pencil (corrigible, ages well) or fountain pen (permanent, archival ink). Operator's call.
-- **Ribbon bookmark.** One, sewn or tipped into the spine, marking the current bead.
-- **Die pocket.** A slim cloth pocket affixed inside the front cover at bindery. Holds the operator's d6 (or d10).
-- **Cover.** *ROSARY · LOGBOOK · Year One* foil-stamped. The year number is on the cover so Logbooks shelved together read as a sequence.
-
-A new Logbook every year. Old Logbooks shelve in chronological order. The shelf is the long arc.
+When the decade ends, the booklet is finished. File it. Print the next one.
 
 ---
 
 ## The Codex
 
-The permanent record. Boss spreads only — one per Year-One encounter. RELAY's first contact transmission transcribed across the top, the fight protocol restated, the fight log filled in across years.
+A single booklet covering the seven Year-One bosses. Filled gradually as bosses are encountered through the year and revisited across years.
 
-The Codex is the book the operator may hand down. It is the only artifact in the kit that is meant to outlive the operator.
-
-### Layout (one spread, per boss)
+### Layout (one spread per boss)
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ ╔═══════════════╗                                                          │
-│ ║  THE ANVIL    ║   DECADE 3 — THE NATIVITY                                │
+│ ║  THE ANVIL    ║   DECADE 1 — THE JOYFUL · NATIVITY                       │
 │ ╚═══════════════╝   FIRST ENCOUNTER UNLOCKED: ________                     │
 │                                                                             │
 │ RELAY FIRST CONTACT:                                                       │
@@ -155,194 +138,114 @@ The Codex is the book the operator may hand down. It is the only artifact in the
 │ _________________________________________________________________________ │
 │                                                                             │
 │ FIGHT PROTOCOL:                                                            │
-│ • No run today.                                                            │
-│ • Pushups to fatigue.                                                      │
-│ • Pullup progressions to fatigue.                                          │
-│ • Situps to fatigue.                                                       │
-│ • Plank to fatigue.                                                        │
+│ • No run today.   • Pushups to fatigue.   • Pullups to fatigue.            │
+│ • Situps to fatigue.   • Plank to fatigue.                                 │
 │ • Score = (PU + SU) + (Pullup-equiv × 2) + plank seconds.                  │
 │                                                                             │
 │ FIGHT LOG:                                                                 │
 │ ┌─────────┬────┬────┬─────────┬──────┬────────┬─────────────────────────┐  │
 │ │ DATE    │ PU │ SU │ PULLUPS │ PLNK │ SCORE  │ NOTES                   │  │
 │ ├─────────┼────┼────┼─────────┼──────┼────────┼─────────────────────────┤  │
-│ │         │    │    │         │      │        │                         │  │
-│ │  (room for ~10 fights per boss)                                        │  │
+│ │  (room for ~6 fights per boss in the stapled booklet)                  │  │
 │ └─────────┴────┴────┴─────────┴──────┴────────┴─────────────────────────┘  │
 │                                                                             │
-│ RELAY POST-ENGAGEMENT TRANSMISSIONS:                                       │
-│ _________________________________________________________________________ │
+│ THOUGHT AWARDED (if any): _______________________________________________ │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Print spec
+### Per booklet
 
-The Codex has two viable paths. Both are specified — the operator picks one at the start of Year One.
+- 7 boss spreads (14 pages) + 4 pages of front/back matter + 4–8 pages of overflow notes at the back → 24–28 pages. Saddle-stitchable.
+- Operator writes in pen (this is the permanent record).
+- The QR carries `TCodex` and the boss name so the app can scan a filled page back into its data model.
 
-**Path A — Print-on-demand (the practical start).**
+### Optional heirloom upgrade
 
-- **Trim.** 5.5 × 8.5" (matches the Manual and Logbook).
-- **Pages.** 80–96. The seven Year-One boss spreads (4 pages each = 28 pages) plus reserved spreads for Years 2–4 bosses (32 pages) plus front matter (dedication, inheritance page) and end matter (lifetime ledger, blank notes pages). Padding to ≥75 pages is what makes it POD-eligible at KDP/IngramSpark/Lulu.
-- **Binding.** Smyth-sewn case-laminate hardcover. The most archival POD option available.
-- **Paper.** 80 lb cream text (≈118 gsm). Acid-free where the service offers it (Lulu's premium paper is acid-free; KDP's is not specified).
-- **Cover.** *CODEX* foil-stamped or printed. Operator's name and year of inception inscribed by hand inside the front cover.
-
-**Path B — Hand-bound (the heirloom upgrade).**
-
-Commission from a US bookbinder at the close of Year One, once the boss spreads are filled in. The hand-bound version becomes the permanent record; the POD version may serve as Year-One working copy and then be retired.
-
-- **Trim.** 5.5 × 8.5".
-- **Pages.** As needed.
-- **Binding.** Hand-sewn (Smyth or coptic) hardcover. Cloth- or leather-bound boards. Endpapers in a single deep color.
-- **Paper.** 120 gsm cream archival, acid-free, expected fifty-year minimum lifespan.
-- **Ink.** Operator writes in fountain pen or archival ink. No pencil — the Codex is permanent.
-- **Vendors.** Gibbs Bookbinding (Los Angeles), The Creaky Spine Bindery, or any local conservator. Base prices begin around $90 and rise with materials and craft.
-
-A single Codex is sufficient for Year One. Subsequent Mysteries — Sorrowful, Glorious, Luminous — may each get their own Codex, or all four may share one expanded volume. To be decided at the close of Year One.
+After Year One closes, the operator may commission a hand-bound version of the Codex from a US bookbinder (Gibbs LA, The Creaky Spine, or any local conservator — base prices ~$90). The stapled booklet stays as the working draft; the hand-bound version becomes the inheritance object. This is the only place in the paper kit where commissioning anything makes sense, and even then, only if the operator wants the ritual.
 
 ---
 
 ## The QR encoding scheme
 
-Every Logbook spread carries a QR code in the top-left corner, approximately 1 × 1" — large enough for any phone camera to scan from a foot away. Codex spreads carry one too. The Manual carries none — it has no per-instance data.
-
-The QR payload is a single line of human-readable structured text:
+Every Logbook spread and every Codex spread carries a QR in the top-left corner, approximately 1 × 1". Manual pages carry none — no per-instance data.
 
 ```
 RY|v1|Y{year}|D{decade}|B{bead}|P{phase}|M{mystery}|T{type}
 ```
 
+Examples:
+
 | Payload | Decoded |
 |---|---|
 | `RY|v1|Y1|D3|B8|PPeak|MNativity|TLog` | Year 1, Decade 3, Bead 8 (peak), Nativity, Logbook spread |
-| `RY|v1|Y1|D3|B11|PBoss|MNativity|TCodex|NAnvil` | Year 1, Decade 3, Boss bead (Anvil), Codex spread |
-| `RY|v1|Y1|Dpendant|B5|PCenterpiece|MMary|TLog` | Year 1, Pendant, Centerpiece, Logbook spread |
+| `RY|v1|Y1|D1|B10|PBoss|MNativity|TCodex|NAnvil` | Year 1, Decade 1, Boss bead (Anvil), Codex spread |
 
-If the QR fails to scan, the operator can type it in. The format is short enough to read with the naked eye.
-
----
-
-## The data schema (the app contract)
-
-What the app, whenever it exists, must read and write. Defined here so the paper and future app stay aligned.
-
-```jsonc
-{
-  "spread_id": "RY|v1|Y1|D3|B8|PPeak|MNativity|TLog",
-  "week_start": "2026-08-17",
-  "days": [
-    {
-      "day": "Mon",
-      "modality": "Joyful",
-      "dice": 4,
-      "modifier": null,
-      "work": "Vigil + 20min flow",
-      "scores": {},
-      "notes": ""
-    }
-    // ... six more day records
-  ],
-  "sanctum": {
-    "bead_closed": true,
-    "next_bead_id": "RY|v1|Y1|D3|B9|PTaper|MNativity|TLog",
-    "weight_kg": 78.2,
-    "sleep_avg_h": 7.5,
-    "relay_post_bead": "Bead 8 closed. Anvil in T-minus 2 beads. Body holding.",
-    "operator_note": "Right shoulder fatigued. Plan: extra Joyful mobility on Mon."
-  }
-}
-```
-
-A Codex spread serializes similarly, with a `fights[]` array growing over years.
-
-The app must implement two operations:
-
-1. **Scan** — read a photographed Logbook spread. Decode the QR, optically recognize numeric box fields, photograph free-text zones as image archives. Output: JSON record matching the schema.
-2. **Print** — given a `spread_id`, render a PDF pre-headed with all static content (mystery name, phase, load table, RELAY morning headers). Output: PDF for duplex printing.
-
-Both operations are stateless from the app's perspective. The source of truth lives in the books.
+Format is human-readable. If the QR fails to scan, the operator can type it in.
 
 ---
 
-## The Sunday Sanctum loop
+## The Sanctum loop with paper
 
-The weekly close-out that holds books and app together.
+For an operator running paper:
 
-1. **Mon–Sat.** Operator fills in the Logbook spread by hand. Six days of work.
-2. **Sun (Sanctum, paper phase).** Operator closes the bottom band of the spread. Reviews the week. RELAY's post-bead transmission is written in.
-3. **Sun (Sanctum, app phase — optional).** Operator scans the spread. The app updates the digital codex.
-4. **Bead boundary.** Operator turns the page. The next spread is already pre-printed and headed. Work resumes.
+1. **Mon–Sat.** Fill in the bead's spread by hand in the current Logbook booklet.
+2. **Sun (paper).** Close the bottom band — bead closed, weight, sleep, operator note. Done.
+3. **Sun (app, optional).** Scan the spread. App parses the QR, lifts numeric scoreboxes via OMR, archives the free-text zones as image. Data merges into the canonical record.
+4. **Bead boundary.** Turn the page. The next spread is already there. At decade boundary, start the next booklet.
 
-If the app is not used, the loop runs identically minus step 3. The digital codex falls behind but the Logbook is intact and self-sufficient. Backfilling the digital codex from the Logbook can happen any future Sanctum, or never.
+If the operator doesn't scan, the paper record is self-sufficient; the digital codex falls behind but can be backfilled any future Sunday. The app's `paper.md` interop is described in `app.md`.
 
 ---
 
-## Tools and format
+## Tools and source format
 
-### Source format: LaTeX
-
-LaTeX is forty-plus years old and will compile in 2055. The verbosity is a one-time cost when writing templates; the resulting documents are typographically as good as anything published. TeX Live is heavy (~2GB) but installs once.
-
-The repo will contain a `paper/` directory:
+LaTeX, with booklet imposition.
 
 ```
 paper/
 ├── manual/
 │   ├── manual.tex
-│   ├── tables/                 # generated table data
-│   └── bosses.yaml             # per-boss content (protocol, scoring)
+│   └── tables/                 # dice, scoring, modality tables (CSV)
 ├── logbook/
-│   ├── logbook.tex             # full-book template
+│   ├── booklet.tex             # one decade booklet template
 │   └── beads.csv               # per-bead static data (mystery, phase, load, headers)
 ├── codex/
-│   └── codex.tex               # full-book template, pulls from bosses.yaml
-└── Makefile                    # `make all` produces all three book PDFs
+│   ├── codex.tex
+│   └── bosses.yaml             # per-boss content (protocol, RELAY first contact text)
+└── Makefile                    # `make all` produces a booklet-imposed PDF per artifact
 ```
 
-Static data (boss content, bead schedule, RELAY headers) lives in CSV/YAML separate from TeX. Updating the protocol means editing data, not typesetting.
+LaTeX renders each booklet at US Letter trim with two pages per side, pre-imposed for fold-and-staple. The `pdfpages` package handles imposition (`\includepdf[pages=-,nup=2x1,landscape]`), or `pdfjam --booklet` as a post-process. The operator opens the PDF, prints duplex (long-edge binding for landscape sources, short-edge for portrait — the Makefile picks the right one), folds, and staples.
 
 ### Print specs (summary)
 
-| Book | Trim | Pages | Paper | Binding |
+| Artifact | Final trim | Stock | Pages | Binding |
 |---|---|---|---|---|
-| Manual | 5.5 × 8.5" | 100–140 | 80 lb cream text (~118 gsm) | Smyth-sewn case-laminate hardcover |
-| Logbook | 5.5 × 8.5" | ~150 | 100 lb cream text (~148 gsm) | Wire-O hardcover, lay-flat |
-| Codex | 5.5 × 8.5" | 80–96 (POD) or open (hand-bound) | 80 lb cream POD / 120 gsm archival hand-bound | Smyth-sewn case-laminate (POD) or hand-sewn (heirloom) |
+| Manual | 5.5 × 8.5" | 24 lb white | 28–32 | Saddle-stitched, long-arm stapler |
+| Logbook booklet (each) | 5.5 × 8.5" | 24 lb white | 24 | Saddle-stitched |
+| Codex | 5.5 × 8.5" | 28 lb cream | 24–28 | Saddle-stitched (heirloom upgrade optional) |
 
-All three books share the same 5.5 × 8.5" trim and cream stock. The kit reads as a coordinated set on the shelf, distinguished by cover treatment and binding character.
-
-### Where to print
-
-The kit is designed against the off-the-shelf capabilities of US print-on-demand services as of 2026:
-
-- **KDP** (Amazon) — hardcover trim 5.5×8.5 supported; 75–550-page range. Cheapest, but no Wire-O and limited paper options. Workable for Manual.
-- **IngramSpark** — full POD with broader binding and paper options. Good for Manual and Codex.
-- **Lulu** — supports Wire-O hardcover at 5.5×8.5, acid-free premium paper, smaller minimum runs. The recommended single-vendor option that covers all three books.
-- **Mixam / regional book printers** — for Wire-O hardcover specifically, often higher quality than POD at slightly higher per-unit cost.
-- **Gibbs Bookbinding (LA), The Creaky Spine Bindery, local conservators** — for the heirloom Codex upgrade, single copies, acid-free archival materials, $90+.
-
-The operator does not need to pick a vendor up front. The LaTeX sources produce PDFs that work at any service supporting 5.5×8.5" trim.
+The Codex stock is the only one worth upgrading from standard printer paper — slightly heavier and cream-toned, available as a ream of "résumé paper" at any office store. The Manual and Logbook can use whatever's in the printer.
 
 ---
 
 ## Constraints
 
-- **Paper-sufficient.** The protocol runs with the three books, a pencil, and one die. The app is never required.
-- **No state lives only in the app.** Any state the app holds must be reconstructable by re-scanning the Logbook.
-- **No state lives only in the books.** Once a spread is scanned, the app holds enough to re-print it if the book is lost.
-- **Migration-safe.** If the source format changes (LaTeX → something else), existing printed books remain valid forever.
-- **Three objects.** Never grow the kit past three books. If the system needs a fourth artifact, redesign one of the three to absorb it.
+- **No specialty equipment.** Every booklet is produced with: a duplex printer, white printer paper, a long-arm stapler. Nothing else required.
+- **No vendor dependency.** The operator never needs to wait for a POD service or commission a bindery. The kit is reproducible the same day, anywhere with a printer.
+- **App-canonical.** Source of truth is the app. Paper is a derived artifact; if a booklet is lost, the app reprints it.
+- **Pencil-friendly.** Paper stock is chosen so pencil works without smudging and erases cleanly. Pen also works; the Codex specifically expects ink.
+- **Storage.** The full kit (9 booklets at year's end + die + pencil) fits in a slim folio or a manila envelope. No binder required.
 
 ---
 
 ## Open questions
 
-- **POD vendor selection.** Lulu is recommended for covering all three books in a single order with Wire-O support, but the operator may want to comparison-print one bead spread at KDP, Lulu, and IngramSpark before committing.
-- **The Codex binding path.** Path A (POD Smyth-sewn) at the start vs. Path B (commissioned hand-bound) at the close of Year One. Path A is the practical default; Path B is the ritual upgrade.
-- **The die.** Wooden d6 vs. standard plastic d6 vs. d10 for finer rolls. Lives in the Logbook's front pocket. Aesthetic call.
-- **The Vigil.** Specification pending research. Once specified, lives in the Manual's appendix.
-- **The shelf.** Year-One Logbook + Codex shelve as a pair. After Year Four, the shelf has four Logbooks and one or four Codices. The shelf itself becomes a record.
+- **Folio.** Whether to specify a small folio / sleeve for storing the booklets + die + pencil together. A standard 6 × 9" portfolio fits the booklets but adds a SKU the kit otherwise doesn't have. Maybe just a rubber band.
+- **The Vigil.** Once specified, lives in the Manual.
+- **Cover variation by mystery.** Each Logbook decade booklet could carry the mystery's accent color (Joyful gold, Sorrowful oxblood, Glorious bone, Luminous silver, Nativity green) as a single-pass color print on the cover. Trade-off: requires a color printer for the cover sheet. Default to black-only; allow operators with color printers to enable the variant.
+- **Long-arm stapler recommendation.** The Swingline 615 and Bostitch B440LR are both ~$20 and adequate. A premium recommendation (heavier-duty Rapid HD-12N or similar, ~$40) is worth naming for operators who plan to staple many booklets over years.
 
 ---
 
-*"The body learns the cue. The mind follows the bead."* — `practice.md`
+*"The body learns the cue. The mind follows the bead. The paper records the year."* — `practice.md`

@@ -260,9 +260,9 @@ The data lives local-first on the operator's device. Optional cloud sync keeps i
 
 For operators who want to use the paper layer (see `paper.md`):
 
-- **Print.** The app can render a bead's Logbook spread to PDF (5.5 × 8.5", pre-headed) for printing. The full Logbook can be printed in one batch at the start of the year.
-- **Scan.** The app can scan a written Logbook spread — QR identifies the bead, OMR (optical mark recognition) lifts numeric box fields, free-text zones are archived as images. The parsed result merges into the app's data.
-- **Codex export.** At year-end, the app can render the boss spreads as a print-ready PDF for hand-binding or POD.
+- **Print.** The app renders booklet-imposed PDFs at US Letter, ready to print duplex on any home or office printer and fold-and-staple into 5.5 × 8.5" saddle-stitched booklets. The operator can print one decade booklet at a time (24 pages), the Manual (28–32 pages), the Codex (24–28 pages), or all nine Year-One booklets in one batch.
+- **Scan.** The app scans a written Logbook spread — QR identifies the bead, OMR (optical mark recognition) lifts numeric box fields, free-text zones are archived as images. The parsed result merges into the app's data.
+- **Codex export.** At year-end, the app can render the Codex booklet for an heirloom rebind by a hand-bookbinder, if the operator wants the inheritance object.
 
 All paper operations are optional. The app is sufficient on its own.
 
