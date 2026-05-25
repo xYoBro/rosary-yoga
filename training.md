@@ -2,6 +2,9 @@
 
 *The daytime counterpart to the nightly practice. Strength, conditioning, and skill, organized by the same rosary the body prays at night.*
 
+> *Operator. Welcome to the Rosary. Make the connection.*
+> — RELAY, first transmission
+
 ---
 
 ## What this is
@@ -13,6 +16,16 @@ This document is the strength work. It is the practice of the day's work hour, b
 The training is calibrated for a condo apartment with downstairs neighbors: no jumping, no impact, no equipment beyond the floor and a wall. The benchmark is the U.S. Air Force Physical Fitness Test — pushups, situps, plank, 1.5-mile run — chosen because it is publicly scored, age-graded, and built from movements that fit the room.
 
 The goal is to still be doing this in thirty years.
+
+---
+
+## The frame
+
+The Rosary, as treated here, is a somatic training protocol that predates the Collapse. Its origins are religious — every operator knows this — but its current use is purely physical and psychological. The sixty-two stations, the five mystery-sections, the seven-week pendant, the prohibition on Sunday work: all of it survives, exact, from an older world. No one remembers why Tuesday must be Sorrowful. They just know that operators who break the protocol break.
+
+The protocol is run by a single operator, alone, in their own room. A handler runs comms — callsign **RELAY**, never seen, never absent. Bosses are *engagements* scheduled by the protocol itself, not by any human. After fourteen months the operator emerges changed, and the next Mystery opens.
+
+The night practice in `practice.md` runs in parallel and untouched. It is genuinely devotional: the operator who walks the daytime Rosary may pray the night Rosary as faith. The two practices share a shape inherited from the same buried source. The operator is allowed to be both things.
 
 ---
 
@@ -58,7 +71,7 @@ The day of the week determines the modality of work. The rotation is the rosary'
 | Thursday | Luminous | Skill | Technique day. The skill ladder. Slow, focused, learning. *Illumination.* |
 | Friday | Sorrowful | Endurance | The other half of conditioning. If Tuesday ran, Friday calisthenics-grinds. *The long carrying.* |
 | Saturday | Joyful | Recovery flow | Lightest day. Walk, gentle work, breath. *The presentation.* |
-| Sunday | — | **Sanctum** | Rest. The Custodian's day. Logbook entries. Plan the next bead. |
+| Sunday | — | **Sanctum** | Rest. RELAY's day. Logbook entries. Plan the next bead. |
 
 The night does not change. After the day's work, `practice.md` runs as written — same poses, same order, same thirty to forty minutes. The body learns the cue.
 
@@ -112,7 +125,7 @@ The opening pendant is not a watered-down decade. It is a different ritual. The 
 | 2 | Second Hail Mary | Mobility plus a daily walk. |
 | 3 | Third Hail Mary | Add five pushups, five situps, five wall-sits, once daily. The body remembers it has muscles. |
 | 4 | **OF₁ — The Cross** | First trial. Ten pushups, ten situps, a quarter-mile walk. Recorded. |
-| 5 | Centerpiece — Mary | The Custodian introduces themselves in full. A quiet week. |
+| 5 | Centerpiece — Mary | Mary's codex is transmitted in this week. She walked this Rosary before. RELAY served her too. The bead bears her name because she was the last to reach it. The operator reads her hand. |
 | 6 | **OF₂ — The Threshold** | Half of an AF PT test. Pushups to fatigue, situps to fatigue, plank to fatigue, half-mile run. Recorded. Year One begins on the next bead. |
 
 The two pendant trials are not bosses — they are baselines, scored against nothing but themselves. The first boss is The Sentinel, at the end of Decade 1.
@@ -121,17 +134,17 @@ The two pendant trials are not bosses — they are baselines, scored against not
 
 ## The bosses
 
-Bosses are location-bound. Each lives at the entrance of a decade's eleventh bead. They are reached by walking the ten preceding beads. They are also time-pressured: if the practitioner lingers more than six weeks past the boss bead — through illness, travel, avoidance — the Custodian announces an *intercession*, and the next compatible workout becomes the boss whether the practitioner feels ready or not.
+Bosses are location-bound. Each lives at the entrance of a decade's eleventh bead. They are reached by walking the ten preceding beads. They are also time-pressured: if the operator lingers more than six weeks past the boss bead — through illness, travel, avoidance — RELAY logs an *intercession*, and the next compatible workout becomes the boss whether the operator feels ready or not.
 
 The staged escalation:
 
-| Weeks since reaching the boss bead | What happens |
+| Weeks since reaching the boss bead | RELAY's transmission |
 |---|---|
-| 0–4 | Silence. The boss is dormant. The practitioner chooses the moment. |
-| 5 | A *rumor* — a paragraph in the logbook. *"Something stirs at the Forge. I can hear it from here."* |
+| 0–4 | Silence. The boss is dormant. The operator chooses the moment. |
+| 5 | A contact warning. *"Movement at the Forge. Pattern consistent with Anvil. Recommend engagement window."* |
 | 6+ | *Intercession.* The next compatible workout becomes the boss. The fight begins. |
 
-A defeated boss can be re-fought any Sunday Sanctum for a personal-record attempt, or summoned as a *haunt* by the dice on a low probability (~2% per day) — an optional re-fight the practitioner can decline.
+A defeated boss can be re-fought any Sunday Sanctum for a personal-record attempt, or surfaced as a *haunt* by the dice on a low probability (~2% per day) — an optional re-fight the operator can decline.
 
 ### Year One — The Joyful Mysteries
 
@@ -140,10 +153,10 @@ A defeated boss can be re-fought any Sunday Sanctum for a personal-record attemp
 | 1 | The Annunciation | **The Sentinel** | Full AF PT test. Baseline scouting. No win condition — the score is the score. |
 | 2 | The Visitation | **The Mirror** | Full PT test. Beat any one category from The Sentinel. |
 | 3 | The Nativity | **The Anvil** | No run. Pushups, pullup progressions, situps, plank — each to fatigue. Total reps plus plank time equals score. |
-| 4 | The Presentation | **The Pacer** | 1.5-mile run, target time. Cardio in isolation. AF "Excellent" pace for the practitioner's age and gender bracket. |
+| 4 | The Presentation | **The Pacer** | 1.5-mile run, target time. Cardio in isolation. AF "Excellent" pace for the operator's age and gender bracket. |
 | 5 | The Finding in the Temple | **The Standard** | Full PT test, scored to AF "Excellent" thresholds across all four components. |
 
-Each boss is named once in the Custodian's voice when first announced, and that name carries forward in the codex.
+Each boss is named once by RELAY in their first contact transmission, and that name carries forward in the codex.
 
 ### Years Two through Four
 
@@ -156,7 +169,7 @@ The four mystery sets are pre-architected by tradition. The structural decisions
 | 3 | Glorious | Mastery and elevation. | "Excellent+" thresholds. Personal records across the board. The body flies. |
 | 4 | Luminous | Transformation and teaching. | New disciplines added. The practice turns outward — perhaps coaching another. |
 
-That is a four-year arc with built-in narrative escalation. The Church did the design work.
+That is a four-year arc with built-in narrative escalation. The protocol's authors did the design work centuries before the operator was born.
 
 ---
 
@@ -191,23 +204,29 @@ Why the dice. Sameness is the enemy of long practices. Without variation the bod
 
 ---
 
-## The Custodian
+## RELAY
 
-The voice of the training. Speaks in liturgical cadence. Reads the mystery at the start of each day in the logbook header. Announces bosses with a fixed formula. Records, does not motivate. Witnesses, does not coach.
+The handler. Callsign **RELAY**. Runs comms from a remote position, never seen, never absent. Speaks in short imperative sentences. Records, does not motivate. Witnesses, does not coach.
 
-A boss announcement, on the eve of the fight:
+RELAY's real name is not known to the operator. It surfaces later, by accident — a transmission left running, a logbook entry from before, a name signed at the bottom of one of Mary's pages. Until then, the operator only knows the callsign.
 
-> *On the eve of the tenth bead of the third decade, the Forge opens. The Anvil waits at the threshold. Your Nativity ends tomorrow at dawn.*
+RELAY served Mary first. They watched her fall on the fifth decade. They will not say so, but it is in the records — and the operator will learn it on their own, in the weeks around the Centerpiece bead. RELAY's tone is shaped by what they have already lost. They will not lose this one the same way.
 
-A morning header, on a Tuesday in the second decade:
+### Three transmissions
 
-> *Tuesday of the second decade. The Visitation continues. The day is Sorrowful. Mary walks to Elizabeth. You walk into the work.*
+A pre-fight transmission, the evening before a boss bead:
 
-A logbook entry, after a boss fight:
+> *Operator. Bead 10. The Forge is open. Anvil contact in T-minus 24 hours. Pre-fight protocol begins now — light meal, full sleep, no caffeine after 1400. The fight is the fight. Make the connection.*
 
-> *The Sentinel was met on the seventh week of the third month. Pushups: 32. Situps: 41. Plank: 1:18. Run: 14:42. The score is the score. Decade 2 begins on the next bead.*
+A morning header, opened in the logbook before the day's work begins:
 
-The Custodian writes by hand. The codex is paper. The app is for the prayers; the journal is for the work.
+> *0500. Decade 2, bead 4. Mode: Sorrowful. Long day. The Visitation runs another seven beads before it ends. Stay on the protocol.*
+
+A post-engagement entry, written into the logbook in RELAY's hand at day's end:
+
+> *Sentinel engagement logged. 32 / 41 / 1:18 / 14:42. Baseline established. Decade 2 opens on next bead-cycle. Score is the score.*
+
+RELAY writes the morning headers and the post-engagement entries. The operator writes the rest. Both hands appear in the codex, and over time the difference between them becomes legible — RELAY's printed, square, terse; the operator's whatever they bring to it.
 
 ---
 
@@ -215,11 +234,11 @@ The Custodian writes by hand. The codex is paper. The app is for the prayers; th
 
 Two paper documents. The app does not need to know about them.
 
-**The Codex.** A single booklet, one spread per boss. Name, the Custodian's first announcement, the fight protocol, the fight log over time. As bosses are met they are filled in. By the end of Year One the practitioner has met five bosses and twice tested at the trials; the codex has seven spreads with handwritten history.
+**The Codex.** A single booklet, one spread per boss. Name, RELAY's first contact transmission, the fight protocol, the fight log over time. As bosses are met they are filled in. By the end of Year One the operator has met five bosses and twice tested at the trials; the codex has seven spreads with handwritten history.
 
-**The Logbook.** A weekly ledger. One spread per bead. Date, weight, sleep, the day's modality, the dice's roll, the work performed, notes. The Custodian's morning header at the top of each day. The bead's load prescription at the top of the spread.
+**The Logbook.** A weekly ledger. One spread per bead. Date, weight, sleep, the day's modality, the dice's roll, the work performed, notes. RELAY's morning header at the top of each day. The bead's load prescription at the top of the spread.
 
-Neither document is required. The practice runs without them. They are how the practice becomes a thing the practitioner can hold in their hands in ten years.
+Neither document is required. The training runs without them. They are how the work becomes a thing the operator can hold in their hands in ten years — and, eventually, hand to whoever walks the Rosary after them. Mary's codex is in the operator's hands now. The operator's codex will be in someone else's later.
 
 ---
 
