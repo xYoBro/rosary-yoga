@@ -1,6 +1,8 @@
 # Rosary Yoga — The Paper Kit
 
-*Three books. The first you read. The second you write. The third you inscribe. The app, when it exists, only reads and prints them.*
+> **Status: optional fallback layer (revised May 2026).** Earlier drafts treated paper as the source of truth. The project has since pivoted app-first — the app is canonical, and the paper kit is reduced to (a) dice and pencil for moments when the phone shouldn't be involved, and (b) an optional heirloom Codex for operators who want the inheritance object. The three-book kit specified below remains the complete artifact set for the no-tech path. See `app.md` for the central design.
+
+*The physical artifacts that carry the training when the phone is not the right tool. Pencil, paper, and a die — sufficient on their own. The app, by default, holds the canonical record.*
 
 > *Operator. The codex is in your hands. Make the connection.*
 > — RELAY, on Mary's first transmission
