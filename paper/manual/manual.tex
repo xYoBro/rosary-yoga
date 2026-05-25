@@ -1,0 +1,602 @@
+% Rosary Yoga -- The Manual
+% Source booklet trim: 5.5 x 8.5" (US Half-Letter / Digest).
+% This source produces SINGLE-PAGE PDF at trim size; the Makefile imposes
+% it 2-up onto US Letter landscape via pdfpages.
+%
+% Page count target: ~28-32 pages. Must be a multiple of 4 for saddle-stitching.
+% Currently: cover(4) + at-a-glance(2) + week(1) + decade(1) + pendant(2)
+%            + dice(5) + bosses(7) + AF grid(2) + Sanctum(1) + Vigil(1) + colophon(1)
+%            = 27 -> padded to 28 with a blank.
+%
+% Black ink only. ASCII-safe source. Lightly commented for the operator's edits.
+
+\documentclass[10pt]{article}
+
+% ---- page geometry: 5.5 x 8.5 inch trim, tight margins ---------------------
+\usepackage[paperwidth=5.5in,paperheight=8.5in,
+            top=0.55in,bottom=0.55in,left=0.55in,right=0.55in,
+            headheight=14pt]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}        % \enquote{} for curly quotes
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{tikz}            % foredge tab markers
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}          % only used for shades-of-gray, no color ink
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% ---- foredge tab marker ----------------------------------------------------
+% Prints a small black bar at a vertical position on the foredge (right edge of
+% the recto, left edge of verso). Stack them across tabs so the closed book
+% shows a printed index. Position is 0.0 (top) to 1.0 (bottom).
+\newcommand{\foredgetab}[2]{%
+  % #1 = position 0..1 from top of page (e.g. 0.15 = top tab)
+  % #2 = label text (printed sideways inside the bar)
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=east,inner sep=0pt] at ([yshift=-#1\paperheight,xshift=0pt]current page.north east) {%
+      \begin{tikzpicture}
+        \fill[black] (0,0) rectangle (0.30in,0.55in);
+        \node[white,font=\bfseries\sffamily\scriptsize,rotate=-90] at (0.15in,0.275in) {#2};
+      \end{tikzpicture}};
+  \end{tikzpicture}%
+}
+
+% ---- section heading style (no chapters, no numbered sections) -------------
+\newcommand{\manualtitle}[1]{%
+  {\bfseries\sffamily\Large\MakeUppercase{#1}\par}%
+  \vspace{2pt}\hrule height 0.5pt\vspace{8pt}}
+
+\newcommand{\subhead}[1]{%
+  \vspace{6pt}{\bfseries\sffamily\small\MakeUppercase{#1}\par}\vspace{2pt}}
+
+% ============================================================================
+\begin{document}
+
+% ============== COVER (page 1) ==============================================
+\thispagestyle{empty}
+\vspace*{1.2in}
+\begin{center}
+  {\Huge\bfseries\sffamily ROSARY YOGA}\\[6pt]
+  {\Large\sffamily THE MANUAL}\\[1.2in]
+  \rule{2in}{0.5pt}\\[6pt]
+  {\sffamily\small VERSION 1.0 \quad \textbar \quad YEAR ONE}\\[1.6in]
+  {\sffamily\footnotesize The body learns the cue.\\ The mind follows the bead.\\ The paper records the year.}
+\end{center}
+\newpage
+
+% ============== INSIDE FRONT (page 2): contents / how-to-use ================
+\manualtitle{Contents}
+\begin{description}[leftmargin=0pt,itemsep=2pt]
+  \item[\sffamily PROTOCOL AT A GLANCE] one spread.
+  \item[\sffamily THE WEEK]              modality by day-of-week.
+  \item[\sffamily THE DECADE]            bead-phase load multipliers.
+  \item[\sffamily THE PENDANT]           seven onboarding weeks.
+  \item[\sffamily THE DICE TABLES]       one page per modality, plus modifiers.
+  \item[\sffamily THE BOSSES]            one page per Year-One encounter.
+  \item[\sffamily THE AF PT GRID]        scoring for the operator's bracket.
+  \item[\sffamily THE SANCTUM]           the Sunday close-out.
+  \item[\sffamily THE VIGIL]             the morning ritual (pending).
+\end{description}
+\vfill
+\subhead{How to use this Manual}
+Carry it until the protocol is memorized. Consult it thereafter. The tabbed
+foredge lets the operator open to a section without reading the page numbers.
+Outdated versions are visibly outdated; reprint when the protocol changes.
+\newpage
+
+% ============== PROTOCOL AT A GLANCE (pages 3-4) ============================
+\foredgetab{0.12}{GLANCE}
+\manualtitle{Protocol at a Glance}
+
+\subhead{The three layers}
+\begin{enumerate}[leftmargin=14pt,itemsep=1pt]
+  \item \textbf{The bead} fixes the load (phase + multiplier).
+  \item \textbf{The day} fixes the modality (Joyful / Sorrowful / Glorious / Luminous).
+  \item \textbf{The dice} rolls the specific exercise within the modality.
+\end{enumerate}
+
+\subhead{The week in one line}
+\textsf{\small MON mobility \textbar{} TUE endurance \textbar{} WED strength
+\textbar{} THU skill \textbar{} FRI endurance \textbar{} SAT recovery \textbar{} SUN Sanctum.}
+
+\subhead{The bead in one line}
+\textsf{\small intro $\to$ intro $\to$ build $\to$ deload $\to$ build $\to$
+peak $\to$ peak $\to$ peak $\to$ taper $\to$ boss.}
+
+\subhead{The year in one line}
+\textsf{\small pendant (7 wks) $\to$ 5 decades (10 wks each) $\to$ closing
+(1 wk). Total $\approx$ 62 beads.}
+
+\vspace{8pt}
+\subhead{What the dice do not touch}
+\begin{itemize}[leftmargin=14pt,itemsep=0pt]
+  \item Modality. The day fixes that.
+  \item Load. The bead fixes that.
+  \item Boss schedule. The decade fixes that.
+\end{itemize}
+
+\subhead{Sundays}
+No work. Close the bead. Plan the next.
+\newpage
+
+\foredgetab{0.12}{GLANCE}
+\manualtitle{Protocol at a Glance \textnormal{\small / continued}}
+
+\subhead{Day shape}
+\begin{enumerate}[leftmargin=14pt,itemsep=1pt]
+  \item Open the app (or the Logbook). Read RELAY's morning header.
+  \item Roll the d6. Record the modifier (if any).
+  \item Vigil. Then the day's work.
+  \item Log scores. Close the day.
+  \item Evening: \texttt{practice.md} -- the nightly rosary.
+\end{enumerate}
+
+\subhead{Boss week shape}
+\begin{enumerate}[leftmargin=14pt,itemsep=1pt]
+  \item Pre-fight: bead 9 taper, then bead 10 conserve.
+  \item Fight day: protocol per Codex.
+  \item Score is the score. Log it.
+  \item Sanctum: RELAY writes the post-engagement entry.
+\end{enumerate}
+
+\vfill
+\textit{\footnotesize The codec is in your pocket. If you need it on paper,
+paper is allowed. -- RELAY}
+\newpage
+
+% ============== THE WEEK (page 5) ===========================================
+\foredgetab{0.20}{WEEK}
+\manualtitle{The Week}
+
+\begin{tabularx}{\linewidth}{@{}l l l X@{}}
+\toprule
+\textbf{Day} & \textbf{Mystery} & \textbf{Modality} & \textbf{Notes} \\
+\midrule
+Mon & Joyful    & Mobility   & Vigil + extended flow. \\
+Tue & Sorrowful & Endurance  & Run intervals. The grind. \\
+Wed & Glorious  & Strength   & Heavier resistance. Lower reps. \\
+Thu & Luminous  & Skill      & Technique. The ladder. \\
+Fri & Sorrowful & Endurance  & Calisthenics grinds. The carrying. \\
+Sat & Joyful    & Recovery   & Walk. Breath. Light. \\
+Sun & --        & \textbf{Sanctum} & Rest. Logbook. Plan next bead. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{14pt}
+\textit{\footnotesize Two endurance days, two mobility days, one strength,
+one skill. The lopsidedness is real and correct for the room.}
+\newpage
+
+% ============== THE DECADE (page 6) =========================================
+\foredgetab{0.28}{DECADE}
+\manualtitle{The Decade}
+
+\begin{tabularx}{\linewidth}{@{}c l l X@{}}
+\toprule
+\textbf{Bead} & \textbf{Phase} & \textbf{Load} & \textbf{Note} \\
+\midrule
+1  & Intro   & 0.50 & Patterning. Light. \\
+2  & Intro   & 0.60 & Body remembers. \\
+3  & Build   & 0.70 & Climbing. \\
+4  & Deload  & 0.50 & The rosary breathes. \\
+5  & Build   & 0.80 & Climbing again. \\
+6  & Peak    & 1.00 & Full foundation load. \\
+7  & Peak    & 1.15 & Highest sustained. \\
+8  & Peak    & 1.30 & Highest of the decade. \\
+9  & Taper   & 1.10 & Volume drops, intensity held. \\
+10 & Boss    & N/A  & The fight is the fight. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{14pt}
+\textit{\footnotesize The multiplier scales sets, reps, distance, or time --
+whatever the modality denominates. See the dice tables for what scales.}
+\newpage
+
+% ============== THE PENDANT (pages 7-8) =====================================
+\foredgetab{0.36}{PENDANT}
+\manualtitle{The Pendant}
+
+Seven weeks of onboarding. The body is being installed in the practice.
+
+\vspace{6pt}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{Bead} & \textbf{Name} & \textbf{What happens} \\
+\midrule
+0 & Crucifix         & Week zero. Read this. Set up the room. No work. \\
+1 & First Hail Mary  & Vigil only, daily, 7 days. \\
+2 & Second Hail Mary & Vigil + a daily walk. \\
+3 & Third Hail Mary  & + 5 pushups, 5 situps, 5 wall-sits. \\
+4 & OF\textsubscript{1} -- Cross & First trial. 10 PU, 10 SU, quarter-mile walk. \\
+5 & Centerpiece -- Mary & Mary's codex transmitted this week. \\
+6 & OF\textsubscript{2} -- Threshold & Half AF PT test. Year One begins next bead. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{12pt}
+\textit{\footnotesize The two pendant trials are not bosses -- they are
+baselines, scored against nothing but themselves.}
+\newpage
+
+\foredgetab{0.36}{PENDANT}
+\manualtitle{The Pendant \textnormal{\small / scoring}}
+
+\subhead{OF\textsubscript{1} -- The Cross}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+PU       & 10 reps, slow. Form over speed. \\
+SU       & 10 reps. Anchor the feet. \\
+Walk     & 1/4 mile, brisk pace. Not a run. \\
+Record   & Numbers go to Codex. No grade. \\
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{OF\textsubscript{2} -- The Threshold}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+PU       & to fatigue (1 min cap). \\
+SU       & to fatigue (1 min cap). \\
+Plank    & to fatigue. \\
+Run      & 1/2 mile. Sustainable pace. \\
+Record   & Numbers go to Codex. This is the baseline that Decade 1's boss compares against. \\
+\end{tabularx}
+
+\vspace{14pt}
+\textit{\footnotesize The Threshold is not a fight. It is a measurement.
+Treat it as such.}
+\newpage
+
+% ============== DICE: JOYFUL (page 9) =======================================
+\foredgetab{0.44}{DICE}
+\manualtitle{Dice -- Joyful (Mobility / Recovery)}
+
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{d6} & \textbf{Variant} & \textbf{Description} \\
+\midrule
+1 & Long flow           & Vigil + 25 min slow flow. Hips, shoulders, spine. \\
+2 & Yin hold            & Vigil + 5 yin poses, 3 min each. \\
+3 & Walk + breath       & Vigil + 30 min walk, nasal breathing. \\
+4 & Mobility ladder     & Vigil + joint-by-joint circuits (ankle to neck). \\
+5 & Restorative flow    & Vigil + supine flow. Floor-only. \\
+6 & Operator's choice   & Any of the above. Whatever the body asks for. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Saturday rule}
+On Joyful Saturday, halve any duration. Recovery is the goal.
+
+\subhead{Boss-week rule}
+On Joyful days in a boss week, default to variant 5 (restorative). Conserve.
+\newpage
+
+% ============== DICE: SORROWFUL (page 10) ===================================
+\foredgetab{0.44}{DICE}
+\manualtitle{Dice -- Sorrowful (Endurance)}
+
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{d6} & \textbf{Variant} & \textbf{Description} \\
+\midrule
+1 & 400m repeats        & 8 x 400m at threshold pace, 90s rest. \\
+2 & 800m repeats        & 5 x 800m at tempo pace, 2 min rest. \\
+3 & 1.5-mile time trial & Single effort. Sustainable. Negative split last quarter. \\
+4 & Pushup ladder       & 1-2-3-...-N-...-3-2-1. Stop one short of failure. \\
+5 & Carry circuit       & Farmer carry equivalent (no equipment: heavy bag, books). \\
+6 & AMRAP 20            & 10 PU + 10 SU + 10 squats; rounds in 20 min. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Bead scaling}
+Distance and reps multiply by the bead's load multiplier (see Decade page).
+On bead 8 (peak 1.30x), 8 x 400m becomes 10 x 400m.
+\newpage
+
+% ============== DICE: GLORIOUS (page 11) ====================================
+\foredgetab{0.44}{DICE}
+\manualtitle{Dice -- Glorious (Strength)}
+
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{d6} & \textbf{Variant} & \textbf{Description} \\
+\midrule
+1 & Pullup progression  & Dead hang $\to$ scapular pull $\to$ negative $\to$ rep. \\
+2 & Pistol-squat ladder & Assisted $\to$ box $\to$ full. 5 sets per leg. \\
+3 & Pushup variation    & Archer / decline / diamond / tempo. 5 hard sets. \\
+4 & Plank complex       & Front + side + side + reverse. 4 rounds, 45s each. \\
+5 & Wall-handstand work & Hold + shoulder taps + walks. 5 efforts. \\
+6 & Operator's choice   & A target the operator wants to push. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Quality rule}
+Glorious is the only single-modality day of the week. If form breaks, stop
+the set. Quality over load. Always.
+\newpage
+
+% ============== DICE: LUMINOUS (page 12) ====================================
+\foredgetab{0.44}{DICE}
+\manualtitle{Dice -- Luminous (Skill)}
+
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{d6} & \textbf{Variant} & \textbf{Description} \\
+\midrule
+1 & L-sit progression       & Tuck $\to$ one-leg $\to$ full. Tabata format. \\
+2 & Handstand progression   & Wall $\to$ chest-to-wall $\to$ free balance. \\
+3 & Pistol-squat technique  & Box height descents. Tempo 3-1-3. \\
+4 & Pullup technique        & Hollow body. Scap control. Half-reps to full. \\
+5 & Crow / arm balance      & Frog $\to$ crow $\to$ side crow. Hold for time. \\
+6 & Free-form skill         & Pick any skill. Practice it for 30 min. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Tempo rule}
+Luminous is slow. If the work feels fast, slow it down. The body is learning.
+\newpage
+
+% ============== DICE: MODIFIERS (page 13) ===================================
+\foredgetab{0.44}{DICE}
+\manualtitle{Dice -- Modifiers}
+
+After the day's modality is rolled, an optional second d6 may apply a modifier.
+
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\toprule
+\textbf{d6} & \textbf{Modifier} & \textbf{Effect} \\
+\midrule
+1 & None             & Run the day as written. \\
+2 & Eccentric tempo  & 3-second lowering on every rep. Lower volume. \\
+3 & Single-arm/leg   & Unilateral where possible. Half the volume per side. \\
+4 & Paused reps      & 2-second pause at the hardest position. \\
+5 & Density block    & Same work, set rest timer to 60s. \\
+6 & INSTINCT         & Override. Listen to the body. Walk if needed. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Haunt}
+On a natural \enquote{6} followed by another \enquote{6} (probability $\approx$2\%), a
+beaten boss surfaces as a haunt. The operator may accept the re-fight or
+decline. Either is the protocol.
+\newpage
+
+% ============== BOSSES SUMMARY (pages 14-20) ================================
+% Seven boss summary pages -- placeholders pending the boss-name draft.
+
+\newcommand{\bosspage}[3]{%
+  \foredgetab{0.52}{BOSSES}%
+  \manualtitle{Boss \textnormal{--} #1}%
+  \subhead{Anchor}\par #2 \par%
+  \subhead{Fight protocol}\par #3 \par%
+  \vfill%
+  \textit{\footnotesize See Codex for first-contact transmission and fight log.}%
+  \newpage}
+
+\bosspage{BOSS\_PENDANT\_TRIAL (OF\textsubscript{2})}%
+  {Pendant -- Threshold week.}%
+  {PU to fatigue. SU to fatigue. Plank to fatigue. 1/2 mile run.
+   Score = (PU + SU) + plank seconds. Baseline only.}
+
+\bosspage{BOSS\_DECADE\_1 (e.g.\ The Sentinel)}%
+  {Decade 1 -- The Joyful / Annunciation.}%
+  {Full AF PT test. Pushups (1 min). Situps (1 min). Plank (max). 1.5-mile run.
+   Score = AF composite. Baseline scouting -- the score is the score.}
+
+\bosspage{BOSS\_DECADE\_2 (e.g.\ The Mirror)}%
+  {Decade 2 -- The Sorrowful / Visitation.}%
+  {Full PT test. Win = beat any one Sentinel category.
+   Same components: PU, SU, plank, 1.5-mile run.}
+
+\bosspage{BOSS\_DECADE\_3 (e.g.\ The Anvil)}%
+  {Decade 3 -- The Glorious / Nativity.}%
+  {No run. PU, pullups, SU, plank -- each to fatigue.
+   Score = (PU + SU) + (Pullup-equiv x 2) + plank seconds.}
+
+\bosspage{BOSS\_DECADE\_4 (e.g.\ The Pacer)}%
+  {Decade 4 -- The Luminous / Presentation.}%
+  {1.5-mile run only. Target = AF \enquote{Excellent} pace for bracket.
+   Score = run time vs.\ threshold.}
+
+\bosspage{BOSS\_DECADE\_5 (e.g.\ The Standard)}%
+  {Decade 5 -- The Final / Coronation.}%
+  {Full PT test, scored to \enquote{Excellent} across all four components.}
+
+\bosspage{BOSS\_CLOSING\_TRIAL}%
+  {Closing week.}%
+  {Operator's choice. Re-fight the boss that hurt the most.
+   Same protocol as that fight. Compare scores.}
+
+% ============== AF PT GRID (pages 21-22) ===================================
+\foredgetab{0.62}{AF PT}
+\manualtitle{AF PT Scoring Grid}
+
+\subhead{Operator's bracket}
+Fill in once. Refer to thereafter. Update on birthday.
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Age      & \rule[-2pt]{1.5in}{0.4pt} \\
+Sex      & \rule[-2pt]{1.5in}{0.4pt} \\
+Bracket  & \rule[-2pt]{1.5in}{0.4pt} \\
+Tested   & \rule[-2pt]{1.5in}{0.4pt} \\
+\end{tabularx}
+
+\vspace{14pt}
+\subhead{Thresholds (this bracket)}
+
+\begin{tabularx}{\linewidth}{@{}l c c c c@{}}
+\toprule
+\textbf{Component} & \textbf{Min} & \textbf{Pass} & \textbf{Good} & \textbf{Excellent} \\
+\midrule
+Pushups (1 min)        & \_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+Situps (1 min)         & \_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+Plank (sec)            & \_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+Run 1.5 mi (mm:ss)     & \_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+Composite (out of 100) & \_\_\_ & 75    & 85    & 90    \\
+\bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+\textit{\footnotesize Look up the operator's bracket in the current AF DAFMAN
+36-2905 charts. Pencil in the numbers above. The Manual is then complete for
+this year.}
+\newpage
+
+\foredgetab{0.62}{AF PT}
+\manualtitle{AF PT Scoring Grid \textnormal{\small / conversions}}
+
+\subhead{Pullup equivalence (Codex bosses)}
+\begin{tabularx}{\linewidth}{@{}c X@{}}
+\toprule
+\textbf{Pullups} & \textbf{Equivalent} \\
+\midrule
+0--3   & Assisted: 3 negatives = 1 equiv. \\
+4--10  & Direct count. \\
+11+    & Direct count, weighted reps may count as 1.5x. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\subhead{Plank score band}
+\begin{tabularx}{\linewidth}{@{}l c@{}}
+\toprule
+\textbf{Hold} & \textbf{Band} \\
+\midrule
+< 1:00         & Min \\
+1:00 -- 2:00   & Pass \\
+2:00 -- 3:30   & Good \\
+3:30+          & Excellent \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\textit{\footnotesize These bands are an internal aid -- they do not replace
+the official AF chart. Use them when the chart isn't to hand.}
+\newpage
+
+% ============== SANCTUM (page 23) ==========================================
+\foredgetab{0.74}{SANCTUM}
+\manualtitle{The Sanctum}
+
+\subhead{What it is}
+The Sunday close-out. The most ritualized moment in the practice outside of
+boss encounters. The operator does no work.
+
+\subhead{The four moves}
+\begin{enumerate}[leftmargin=14pt,itemsep=2pt]
+  \item \textbf{The week in numbers.} Days completed, dice rolled, scores
+    against target, weight, sleep.
+  \item \textbf{The week in voice.} RELAY's post-bead transmission.
+    Generated in app; transcribed by hand in the paper Logbook if used.
+  \item \textbf{The Sanctum note.} A single text field. A sentence, a
+    paragraph, nothing. The operator's hand in the record.
+  \item \textbf{Close the bead.} Page-turn in the Logbook; primary button
+    in the app. Commits the bead. Opens the next.
+\end{enumerate}
+
+\subhead{The Sanctum rule}
+Sundays are not for work. Not catch-up. Not extra. If a day was missed,
+RELAY logs it and the week moves on. The bead does not advance until Sunday.
+
+\vfill
+\textit{\footnotesize The Sanctum is the only place the operator is
+encouraged to linger.}
+\newpage
+
+% ============== VIGIL (page 24) ============================================
+\foredgetab{0.86}{VIGIL}
+\manualtitle{The Vigil}
+
+\subhead{What it is}
+The morning warmup. Approximately ten minutes. Carpeted floor, no equipment,
+no impact.
+
+\subhead{What it must do}
+\begin{itemize}[leftmargin=14pt,itemsep=1pt]
+  \item Prepare the body for the day's modality.
+  \item Be memorizable in a week. Run without a sheet.
+  \item Leave the body warm and present, not drained.
+  \item Reset spine, hips, shoulders.
+\end{itemize}
+
+\vspace{8pt}
+\subhead{Specification \emph{pending}}
+Three candidates are under review:
+\begin{enumerate}[leftmargin=14pt,itemsep=1pt]
+  \item Sun Salutation A (five rounds, step-back variant).
+  \item Joe DeFranco's Agile 8.
+  \item Original Strength RESETs.
+\end{enumerate}
+
+The recommendation will be folded in here once the comparison returns. Until
+then, the operator may use any one of the three; consistency matters more
+than which.
+
+\vfill
+\textit{\footnotesize \enquote{The hour is yours. Begin.} -- VIGIL}
+\newpage
+
+% ============== COLOPHON (page 25) =========================================
+\manualtitle{Colophon}
+
+This Manual is typeset in LaTeX with Latin Modern at 10pt. It is printed on
+US Letter, duplex, two pages to a side, then folded in half and stapled
+through the spine with a long-arm stapler. Finished trim: 5.5 x 8.5".
+
+Source lives at \texttt{paper/manual/manual.tex}. Edit, recompile, reprint.
+The Manual is meant to be reprinted whenever the protocol changes; outdated
+versions become visibly outdated by their version number on the cover.
+
+\vspace{16pt}
+\subhead{Versions}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Ver.} & \textbf{Date} & \textbf{Change} \\
+\midrule
+1.0 & --- & Initial release. \\
+    &    &  \\
+    &    &  \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\textit{\footnotesize The body learns the cue. The mind follows the bead.
+The paper records the year.}
+\newpage
+
+% ============== PADDING TO MULTIPLE OF 4 ====================================
+% Currently at 25 content pages -- pad to 28 with three blank back-matter pages.
+\thispagestyle{empty}\null\vfill
+\begin{center}\textit{\footnotesize Notes}\end{center}
+\vfill\newpage
+\thispagestyle{empty}\null\vfill
+\begin{center}\textit{\footnotesize Notes}\end{center}
+\vfill\newpage
+
+% ============== BACK COVER (page 28) =======================================
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+  \rule{2in}{0.5pt}\\[8pt]
+  {\sffamily\small ROSARY YOGA}\\[2pt]
+  {\sffamily\footnotesize THE MANUAL \quad v1.0}\\[1in]
+  {\sffamily\scriptsize \enquote{The codec is in your pocket.\\
+  If you need it on paper, paper is allowed.}}\\[6pt]
+  {\sffamily\scriptsize -- RELAY}
+\end{center}
+\vspace*{\fill}
+
+\end{document}

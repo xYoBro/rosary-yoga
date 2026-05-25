@@ -22,6 +22,20 @@ None of these are required. The paper layer is opt-in.
 
 ---
 
+## Why the hand-stapling matters
+
+A May 2026 review of the adherence-psychology literature surfaced a load-bearing finding for any operator who *does* choose the paper layer: **the work of producing the kit is itself a mechanism**, not friction to optimize away.
+
+- **The IKEA effect (Norton, Mochon & Ariely 2012).** People value self-assembled objects substantially more than identical pre-assembled ones — in the original study, ~63% more. The labor itself produces the attachment.
+- **Effort justification (Festinger & Mills 1959).** Effortful initiation increases subjective valuation of the activity that follows. The harder the entry, the deeper the commitment.
+- **Costly Ritual Displays.** Religious-retention research finds that the consistent performance of effortful, rule-bound ritual is one of the most stable predictors of decades-long adherence.
+
+The implication for this kit: do not buy pre-bound notebooks if you can avoid it. Print the booklets, fold them by hand, push two staples through the spine yourself. The fifteen minutes of production work per booklet is a load-bearing piece of the practice — it is part of how the operator becomes the kind of person who keeps the practice for thirty years.
+
+Source: see the verdict report (now in conversation log) for full citations, including [Norton et al. 2012 (Journal of Consumer Psychology)](https://myscp.onlinelibrary.wiley.com/doi/abs/10.1016/j.jcps.2011.08.002) and [Hobson et al. 2018 (Personality and Social Psychology Review)](https://faculty.haas.berkeley.edu/jschroeder/Publications/Hobson%20et%20al%20Psychology%20of%20Rituals.pdf).
+
+---
+
 ## The kit
 
 A small stack of stapled booklets, plus a die and a pencil. The whole kit fits in a slim folio or a coat pocket.

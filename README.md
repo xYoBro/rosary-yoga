@@ -8,8 +8,20 @@ Ten poses. Five mysteries. Thirty to forty minutes before sleep. The body learns
 
 ## What's in this repo
 
-- **[practice.md](practice.md)** — the manual. Full sequence, every pose with setup/hold cues, modifications, travel substitutions, and external references. Read this first.
-- **[app/](app/)** — a small Progressive Web App that walks you through the practice bead by bead. Install once, run offline forever.
+The night practice:
+
+- **[practice.md](practice.md)** — the manual. Full nightly sequence, every pose with setup/hold cues, modifications, travel substitutions, and external references. Read this first.
+- **[app/](app/)** — a small Progressive Web App that walks you through the practice bead by bead. Install once, run offline forever. Now also carries the daytime training arm (the Today view).
+
+The day practice (added in the May 2026 expansion):
+
+- **[vigil.md](vigil.md)** — the morning Vigil. Five to ten minutes, on the floor, before coffee. Lauds to the rosary's Compline.
+- **[training.md](training.md)** — the daytime training manual. A year-long bead progression (Pendant + 5 mystery decades + Closing = 58 weeks), modality by day-of-week, quarterly boss encounters scored against the AF PT bracket. Carried in-app by the Today view.
+- **[app.md](app.md)** — the app's design spec. The Parliament (six internal voices, including RELAY, THE QUARTERMASTER, CHAPLAIN, THE METRONOME, LONGWATCH, THE RAVEN), the Thought Cabinet, the bead loop, the year arc.
+- **[paper.md](paper.md)** — the optional paper kit. Nine printable booklets per year — a Manual, seven Logbook decade booklets, a Codex. Standard printer, fold, two staples. The hand-stapling is an effort-justification device, not friction.
+
+Historical:
+
 - **[docs/archive/](docs/archive/)** — the original PDFs and source text. Historical reference; the active source of truth is `practice.md`.
 
 ---
@@ -83,9 +95,11 @@ If you change the pose set itself (which deep holds go in which decade), update 
 
 The body needs daily movement. The mind needs daily stillness. Doing them separately is two decisions; coupling them is one. The rosary provides the structure, the yoga provides the substance, and the practice happens whether you wanted to do it tonight or not — because the only question is "did I do the rosary."
 
-This is not a strength practice. Strength work goes in a different hour of the week, with weight on the bar. This is the practice that keeps the body open enough to do that strength work tomorrow without injury, and lets you sleep well enough tonight to have the energy for it.
+The night practice is the anchor. The day practice — added in 2026 as the training arm — is the work the night practice keeps the body open for: bodyweight strength, endurance, skill, mobility, all run on a year-long bead progression that arrives at quarterly boss encounters scored against the AF PT bracket. Same rosary structure, scaled out across the year.
 
 The goal is not perfection in any single session. The goal is to still be doing this in thirty years.
+
+The design discipline that keeps that goal honest: every daily ask is atomic (one tap, ≤30 seconds of operator interaction), the narrative frame is elaborate by default (the Parliament speaks, the Codex grows, the Thoughts internalize), and there are no streaks, no badges, no nag notifications. The Rosary itself is the only counter.
 
 ---
 

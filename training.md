@@ -175,16 +175,17 @@ That is a four-year arc with built-in narrative escalation. The protocol's autho
 
 ## The Vigil
 
-The morning warmup. Approximately ten minutes. Done at home on a carpeted condo floor, no equipment, no impact.
+The morning warmup. Five to ten minutes. Done at home on a carpeted condo floor, no equipment, no impact.
 
-> *Specification pending research. Three candidates are under review: Sun Salutation A (five rounds, step-back variant), Joe DeFranco's Agile 8, and Original Strength RESETs. The recommendation will be folded in here once the comparison returns.*
+The full specification — seven movements, breath cues, modality variants, the LONGWATCH voice's register, and the lineage from Surya Namaskar A, Ba Duan Jin, monastic Lauds, and somatic orienting — lives in [`vigil.md`](vigil.md).
 
-What the Vigil must do:
+What the Vigil does:
 
-- Prepare the body for the day's modality, whatever it is
-- Be memorizable in a week, run without a sheet
-- Leave the body warm and present, not drained
-- Reset the spine, the hips, and the shoulders
+- Prepares the body for the day's modality, whatever it is
+- Memorizable inside a week, run without a sheet thereafter
+- Leaves the body warm and present, not drained
+- Resets the spine, the hips, and the shoulders
+- Opens the day in the way the rosary closes it: on the floor, in silence
 
 ---
 
@@ -256,7 +257,7 @@ Neither document is required. The training runs without them. They are how the w
 
 These remain unsettled and will be resolved as the training runs.
 
-- **The Vigil specification.** Awaiting the research comparison.
+- **The Vigil specification.** Resolved — see [`vigil.md`](vigil.md).
 - **The Thursday skill ladder.** Luminous days need a sequence of progressions. Candidates: pullup progressions (dead hang → scapular pull → negatives → full reps → weighted), pistol-squat progressions (assisted → box → full → weighted), L-sit progressions, handstand progressions. To be drafted separately.
 - **The pullup bar.** Year One assumes none. The room either gets one early — which changes Glorious and Luminous days — or stays bodyweight-only.
 - **Year Two's bosses.** Flavored but not specified. To be designed near the end of Year One.

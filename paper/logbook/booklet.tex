@@ -1,0 +1,250 @@
+% Rosary Yoga -- The Logbook (one decade booklet)
+% Source booklet trim: 5.5 x 8.5". Imposed 2-up onto US Letter landscape by Make.
+%
+% Page count: cover(1) + inside-front(1) + 10 spreads(20) + inside-back(1)
+%             + back cover(1) = 24 pages. Multiple of 4: OK.
+%
+% Reads per-bead data from beads.csv. The Makefile may pass -jobname/decade.
+% By default this builds the Decade 3 (Glorious / Resurrection / Nativity)
+% booklet. To re-target another decade, edit \DecadeNumber, \DecadeMystery,
+% \DecadeName below, and provide a matching beads.csv.
+
+\documentclass[10pt]{article}
+
+\usepackage[paperwidth=5.5in,paperheight=8.5in,
+            top=0.45in,bottom=0.45in,left=0.45in,right=0.45in,
+            headheight=14pt]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{qrcode}     % per spec
+\usepackage{csvsimple}  % read beads.csv
+\usepackage{ifthen}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+% ---- Decade identification (edit when targeting another decade) -----------
+\newcommand{\YearNumber}{1}
+\newcommand{\DecadeNumber}{3}
+\newcommand{\DecadeName}{The Glorious}
+\newcommand{\DecadeMystery}{Nativity}
+
+% ---- helpers --------------------------------------------------------------
+% A small fillable box, used for dice, modifier check, score digits.
+\newcommand{\fillbox}[1][0.22in]{%
+  \tikz[baseline=-0.45ex]\draw[line width=0.4pt] (0,0) rectangle (#1,0.22in);}
+
+% A horizontal rule the operator writes on.
+\newcommand{\writeline}[1][\linewidth]{%
+  \rule[-2pt]{#1}{0.4pt}}
+
+% Day block: day name, modality, RELAY morning header, fillables.
+% args: 1=DAY (e.g. MON)  2=MYSTERY  3=MODALITY  4=RELAY HEADER TEXT
+%       5=show-scores flag (Y|N)
+\newcommand{\dayblock}[5]{%
+  \par\smallskip
+  {\sffamily\bfseries\small\MakeUppercase{#1} \textperiodcentered{} #2 \textperiodcentered{} #3}\par
+  \nopagebreak
+  {\footnotesize\itshape RELAY: #4}\par
+  \nopagebreak
+  \footnotesize
+  Dice \fillbox\quad Mod \fillbox\quad Work:~\writeline[2.7in]\par
+  \ifthenelse{\equal{#5}{Y}}{%
+    Scores: PU \fillbox \fillbox \fillbox \quad
+            SU \fillbox \fillbox \fillbox \quad
+            Plank \fillbox:\fillbox \fillbox \par
+  }{}%
+  Notes:~\writeline\par
+}
+
+% A bead spread is two pages: LEFT page (header+QR+load+Mon-Tue-Wed)
+% and RIGHT page (Thu-Fri-Sat + Sun Sanctum band).
+% csvsimple feeds us \beadnum, \phaselabel, \loadmult, \loadnote, etc.
+%
+% Bead spread is emitted by \beadspread, called inside a \csvreader loop.
+\newcommand{\beadspread}{%
+  % ---------------- LEFT PAGE ----------------
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,inner sep=0pt] at ([yshift=-0.4in,xshift=0.45in]current page.north west) {%
+      \qrcode[height=0.85in]{RY|v1|Y\YearNumber|D\DecadeNumber|B\beadnum|P\phaselabel|M\DecadeMystery|TLog}%
+    };
+  \end{tikzpicture}%
+  \vspace*{0.05in}
+  \hspace*{1.0in}%
+  \begin{minipage}[t]{3.35in}
+    \footnotesize\sffamily\bfseries
+    YEAR \YearNumber{} \textperiodcentered{} DECADE \DecadeNumber{} \textperiodcentered{}
+    BEAD \beadnum{} \textperiodcentered{} \MakeUppercase{\DecadeMystery}\par
+    PHASE: \MakeUppercase{\phaselabel}\par
+    \mdseries\itshape WEEK OF \rule[-2pt]{0.45in}{0.3pt} / \rule[-2pt]{0.45in}{0.3pt} / \rule[-2pt]{0.45in}{0.3pt}\par
+  \end{minipage}\par
+  \vspace{0.10in}
+  \hrule height 0.4pt
+  \vspace{4pt}
+  {\sffamily\bfseries\footnotesize LOAD TARGETS \textnormal{(phase \phaselabel, \loadmult{}):}}\par
+  {\footnotesize \loadnote\ Targets: PU 5x\rule[-2pt]{0.25in}{0.3pt}~ SU 5x\rule[-2pt]{0.25in}{0.3pt}~ Plank 5x\rule[-2pt]{0.35in}{0.3pt}\,"~ Run \rule[-2pt]{0.35in}{0.3pt}}\par
+  \vspace{4pt}\hrule height 0.4pt
+  %
+  \dayblock{Mon}{Joyful}{Mobility}{\relaymon}{N}
+  \dayblock{Tue}{Sorrowful}{Endurance}{\relaytue}{Y}
+  \dayblock{Wed}{Glorious}{Strength}{\relaywed}{Y}
+  \newpage
+  %
+  % ---------------- RIGHT PAGE ----------------
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east,inner sep=0pt,font=\sffamily\tiny] at
+      ([yshift=-0.35in,xshift=-0.45in]current page.north east)
+      {BEAD \beadnum{} / 10};
+  \end{tikzpicture}%
+  \vspace*{0.05in}
+  \dayblock{Thu}{Luminous}{Skill}{\relaythu}{Y}
+  \dayblock{Fri}{Sorrowful}{Endurance}{\relayfri}{Y}
+  \dayblock{Sat}{Joyful}{Recovery}{\relaysat}{N}
+  \vfill
+  \hrule height 0.4pt
+  \vspace{4pt}
+  {\sffamily\bfseries\footnotesize SUN \textperiodcentered{} SANCTUM}\par
+  {\footnotesize
+  Bead closed \fillbox\quad Weight \rule[-2pt]{0.7in}{0.3pt}\,lb \quad
+  Sleep avg \rule[-2pt]{0.5in}{0.3pt}\,h\par
+  RELAY post-bead:~\writeline\par
+  \writeline\par
+  Operator note:~\writeline\par
+  \writeline\par}
+  \newpage
+}
+
+% ============================================================================
+\begin{document}
+
+% ============ COVER (page 1, recto of outer sheet) =========================
+\thispagestyle{empty}
+\vspace*{1.0in}
+\begin{center}
+  {\Huge\bfseries\sffamily ROSARY YOGA}\\[6pt]
+  {\Large\sffamily THE LOGBOOK}\\[1.2in]
+  \rule{2in}{0.5pt}\\[6pt]
+  {\sffamily\large DECADE \DecadeNumber}\\[2pt]
+  {\sffamily \DecadeName{} \textemdash{} \DecadeMystery}\\[1.0in]
+  {\sffamily\small YEAR \YearNumber}\\[6pt]
+  {\sffamily\small OPERATOR:~\rule[-2pt]{1.8in}{0.4pt}}\\[6pt]
+  {\sffamily\small STARTED:~\rule[-2pt]{1.8in}{0.4pt}}
+\end{center}
+\newpage
+
+% ============ INSIDE FRONT (page 2) -- modality table ======================
+{\sffamily\bfseries\small MODALITY BY DAY}\par
+\vspace{4pt}\hrule height 0.4pt\vspace{6pt}
+\begin{tabularx}{\linewidth}{@{}l l l X@{}}
+\toprule
+\textbf{Day} & \textbf{Mystery} & \textbf{Modality} & \textbf{Notes} \\
+\midrule
+Mon & Joyful    & Mobility   & Vigil + extended flow. \\
+Tue & Sorrowful & Endurance  & Run intervals. The grind. \\
+Wed & Glorious  & Strength   & Heavier resistance. \\
+Thu & Luminous  & Skill      & Technique. The ladder. \\
+Fri & Sorrowful & Endurance  & Calisthenics grinds. \\
+Sat & Joyful    & Recovery   & Walk, breath, light. \\
+Sun & ---       & \textbf{Sanctum} & Rest. Logbook close-out. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{12pt}
+{\sffamily\bfseries\small DECADE \DecadeNumber{} LOAD SHAPE}\par
+\vspace{4pt}\hrule height 0.4pt\vspace{6pt}
+\begin{tabularx}{\linewidth}{@{}c c X@{}}
+\toprule
+\textbf{Bead} & \textbf{Load} & \textbf{Phase} \\
+\midrule
+1  & 0.50 & Intro \\
+2  & 0.60 & Intro \\
+3  & 0.70 & Build \\
+4  & 0.50 & Deload \\
+5  & 0.80 & Build \\
+6  & 1.00 & Peak \\
+7  & 1.15 & Peak \\
+8  & 1.30 & Peak \\
+9  & 1.10 & Taper \\
+10 & N/A  & Boss \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\textit{\footnotesize One bead per spread. Ten spreads. Turn the page weekly.}
+\newpage
+
+% ============ TEN BEAD SPREADS (pages 3-22 = 20 pages) =====================
+\csvreader[separator=semicolon, head to column names]{beads.csv}{}{\beadspread}
+
+% ============ INSIDE BACK (page 23) -- decade ledger =======================
+{\sffamily\bfseries\small DECADE LEDGER}\par
+\vspace{4pt}\hrule height 0.4pt\vspace{6pt}
+{\footnotesize Cumulative scores and trends at decade close.}\par
+\vspace{8pt}
+\begin{tabularx}{\linewidth}{@{}c X c c c c@{}}
+\toprule
+\textbf{B} & \textbf{Best lift / set} & \textbf{Weight} & \textbf{Sleep} & \textbf{Dice mode} & \textbf{Closed} \\
+\midrule
+1  &  &  &  &  & \fillbox \\
+2  &  &  &  &  & \fillbox \\
+3  &  &  &  &  & \fillbox \\
+4  &  &  &  &  & \fillbox \\
+5  &  &  &  &  & \fillbox \\
+6  &  &  &  &  & \fillbox \\
+7  &  &  &  &  & \fillbox \\
+8  &  &  &  &  & \fillbox \\
+9  &  &  &  &  & \fillbox \\
+10 &  &  &  &  & \fillbox \\
+\bottomrule
+\end{tabularx}
+
+\vspace{14pt}
+{\sffamily\bfseries\small DICE HISTOGRAM}\par
+\vspace{4pt}\hrule height 0.4pt\vspace{6pt}
+{\footnotesize Tick once per occurrence over the 60 work days.}\par
+\vspace{6pt}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{1} & \writeline \\
+\textbf{2} & \writeline \\
+\textbf{3} & \writeline \\
+\textbf{4} & \writeline \\
+\textbf{5} & \writeline \\
+\textbf{6} & \writeline \\
+\end{tabularx}
+
+\vfill
+{\footnotesize Decade-end body weight \rule[-2pt]{0.8in}{0.3pt}\,lb \quad
+Trend \rule[-2pt]{0.6in}{0.3pt}}\par
+\newpage
+
+% ============ BACK COVER (page 24) -- Sundays-collected ====================
+\thispagestyle{empty}
+{\sffamily\bfseries\small THE SUNDAYS COLLECTED}\par
+\vspace{4pt}\hrule height 0.4pt\vspace{6pt}
+{\footnotesize One line per Sunday. The week distilled. RELAY's hand or the operator's, either is the record.}\par
+\vspace{10pt}
+
+\newcounter{sun}\setcounter{sun}{0}
+\newcommand{\sunline}{\stepcounter{sun}\textbf{\thesun.}~\writeline\par\vspace{6pt}}
+\sunline\sunline\sunline\sunline\sunline
+\sunline\sunline\sunline\sunline\sunline
+
+\vfill
+\begin{center}
+  \rule{1.6in}{0.4pt}\\[6pt]
+  {\sffamily\scriptsize ROSARY YOGA \textperiodcentered{} LOGBOOK \textperiodcentered{}
+   DECADE \DecadeNumber{} \textperiodcentered{} \DecadeMystery}\\[4pt]
+  {\sffamily\scriptsize YEAR \YearNumber}
+\end{center}
+
+\end{document}

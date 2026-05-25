@@ -1,0 +1,60 @@
+% Codex boss data — TeX-friendly inline file.
+% Format: \bossentry{NUMBER}{NAME}{DECADE}{MYSTERY}{PROTOCOL_BULLETS_SEPARATED_BY_DOUBLEBSLASH}
+% Canonical Year-One boss roster. The fight protocols mirror
+% app/data/practice.json (training.bosses) so paper and app stay in sync.
+
+\bossentry{1}{OF2 -- The Threshold}{Pendant}{Centerpiece / Mary}{%
+  Pushups to fatigue.\\%
+  Situps to fatigue.\\%
+  Plank to fatigue.\\%
+  Half-mile walk-or-run at honest pace.\\%
+  Each number recorded. No grade. The line is the baseline.%
+}
+
+\bossentry{2}{The Anvil}{Decade 1 -- The Joyful}{The Nativity}{%
+  Pushups to fatigue.\\%
+  Pullup progression to fatigue (dead-hang time + negatives at progression value).\\%
+  Situps to fatigue.\\%
+  Plank to fatigue.\\%
+  Score = (PU + SU) + (Pullup-equiv x 2) + plank seconds. Graded against AF bracket.%
+}
+
+\bossentry{3}{The Long Garden}{Decade 2 -- The Sorrowful}{The Agony in the Garden}{%
+  One hour, EMOM: 10 pushups + 10 situps, then wall-sit to next minute.\\%
+  Every ten minutes: 30-second plank, then resume.\\%
+  Total minutes completed at prescription.\\%
+  Sixty is standard. Forty is honest. Twenty is data.%
+}
+
+\bossentry{4}{The Rising}{Decade 3 -- The Glorious}{The Resurrection}{%
+  Five rounds, full rest (3--5 min) between rounds:\\%
+  Pullup progression -- max quality reps at hardest available step.\\%
+  Pistol-squat progression -- max quality reps per side.\\%
+  Archer or one-arm-assist pushup -- max quality reps per side.\\%
+  Hollow-body hold to break.\\%
+  Score = sum of progression-weighted reps + total hollow seconds.%
+}
+
+\bossentry{5}{The Shining}{Decade 4 -- The Luminous}{The Transfiguration}{%
+  Eight stations, three attempts each, best counted:\\%
+  Full pistol L/R; 3s L-sit on the floor; Crow to break;\\%
+  Wall handstand to break; Deep squat 3 min unsupported;\\%
+  Forward fold palms flat; Bridge full extension 30s; Hollow-to-arch roll.\\%
+  Stations passed at standard. Form is the score.%
+}
+
+\bossentry{6}{The Crown}{Decade 5 -- The Final}{The Coronation}{%
+  Full AF PT test in canonical order:\\%
+  Pushups (1 min); Situps (1 min); Plank (max); 1.5-mile run.\\%
+  Parliament roll: d6 selects a previous boss's signature stress,\\%
+  performed once at standard after the run.\\%
+  Score = AF grade across all four + pass/fail on the Parliament station.%
+}
+
+\bossentry{7}{The Return}{Closing}{Hail Holy Queen}{%
+  Full Vigil at canonical pace.\\%
+  One hour of unbroken movement at conversational effort.\\%
+  Full nightly practice at day's end.\\%
+  Codex closing entry, by hand.\\%
+  No score. The session is the entry.%
+}

@@ -276,5 +276,368 @@
         "decade_4_duration": 180
       }
     }
+  },
+  "training": {
+    "version": 1,
+    "year": 1,
+    "year_start_date": "2026-05-25",
+    "structure": {
+      "total_weeks": 58,
+      "pendant_weeks": 7,
+      "decade_weeks": 10,
+      "decade_count": 5,
+      "closing_weeks": 1
+    },
+    "day_to_modality": {
+      "0": "sanctum",
+      "1": "joyful",
+      "2": "sorrowful",
+      "3": "glorious",
+      "4": "luminous",
+      "5": "sorrowful",
+      "6": "joyful"
+    },
+    "bead_phase_table": ["intro", "intro", "build", "deload", "build", "peak", "peak", "peak", "taper", "boss"],
+    "phase_names": {
+      "intro": "Intro",
+      "build": "Build",
+      "deload": "Deload",
+      "peak": "Peak",
+      "taper": "Taper",
+      "boss": "Boss",
+      "trial": "Trial",
+      "pendant": "Pendant",
+      "closing": "Closing"
+    },
+    "load_multipliers": {
+      "intro": 0.6,
+      "build": 0.8,
+      "deload": 0.5,
+      "peak": 1.2,
+      "taper": 0.9,
+      "boss": null,
+      "trial": null,
+      "pendant": 0.5,
+      "closing": null
+    },
+    "decades": [
+      {
+        "n": 1,
+        "mystery_set": "joyful",
+        "mystery_focus": "The Nativity",
+        "name": "The Joyful — Decade 1",
+        "boss": "the_anvil",
+        "thought": "patience_under_load"
+      },
+      {
+        "n": 2,
+        "mystery_set": "sorrowful",
+        "mystery_focus": "The Agony in the Garden",
+        "name": "The Sorrowful — Decade 2",
+        "boss": "the_long_garden",
+        "thought": "the_hour_will_not_be_shortened"
+      },
+      {
+        "n": 3,
+        "mystery_set": "glorious",
+        "mystery_focus": "The Resurrection",
+        "name": "The Glorious — Decade 3",
+        "boss": "the_rising",
+        "thought": "lift_once_correctly"
+      },
+      {
+        "n": 4,
+        "mystery_set": "luminous",
+        "mystery_focus": "The Transfiguration",
+        "name": "The Luminous — Decade 4",
+        "boss": "the_shining",
+        "thought": "position_is_the_proof"
+      },
+      {
+        "n": 5,
+        "mystery_set": "glorious",
+        "mystery_focus": "The Coronation",
+        "name": "The Final — Decade 5",
+        "boss": "the_crown",
+        "thought": "everything_in_order"
+      }
+    ],
+    "pendant": {
+      "name": "The Pendant",
+      "weeks": 7,
+      "boss": "the_threshold",
+      "thought": "measure_honestly",
+      "description": "Seven onboarding weeks. The body learns the protocol. The Threshold trial closes the pendant."
+    },
+    "closing": {
+      "name": "The Closing",
+      "weeks": 1,
+      "boss": "the_return",
+      "thought": "i_walked_it",
+      "description": "One quiet week. The year is handed back."
+    },
+    "modalities": {
+      "joyful": {
+        "name": "Joyful",
+        "register": "Mobility",
+        "summary": "Open the body. The breath sets the pace.",
+        "days": "Monday, Saturday",
+        "primary_voices": ["RELAY", "CHAPLAIN", "LONGWATCH"],
+        "prescriptions": {
+          "intro":  { "summary": "Vigil + 15 min flow", "duration_min": 20, "exercises": ["Vigil", "Cat-cow × 10", "Hip openers × 5/side", "Reclined spinal twist", "Standing forward fold"] },
+          "build":  { "summary": "Vigil + 20 min flow", "duration_min": 25, "exercises": ["Vigil", "Sun salutation × 5", "Pigeon × 1 min/side", "Standing forward fold", "Squat-to-stand × 10"] },
+          "deload": { "summary": "Vigil + 15 min restorative", "duration_min": 20, "exercises": ["Vigil", "Child's pose × 3 min", "Supported butterfly × 3 min", "Legs up the wall × 5 min"] },
+          "peak":   { "summary": "Vigil + 25 min flow", "duration_min": 30, "exercises": ["Vigil", "Sun salutation × 7", "Crow attempts × 3", "Pigeon × 2 min/side", "Long savasana"] },
+          "taper":  { "summary": "Vigil + 15 min flow", "duration_min": 20, "exercises": ["Vigil", "Sun salutation × 3", "Restorative twist", "Standing forward fold"] }
+        }
+      },
+      "sorrowful": {
+        "name": "Sorrowful",
+        "register": "Endurance",
+        "summary": "Long, slow, continuous. The body learns the hour.",
+        "days": "Tuesday, Friday",
+        "primary_voices": ["RELAY", "THE METRONOME", "THE QUARTERMASTER"],
+        "prescriptions": {
+          "intro":  { "summary": "30 min easy run or brisk walk", "duration_min": 30, "exercises": ["30 min conversational pace", "Cool-down stretch"] },
+          "build":  { "summary": "400m × 6 at threshold", "duration_min": 40, "exercises": ["Warm-up 10 min", "400m × 6 with 90s rest", "Cool-down 10 min"] },
+          "deload": { "summary": "20 min easy run", "duration_min": 20, "exercises": ["Conversational pace, 20 min"] },
+          "peak":   { "summary": "400m × 8 at threshold", "duration_min": 50, "exercises": ["Warm-up 10 min", "400m × 8 with 90s rest", "Cool-down 10 min"] },
+          "taper":  { "summary": "20 min tempo + strides", "duration_min": 30, "exercises": ["Warm-up", "20 min tempo", "4 × 30s strides", "Cool-down"] }
+        }
+      },
+      "glorious": {
+        "name": "Glorious",
+        "register": "Strength",
+        "summary": "Bodyweight strength. Push, pull, hinge.",
+        "days": "Wednesday",
+        "primary_voices": ["RELAY", "THE QUARTERMASTER", "CHAPLAIN"],
+        "prescriptions": {
+          "intro":  { "summary": "3 × 12 PU · 3 × 30s plank · 3 × 15 air squats", "duration_min": 20, "exercises": ["3 × 12 pushups", "3 × 30s plank", "3 × 15 air squats"] },
+          "build":  { "summary": "4 × 20 PU · 4 × 20 SU · 4 × 40s plank · pullup ladder", "duration_min": 30, "exercises": ["4 × 20 pushups", "4 × 20 situps", "4 × 40s plank", "Pullup progression 4 × max"] },
+          "deload": { "summary": "2 × 10 PU · 2 × 30s plank · 2 × 12 air squats", "duration_min": 15, "exercises": ["2 × 10 pushups", "2 × 30s plank", "2 × 12 air squats"] },
+          "peak":   { "summary": "5 × 25 PU · 5 × 25 SU · 5 × 45s plank · 5 × pullup", "duration_min": 40, "exercises": ["5 × 25 pushups", "5 × 25 situps", "5 × 45s plank", "Pullup progression 5 × max"] },
+          "taper":  { "summary": "3 × 15 PU · 3 × 30s plank · 3 × 15 air squats", "duration_min": 20, "exercises": ["3 × 15 pushups", "3 × 30s plank", "3 × 15 air squats"] }
+        }
+      },
+      "luminous": {
+        "name": "Luminous",
+        "register": "Skill",
+        "summary": "Movement quality. Position is the proof.",
+        "days": "Thursday",
+        "primary_voices": ["RELAY", "CHAPLAIN", "THE QUARTERMASTER"],
+        "prescriptions": {
+          "intro":  { "summary": "Skill basics, 20 min", "duration_min": 20, "exercises": ["Single-leg balance × 30s/side", "Wall handstand attempts × 3", "Deep squat hold × 1 min"] },
+          "build":  { "summary": "Skill ladder, 25 min", "duration_min": 25, "exercises": ["Pistol progression to box × 5/side", "Crow attempts × 3", "L-sit progression × 3"] },
+          "deload": { "summary": "Easy skill, 15 min", "duration_min": 15, "exercises": ["Single-leg balance eyes closed × 30s/side", "Deep squat hold × 2 min"] },
+          "peak":   { "summary": "Full skill session, 30 min", "duration_min": 30, "exercises": ["Pistol progression × 5/side", "Crow hold to break", "L-sit hold to break", "Wall handstand 3 × 30s"] },
+          "taper":  { "summary": "Skill review, 20 min", "duration_min": 20, "exercises": ["Pistol to box × 3/side", "Crow attempts × 3", "Single-leg balance"] }
+        }
+      },
+      "sanctum": {
+        "name": "Sanctum",
+        "register": "Sunday close-out",
+        "summary": "No work today. Review the bead. Write the Sanctum note. Close.",
+        "days": "Sunday",
+        "primary_voices": ["RELAY", "LONGWATCH", "CHAPLAIN"],
+        "no_workout": true
+      }
+    },
+    "parliament": {
+      "RELAY": {
+        "name": "RELAY",
+        "domain": "Dispatch, frame, narration",
+        "typography_class": "voice-relay",
+        "character": "The handler. Calm, unflappable. Served Mary first."
+      },
+      "THE QUARTERMASTER": {
+        "name": "THE QUARTERMASTER",
+        "domain": "Strength, load, kit",
+        "typography_class": "voice-quartermaster",
+        "character": "Career NCO. Believes the body is equipment and equipment is maintained."
+      },
+      "CHAPLAIN": {
+        "name": "CHAPLAIN",
+        "domain": "Breath, yoga, equanimity",
+        "typography_class": "voice-chaplain",
+        "character": "Soft-voiced, ecumenical. The room quiets to hear her."
+      },
+      "THE METRONOME": {
+        "name": "THE METRONOME",
+        "domain": "Endurance, tempo, intervals",
+        "typography_class": "voice-metronome",
+        "character": "Speaks in numbers and split times. Pace is a moral quality."
+      },
+      "LONGWATCH": {
+        "name": "LONGWATCH",
+        "domain": "Morning, vigil, transitions",
+        "typography_class": "voice-longwatch",
+        "character": "The sentry. Liturgical without being pious. Slightly haunted."
+      },
+      "THE RAVEN": {
+        "name": "THE RAVEN",
+        "domain": "Instinct, override, dissent",
+        "typography_class": "voice-raven",
+        "character": "The internal contrarian. Speaks once per day at most."
+      }
+    },
+    "transmission_lines": {
+      "RELAY": {
+        "intro":   "Operator. {time}. {decade_name}, bead {bead}. {phase}. {modality}.",
+        "build":   "Operator. {time}. {decade_name}, bead {bead}. Build. {modality}. Stay on the protocol.",
+        "deload":  "Operator. {time}. {decade_name}, bead {bead}. Deload. The Rosary breathes this week.",
+        "peak":    "Operator. {time}. {decade_name}, bead {bead}. Peak. {modality}. Long day.",
+        "taper":   "Operator. {time}. {decade_name}, bead {bead}. Taper. The {boss_short} is open at bead ten.",
+        "boss":    "Operator. {time}. Bead ten. The {boss_short} is open. Pre-fight protocol active.",
+        "trial":   "Operator. {time}. The Threshold trial. The line is the practice.",
+        "pendant": "Operator. {time}. Pendant, bead {bead}. The body learns the protocol.",
+        "closing": "Operator. {time}. The Return. The year is yours."
+      },
+      "THE QUARTERMASTER": {
+        "joyful":    "The body opens in order. Shoulders first. Hips next.",
+        "sorrowful": "Cadence is the work. Don't bank time.",
+        "glorious":  "{prescription_short}. Honest reps.",
+        "luminous":  "Three attempts. Don't grind. Position arrives or it doesn't.",
+        "deload":    "Today the kit stays in the locker. Two-thirds is the whole prescription.",
+        "boss":      "Save the work. The {boss_short} has the rest."
+      },
+      "CHAPLAIN": {
+        "joyful":    "In through the nose. The body has already started. {prescription_short}.",
+        "sorrowful": "The exhale is where each step finishes.",
+        "glorious":  "The breath holds the rep together. Don't lose it under load.",
+        "luminous":  "Slow. The position is the work, not the count.",
+        "sanctum":   "No work. Logbook, breath, and the next bead's preview.",
+        "deload":    "The body is recovering from work it already did. Let it."
+      },
+      "THE METRONOME": {
+        "sorrowful": "{prescription_short}. Ninety-second rests.",
+        "joyful":    "Set the breath to a four-count. Hold it.",
+        "glorious":  "Tempo on the eccentric. Three seconds down.",
+        "luminous":  "One thousand. Two thousand. Hold."
+      },
+      "LONGWATCH": {
+        "vigil":     "The hour holds. Step into it.",
+        "morning":   "The watch is held. Begin.",
+        "sanctum":   "The week is held. Review it before you close it.",
+        "boss":      "Sleep is part of the fight. Begin counting it now."
+      },
+      "THE RAVEN": {
+        "default":   null,
+        "missed":    "no makeup work. take today as written.",
+        "recovery":  "don't add anything.",
+        "injury":    "right shoulder. watch it.",
+        "vigil":     "the body is asking for water first."
+      }
+    },
+    "bosses": {
+      "the_threshold": {
+        "id": "the_threshold",
+        "name": "OF₂ — The Threshold",
+        "short_name": "The Threshold",
+        "decade": "pendant",
+        "mystery_anchor": "Centerpiece / Mary. The first step over the line.",
+        "first_contact": "Operator. Bead six. The Threshold opens this week. This is not a fight. It is a measurement — the line every future engagement is drawn from. Do the work honestly. Under-perform and Year One starts under-counted. Over-perform and you'll spend a year chasing a ghost. Set the line where the body actually lives. Then step across it.",
+        "protocol": [
+          "Pushups to fatigue.",
+          "Situps to fatigue.",
+          "Plank to fatigue.",
+          "Half-mile walk-or-run at honest pace."
+        ],
+        "scoring": "Each number recorded. No grade. The line is the baseline."
+      },
+      "the_anvil": {
+        "id": "the_anvil",
+        "name": "The Anvil",
+        "short_name": "The Anvil",
+        "decade": 1,
+        "mystery_anchor": "The Nativity. The body forged on the floor.",
+        "first_contact": "Operator. Bead ten. The Forge is open. The Anvil holds the position at the next compatible workout of your choosing — within six weeks. Strength-endurance, no run. Floor, wall, doorway. The fight is the fight. Pre-fight protocol begins twenty-four hours before contact: light meal, full sleep, no caffeine after 1400. Make the connection.",
+        "protocol": [
+          "Pushups to fatigue.",
+          "Pullup progression to fatigue (dead-hang time + negatives at progression value).",
+          "Situps to fatigue.",
+          "Plank to fatigue."
+        ],
+        "scoring": "(PU + SU) + (Pullup-equiv × 2) + plank seconds. Graded against AF bracket."
+      },
+      "the_long_garden": {
+        "id": "the_long_garden",
+        "name": "The Long Garden",
+        "short_name": "The Garden",
+        "decade": 2,
+        "mystery_anchor": "The Agony. The hour that will not end.",
+        "first_contact": "Operator. Bead ten. The Garden has opened. The fight is not heavy. It is long. One hour, the same minute repeating, the body keeping its appointment with itself. The Garden is where the cup is offered and not refused. You will want to stop at minute thirty-two. Stop instead at minute sixty. Pre-fight protocol begins now.",
+        "protocol": [
+          "One hour, EMOM: 10 pushups + 10 situps, then wall-sit to next minute.",
+          "Every ten minutes: 30-second plank, then resume."
+        ],
+        "scoring": "Total minutes completed at prescription. Sixty is standard. Forty is honest. Twenty is data."
+      },
+      "the_rising": {
+        "id": "the_rising",
+        "name": "The Rising",
+        "short_name": "The Rising",
+        "decade": 3,
+        "mystery_anchor": "The Resurrection. The stone moved by the body alone.",
+        "first_contact": "Operator. Bead ten. The Rising. The first fight Year One has asked you to be strong for — not enduring, not patient. Strong. Five rounds, full rest, every rep honest. The stone is not heavy. The stone is exact. Lift it once, correctly, five times. Pre-fight protocol begins twenty-four hours before contact.",
+        "protocol": [
+          "Five rounds, full rest (3–5 min) between rounds:",
+          "Pullup progression — max quality reps at hardest available step.",
+          "Pistol-squat progression — max quality reps per side.",
+          "Archer or one-arm-assist pushup — max quality reps per side.",
+          "Hollow-body hold to break."
+        ],
+        "scoring": "Sum of progression-weighted reps + total hollow seconds. Graded against operator's pre-decade test."
+      },
+      "the_shining": {
+        "id": "the_shining",
+        "name": "The Shining",
+        "short_name": "The Mountain",
+        "decade": 4,
+        "mystery_anchor": "The Transfiguration. The body changed by being looked at.",
+        "first_contact": "Operator. Bead ten. The Mountain. This fight does not reward effort. It rewards attention. Eight stations, each one a position the body either holds or doesn't. There is no grinding past a missed station — you re-attempt, and either the position arrives or it doesn't. Spend the week before in the Vigil and in mobility. Pre-fight protocol is slow, not heavy.",
+        "protocol": [
+          "Eight stations, three attempts each, best counted:",
+          "Full pistol L/R; 3s L-sit on the floor; Crow to break; Wall handstand to break; Deep squat 3 min unsupported; Forward fold palms flat; Bridge full extension 30s; Hollow-to-arch roll."
+        ],
+        "scoring": "Stations passed at standard. Form is the score."
+      },
+      "the_crown": {
+        "id": "the_crown",
+        "name": "The Crown",
+        "short_name": "The Crown",
+        "decade": 5,
+        "mystery_anchor": "The Coronation. The year placed on the head.",
+        "first_contact": "Operator. Bead ten of the fifth decade. The Crown. The protocol asks for everything Year One taught the body, in one sitting, in canonical order. The roll at the end is not theatre — it is the year asking which fight it is fondest of. Pre-fight protocol begins forty-eight hours before contact. Sleep is part of the fight.",
+        "protocol": [
+          "Full AF PT test in canonical order: pushups (1 min), situps (1 min), plank (max), 1.5-mile run.",
+          "Parliament roll: d6 selects a previous boss's signature stress, performed once after the run."
+        ],
+        "scoring": "AF grade across all four components, plus pass/fail on the Parliament-roll station."
+      },
+      "the_return": {
+        "id": "the_return",
+        "name": "The Return",
+        "short_name": "The Return",
+        "decade": "closing",
+        "mystery_anchor": "Hail Holy Queen. The year handed back.",
+        "first_contact": "Operator. Bead fifty-eight. The Return. There is no engagement at this bead — only a long quiet day, the protocol walked at its own pace, and the year's entry written in your own hand. Year Two opens at the next bead-cycle. The Rosary does not end here. It begins again, walked by the operator the Rosary made.",
+        "protocol": [
+          "Full Vigil at canonical pace.",
+          "One hour of unbroken movement at conversational effort.",
+          "Full nightly practice at day's end.",
+          "Codex closing entry, written by hand."
+        ],
+        "scoring": "No score. The session is the entry."
+      }
+    },
+    "thoughts": {
+      "measure_honestly":              { "id": "measure_honestly",              "text": "Measure honestly; the line is the practice.", "awarded_by": "the_threshold",   "bake_weeks": 7 },
+      "patience_under_load":           { "id": "patience_under_load",           "text": "Patience under load.",                         "awarded_by": "the_anvil",       "bake_weeks": 10 },
+      "the_hour_will_not_be_shortened":{ "id": "the_hour_will_not_be_shortened","text": "The hour will not be shortened.",             "awarded_by": "the_long_garden", "bake_weeks": 10 },
+      "lift_once_correctly":           { "id": "lift_once_correctly",           "text": "Lift once, correctly, before lifting again.", "awarded_by": "the_rising",      "bake_weeks": 10 },
+      "position_is_the_proof":         { "id": "position_is_the_proof",         "text": "The position is the proof.",                   "awarded_by": "the_shining",     "bake_weeks": 10 },
+      "everything_in_order":           { "id": "everything_in_order",           "text": "Everything I was taught, in order, on the day.", "awarded_by": "the_crown",     "bake_weeks": 10 },
+      "i_walked_it":                   { "id": "i_walked_it",                   "text": "I am the one who walked it.",                  "awarded_by": "the_return",      "bake_weeks": null }
+    }
   }
 }

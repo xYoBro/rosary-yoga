@@ -2,6 +2,17 @@
 //
 // Loads the practice data, builds the swipe sequence for tonight's mysteries,
 // and renders one card at a time. Vanilla ES module. No framework.
+//
+// The daytime training arm (the Today view) lives in training.js. It opens
+// on app start in the morning when the operator hasn't yet marked today's
+// training, and from the menu any time.
+
+import {
+  computeTodayContext,
+  renderToday,
+  markToday,
+  shouldAutoOpenToday,
+} from "./training.js";
 
 const SWIPE_THRESHOLD = 50;
 const SWIPE_RATIO = 1.4;
@@ -1066,6 +1077,7 @@ function attachKeyboard() {
       closeMysteryPicker();
       closeHelp();
       closeVoiceSettings();
+      closeTodayView();
     }
   });
 }
@@ -1086,6 +1098,8 @@ function attachButtons() {
       else if (action === "voice-sample") sampleVoice();
       else if (action === "commands") { closeMenu(); openHelp(); }
       else if (action === "voice") { closeMenu(); openVoiceSettings(); }
+      else if (action === "today") { closeMenu(); openTodayView(); }
+      else if (action === "close-today") { closeTodayView(); }
       else if (action === "restart") {
         closeMenu();
         clearState();
@@ -1109,6 +1123,53 @@ function attachButtons() {
       }
     });
   });
+}
+
+// ---------- today view (the daytime training arm) ---------------------
+
+let practiceStarted = false;
+
+function openTodayView() {
+  const overlay = document.getElementById("todayOverlay");
+  if (!overlay) return;
+  const ctx = computeTodayContext(state.data, new Date());
+  if (!ctx) {
+    overlay.hidden = true;
+    return;
+  }
+  renderToday(
+    ctx,
+    (status) => {
+      markToday(status, ctx.ctx, ctx.modalityKey);
+      // Re-render in place so the operator sees the status flip immediately.
+      openTodayView();
+    },
+    () => {
+      closeTodayView();
+      proceedToPractice();
+    }
+  );
+  overlay.hidden = false;
+}
+
+function closeTodayView() {
+  const overlay = document.getElementById("todayOverlay");
+  if (overlay) overlay.hidden = true;
+  // If the operator opened the app in the morning and the practice setup
+  // was deferred while the Today view was up, run it now.
+  if (!practiceStarted) proceedToPractice();
+}
+
+function proceedToPractice() {
+  if (practiceStarted) return;
+  practiceStarted = true;
+  const savedBodyState = loadBodyState();
+  if (savedBodyState && state.data.body_states[savedBodyState]) {
+    state.bodyState = savedBodyState;
+    startPractice();
+  } else {
+    showBodyCheck();
+  }
 }
 
 // ---------- menu --------------------------------------------------------
@@ -1431,12 +1492,14 @@ async function boot() {
   attachVoiceSettingsHandlers();
   registerServiceWorker();
 
-  const savedBodyState = loadBodyState();
-  if (savedBodyState && state.data.body_states[savedBodyState]) {
-    state.bodyState = savedBodyState;
-    startPractice();
+  // Morning behavior: if the operator hasn't marked today's training and
+  // it's before 18:00, open the Today view first. The nightly practice
+  // setup (body check or directly into the rosary) happens when Today
+  // closes — or immediately if Today isn't auto-opened.
+  if (state.data.training && shouldAutoOpenToday(new Date())) {
+    openTodayView();
   } else {
-    showBodyCheck();
+    proceedToPractice();
   }
 }
 

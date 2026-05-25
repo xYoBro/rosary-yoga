@@ -63,6 +63,7 @@
       <h1 class="menu-title">Rosary Yoga</h1>
       <p class="menu-subtitle" id="menuSubtitle"></p>
       <div class="menu-actions">
+        <button class="menu-action menu-action-prominent" data-action="today" type="button">Today's training</button>
         <button class="menu-action" data-action="hands-free" type="button">Hands-free mode · off</button>
         <button class="menu-action" data-action="voice" type="button">Voice settings</button>
         <button class="menu-action" data-action="commands" type="button">Voice &amp; touch commands</button>
@@ -113,6 +114,13 @@
         <button class="menu-action" data-action="voice-sample" type="button">Try it</button>
         <button class="menu-action" data-action="close-voice" type="button">Close</button>
       </div>
+    </div>
+  </div>
+
+  <div class="today-overlay" id="todayOverlay" hidden>
+    <div class="today-shell" role="dialog" aria-modal="true" aria-label="Today's training">
+      <div id="todayPanel"></div>
+      <button class="menu-action today-close" data-action="close-today" type="button">Close</button>
     </div>
   </div>
 

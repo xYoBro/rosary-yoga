@@ -7,3 +7,14 @@ dist/
 build/
 .env
 .env.local
+
+# LaTeX build intermediates (kept by paper/Makefile clean target)
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.out
+paper/**/*.toc
+paper/manual/manual.pdf
+paper/logbook/booklet.pdf
+paper/codex/codex.pdf
+paper/*-imposed.aux
+paper/*-imposed.log

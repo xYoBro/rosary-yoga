@@ -1,0 +1,22 @@
+% Generic booklet-imposition shim.
+% Wraps an interior PDF 2-up on US Letter landscape in booklet order.
+%
+% Usage (from the Makefile):
+%   pdflatex "\def\inputpdf{path/to/interior.pdf}\input{impose.tex}"
+%
+% The output is a US Letter landscape PDF: each sheet shows two interior
+% pages side-by-side, ordered for saddle-stitch folding (pdfpages handles
+% the page-shuffle via booklet=true).
+
+\documentclass[letterpaper,landscape]{article}
+% Force landscape geometry so the OUTPUT MediaBox is 11 x 8.5 inches.
+\usepackage[letterpaper,landscape,margin=0in]{geometry}
+\usepackage{pdfpages}
+\pagestyle{empty}
+
+\begin{document}
+% nup=2x1 puts two interior pages side-by-side on each US Letter side.
+% booklet=true reorders pages so folding the duplex-printed stack down
+% the spine yields a readable booklet (signature = whole document).
+\includepdf[pages=-,nup=2x1,booklet,landscape=false]{\inputpdf}
+\end{document}

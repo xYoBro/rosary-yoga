@@ -917,6 +917,372 @@ body {
   line-height: 1.4;
 }
 
+/* --- today overlay (the daytime training arm) ----------------------- */
+
+.today-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  z-index: 11;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.today-overlay[hidden] { display: none; }
+
+.today-shell {
+  background: var(--bg);
+  width: 100%;
+  max-width: 480px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: calc(env(safe-area-inset-top) + 1.25rem) 1.5rem
+           calc(env(safe-area-inset-bottom) + 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- today header --------------------------------------------------- */
+
+.today-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.today-bead-line {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+}
+
+.today-mystery-line {
+  font-family: "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+/* --- transmission block --------------------------------------------- */
+
+.today-transmission {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.25rem 0;
+}
+
+.voice-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.voice-name {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.voice-text {
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* Per-voice typography. The operator learns the voices by their look. */
+
+.voice-line.voice-relay + .voice-text,
+.voice-relay ~ .voice-text { /* sibling rules for safety; see actual mapping below */ }
+
+/* The .voice-* classes get applied to the .voice-name span and we mirror
+   them onto the sibling .voice-text via specific selectors. To keep
+   things simple, we apply the family/style to the .voice-name element
+   AND to its sibling .voice-text — that requires picking up the class
+   on the parent (.voice-block). We do that here with attribute-style
+   structural selectors. */
+
+.voice-block:has(.voice-relay) .voice-text {
+  font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.voice-block:has(.voice-relay) .voice-name { color: var(--accent); }
+
+.voice-block:has(.voice-the-quartermaster) .voice-text {
+  font-family: "Helvetica Neue", "Arial Narrow", sans-serif;
+  font-stretch: condensed;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.voice-block:has(.voice-the-quartermaster) .voice-name { color: var(--ink-soft); }
+
+.voice-block:has(.voice-chaplain) .voice-text {
+  font-family: "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+.voice-block:has(.voice-chaplain) .voice-name { color: var(--gold); }
+
+.voice-block:has(.voice-the-metronome) .voice-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.voice-block:has(.voice-the-metronome) .voice-name { color: var(--ink-soft); }
+
+.voice-block:has(.voice-longwatch) .voice-text {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.voice-block:has(.voice-longwatch) .voice-name { color: var(--gold); }
+
+.voice-block:has(.voice-the-raven) .voice-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  font-size: 0.95rem;
+  color: var(--accent);
+  opacity: 0.95;
+}
+.voice-block:has(.voice-the-raven) .voice-name { color: var(--accent); }
+
+/* Fallback for browsers without :has() — voices still readable, just less
+   distinct. Applies the project default serif to all .voice-text. */
+@supports not selector(:has(*)) {
+  .voice-text {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1rem;
+  }
+}
+
+/* --- today work ----------------------------------------------------- */
+
+.today-work {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+}
+
+.today-section-label {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.today-work-summary {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.today-work-meta {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.today-exercise-list,
+.today-protocol-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.today-exercise-list li,
+.today-protocol-list li {
+  list-style: "—  ";
+  padding-left: 0.1rem;
+}
+
+/* boss morning */
+.today-boss-name {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.55rem;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  margin-top: 0.2rem;
+}
+
+.today-boss-protocol {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+}
+
+.today-boss-scoring {
+  margin-top: 0.6rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* --- actions -------------------------------------------------------- */
+
+.today-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.today-primary {
+  background: var(--accent-deep);
+  border: 1px solid var(--accent);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  padding: 0.9rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 180ms, border-color 180ms;
+}
+
+.today-primary:hover,
+.today-primary:active {
+  background: var(--accent);
+  border-color: var(--gold);
+}
+
+.today-secondary {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.65rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.today-secondary:hover,
+.today-secondary:active {
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+.today-tertiary {
+  background: transparent;
+  border: 0;
+  color: var(--gold);
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.85rem 0.5rem 0.25rem;
+  cursor: pointer;
+}
+
+.today-tertiary:hover,
+.today-tertiary:active {
+  color: var(--ink);
+}
+
+.today-status {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.today-status-done {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.today-status-skipped {
+  border-color: var(--ink-faint);
+  color: var(--ink-faint);
+}
+
+.today-close {
+  margin-top: 0.5rem;
+}
+
+/* --- thought (on offer for boss days) ------------------------------ */
+
+.today-thought {
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.today-thought-label {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.today-thought-text {
+  font-family: "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gold);
+}
+
+/* --- prominent menu action (Today's training) ---------------------- */
+
+.menu-action-prominent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.menu-action-prominent:hover,
+.menu-action-prominent:active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 /* --- responsive ----------------------------------------------------- */
 
 @media (min-width: 601px) {

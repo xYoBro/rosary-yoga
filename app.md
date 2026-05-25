@@ -36,24 +36,24 @@ A small cast of voices that speak across the day, the week, and the year. Each v
 
 | Voice | Domain | Register | When it speaks |
 |-------|--------|----------|----------------|
-| **RELAY** | Dispatch, frame, narration | Mil-codec terse. *Operator. Decade 3, bead 8. Long day.* | Mornings, bead boundaries, Sanctum, post-fight |
-| **STRENGTH** | Load, push, the gruff one | Short imperatives. *Five sets. No skipping.* | Sorrowful days, Glorious days, pre-boss |
-| **BREATH** | Yoga, mobility, equanimity | Quiet, two-beat phrases. *In. Out. Hips open.* | Joyful days, vigil openings, recovery |
-| **PACE** | Endurance, tempo, the analytical one | Numeric. *400m × 8 at threshold. Negative split the last two.* | Tuesday/Friday runs, ladder workouts |
-| **VIGIL** | The morning ritual, the watchful one | Liturgical, slow, low. *The hour is yours. Begin.* | Pre-dawn, vigil flow, transitions |
-| **INSTINCT** | The gut, the override, the rebel | Single-sentence interruptions. *Not today. Walk instead.* | Dice modifiers, deload calls, intercessions |
+| **RELAY** | Dispatch, frame, narration | Mil-codec terse. *Operator. Decade 3, bead 8. Peak. Make the connection.* | Mornings, bead boundaries, Sanctum, post-fight |
+| **THE QUARTERMASTER** | Load, push, the gruff one | Short imperatives, all caps. *FIVE SETS. TWENTY-FIVE REPS. HONEST.* | Sorrowful days, Glorious days, pre-boss |
+| **CHAPLAIN** | Yoga, breath, equanimity | Italic, two-beat phrases. *In through the nose. The body has already started.* | Joyful days, vigil openings, recovery |
+| **THE METRONOME** | Endurance, tempo, intervals | Numeric, tabular. *400m × 8 at threshold. Ninety-second rests.* | Tuesday/Friday runs, ladder workouts |
+| **LONGWATCH** | Morning, vigil, transitions | Liturgical, slow, low. Small caps. *The hour holds. Step into it.* | Pre-dawn, vigil flow, Sanctum boundaries |
+| **THE RAVEN** | Instinct, override, dissent | Lower-case italic single line. *right shoulder. watch it.* | Rare. When the body's signal contradicts the manifest. |
 
 Each voice has a fixed typography in the app — a font, a weight, a color — so the operator recognizes who is speaking at a glance. RELAY is always first; INSTINCT is always last; the middle four rotate by day.
 
 Sample morning transmission (Tuesday of Decade 3, Bead 8 peak):
 
-> **RELAY.** Operator. 0500. Decade 3, bead 8. Peak. Long day. Stay on the protocol.
+> **RELAY.** *Operator. 0500. Decade 3, bead 8. Peak. Sorrowful. Long day.*
 >
-> **PACE.** 400m × 8 at threshold. Negative split the last two.
+> **THE METRONOME.** *400m × 8 at threshold. Ninety-second rests.*
 >
-> **STRENGTH.** Five sets of twenty-five pushups. No skipping.
+> **THE QUARTERMASTER.** *FIVE SETS OF TWENTY-FIVE PUSHUPS. HONEST REPS.*
 >
-> **INSTINCT.** Right shoulder. Watch it.
+> **THE RAVEN.** *right shoulder. watch it.*
 
 The transmissions are generated from a small library of templates per voice, modulated by bead phase, day modality, and recent operator state (e.g., a missed workout yesterday changes today's STRENGTH register from imperative to negotiating).
 
@@ -136,15 +136,15 @@ A year-long progression through five mysteries. The pendant onboards. The closin
 
 | Phase | Duration | Beads | Boss |
 |---|---|---|---|
-| **Pendant** | 7 weeks | 6 onboarding + 1 trial | The Centerpiece |
+| **Pendant** | 7 weeks | 6 onboarding + 1 trial | OF₂ — The Threshold |
 | **Decade 1 — The Joyful (Nativity)** | 10 weeks | 9 + boss | The Anvil |
-| **Decade 2 — The Sorrowful (Agony)** | 10 weeks | 9 + boss | *TBD* |
-| **Decade 3 — The Glorious (Resurrection)** | 10 weeks | 9 + boss | *TBD* |
-| **Decade 4 — The Luminous (Transfiguration)** | 10 weeks | 9 + boss | *TBD* |
-| **Decade 5 — The Final (Coronation)** | 10 weeks | 9 + boss | *TBD* |
-| **Closing** | 1 week | 1 closing bead | — |
+| **Decade 2 — The Sorrowful (Agony)** | 10 weeks | 9 + boss | The Long Garden |
+| **Decade 3 — The Glorious (Resurrection)** | 10 weeks | 9 + boss | The Rising |
+| **Decade 4 — The Luminous (Transfiguration)** | 10 weeks | 9 + boss | The Shining |
+| **Decade 5 — The Final (Coronation)** | 10 weeks | 9 + boss | The Crown |
+| **Closing** | 1 week | 1 closing bead | The Return |
 
-Boss names beyond The Anvil are open questions, surfaced in `training.md`. The app's year arc is the surface; the source content lives in `training.md` and is referenced, not duplicated.
+Total: 58 weeks. Every boss's first-contact transmission and fight protocol lives in `app/data/practice.json` (`training.bosses`); the app surfaces them on the appropriate bead.
 
 ---
 
@@ -156,11 +156,15 @@ Each boss victory may award the operator a **Thought** — a single sentence rep
 
 After the baking period closes, the Thought **internalizes**. It becomes a permanent line in the operator's Codex and stops actively shaping transmissions — but it is now part of the operator. The operator carries it.
 
-Examples (placeholders pending boss-list resolution):
+The Year-One Thoughts:
 
-- **After The Anvil:** *"Patience under load."* — bakes for 10 weeks, internalizes at the close of Decade 2.
-- **After [Decade 2 boss]:** TBD.
-- **After [Decade 3 boss]:** TBD.
+- **After The Threshold (pendant trial):** *Measure honestly; the line is the practice.* — bakes for 7 weeks, internalizes at the close of the pendant.
+- **After The Anvil:** *Patience under load.* — bakes for 10 weeks.
+- **After The Long Garden:** *The hour will not be shortened.*
+- **After The Rising:** *Lift once, correctly, before lifting again.*
+- **After The Shining:** *The position is the proof.*
+- **After The Crown:** *Everything I was taught, in order, on the day.*
+- **After The Return (closing):** *I am the one who walked it.* — internalizes immediately; the year is the bake.
 
 The Thought Cabinet is a single screen, always accessible:
 - Top: Thoughts currently baking, with progress.
@@ -281,15 +285,17 @@ DE-influenced but quieter. Calmer. Less neon-noir, more chapel-at-dusk.
 
 ---
 
-## Tech stack (proposed, open)
+## Tech stack — decided
 
-Open questions, surfaced for the operator to decide:
+**Extend the existing Progressive Web App.** The nightly anchor PWA (`app/`) is already shipped, sophisticated, and well-designed (TTS cues, speech recognition, hands-free mode, wake locks, EB Garamond + burgundy aesthetic calibrated for night use). The Apple-design instinct is best served by *not* displacing what already works — Story Mode rides on top of the existing surface as the Today view.
 
-- **Native (Swift / SwiftUI), iOS-only.** Highest aesthetic ceiling. Best typography. Best haptics. Best Codex readability on the operator's primary device. Trade-off: iOS only, no web/Android.
-- **React Native + Expo.** Cross-platform. JS ecosystem. Faster iteration. Trade-off: typography and haptics are good-not-great compared to native.
-- **SwiftUI + Apple Watch companion.** Native plus a watch face for morning Vigil cues and silent post-set logging. Trade-off: Apple-only.
+The daytime training arm now lives in:
 
-Given the Apple-design and Hobonichi influences, **SwiftUI / iOS-first** is the recommended starting stack. The data model is portable — if the operator later wants Android, the data goes with them.
+- `app/data/practice.json` — extended with a `training` block (year structure, decades, bosses, Thoughts, modalities, Parliament).
+- `app/training.js` — bead computation, modality picking, transmission assembly, Today view rendering, training log.
+- `app/index.html`, `app/style.css`, `app/app.js` — Today overlay markup, per-voice typography, menu wiring, morning auto-open.
+
+The data model exports as plain JSON. If the operator ever wants a native iOS or Android app, the data goes with them; only the rendering layer needs porting.
 
 ---
 
@@ -303,15 +309,23 @@ Given the Apple-design and Hobonichi influences, **SwiftUI / iOS-first** is the 
 
 ---
 
+## Design principles — what the literature actually supports
+
+A May 2026 review of the habit-formation, ritual, effort-justification, and digital-health-retention literatures landed on three load-bearing principles. These are now constitutional for the app:
+
+1. **The daily ask stays atomic.** One card, one button, ≤30 seconds of operator interaction. Lally / Fogg / Wood all converge on this for forming new habits. Implemented: the Today view's "Mark as done" is the only required tap.
+2. **The frame stays elaborate.** Identity, narrative, and effort-justification (Norton/Mochon/Ariely 2012) are the dominant predictors of decade-scale practice. The Parliament, the bead identifier, the mystery focus, the boss transmissions, and the Thought Cabinet are visible by default — they cost the operator nothing operationally and supply identity. Story Mode is not opt-in. It is the practice.
+3. **No streaks. No badges. No nag notifications.** Loss-aversion gamification is the design pattern most likely to produce burnout and intrinsic-motivation crowding-out (Ng et al. 2012, Koivisto/Hamari). The app records what happens but never punishes a miss or rewards consistency with debt. The Rosary itself is the only counter.
+
+A fourth principle, by way of `paper.md`: **the optional paper kit is not friction to optimize away.** The hand-stapling of booklets is an effort-justification device (IKEA effect). If the operator chooses paper, the work of producing the kit *is* the mechanism.
+
 ## Open questions
 
-- **Voice cast names.** STRENGTH / BREATH / PACE / VIGIL / INSTINCT are placeholders. Each voice needs a name with flavor — closer to *INLAND EMPIRE* than to *STRENGTH-the-stat*. To be developed alongside `training.md`.
-- **Thought list.** What virtues are awarded per boss? Six Thoughts (one per boss + one for the pendant trial) need to be written.
-- **Boss names beyond The Anvil.** Decades 2–5 each need a boss name and first-contact transmission. Source: `training.md`.
-- **Tech stack final call.** SwiftUI iOS-only vs. React Native cross-platform.
-- **Cloud sync vendor.** iCloud (Apple-native, frictionless) vs. self-hosted (operator owns the data physically).
-- **Subscription / pricing / distribution.** If the app is for the operator alone, none of these matter. If it ships to others, all of them do.
-- **The data export ritual.** At year-end, the app should produce a single JSON file the operator can archive. Format spec needed.
+- **Cloud sync vendor.** iCloud (Apple-native, frictionless) vs. self-hosted (operator owns the data physically). Currently: local-first only.
+- **AF PT scoring brackets.** The operator's age/sex bracket needs to be configurable. Stub today.
+- **Dice variants per modality.** v1 has one canonical prescription per (modality, phase). Dice variants (d6 → 6 variants per modality) are specced in `paper.md` and `training.md` but not yet implemented in the app.
+- **Year-end data export.** The app should produce a single JSON file the operator can archive. Format spec exists; export UI to be built.
+- **The Vigil voice corpus.** `vigil.md` is now specified. The VIGIL voice's sample lines need to migrate into `training.transmission_lines.LONGWATCH` (currently LONGWATCH is doing double duty — it carries the vigil register but is also the morning-watch voice).
 
 ---
 
