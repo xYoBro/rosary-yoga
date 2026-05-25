@@ -21,11 +21,13 @@ The app, when it is built, is a recorder and a printer. It is not the source of 
 
 | Book | Role | Lives | Timescale |
 |------|------|-------|-----------|
-| **The Manual** | Everything you LOOK UP. Rules, modality tables, dice tables, exercise menus per modality, boss protocols, load tables. Tabbed. Printed. Never changes mid-year. | Pocket / work bag | Eternal (per protocol version) |
-| **The Logbook** | Everything you WRITE. One spread per bead, pre-printed with mystery, phase, load targets, and RELAY's morning headers. You fill in dice, work, scores, notes. | Desk / binder slot at home | The present year |
-| **The Codex** | Everything that LASTS. Boss spreads only — RELAY's first contact, fight protocol, fight log across years. Hand-bound. | Shelf | Ancestral — decades, handed forward |
+| **The Manual** | Everything you LOOK UP. Rules, modality tables, dice tables, exercise menus per modality, boss protocols, load tables. Tabbed. Printed. Never changes mid-year. | Bag / jacket pocket | Eternal (per protocol version) |
+| **The Logbook** | Everything you WRITE. One spread per bead, pre-printed with mystery, phase, load targets, and RELAY's morning headers. You fill in dice, work, scores, notes. | Desk at home | The present year |
+| **The Codex** | Everything that LASTS. Boss spreads only — RELAY's first contact, fight protocol, fight log across years. Hand-bound or print-on-demand. | Shelf | Ancestral — decades, handed forward |
 
 The whole kit can be described in one sentence: *you carry the Manual, you write in the Logbook, you inscribe the Codex.*
+
+All three books share a single trim — **5.5 × 8.5"** (US Digest / Half-Letter). They coordinate on the shelf as a set. Binding differs by role: the Manual and Codex are sewn (closed, canonical), the Logbook is wire-bound (lay-flat, made for writing).
 
 No loose cards. No binders to lose. No accessories to forget. Three objects. Each one obvious.
 
@@ -50,15 +52,15 @@ The reference book. Read in the first weeks until the protocol lives in the body
 
 ### Print spec
 
-- **Size.** B6 (125 × 176mm). Pocket-fittable, but with enough page width for tables.
-- **Pages.** 80–120, depending on appendix size.
-- **Binding.** Smyth-sewn hardcover with cloth spine. Built to be carried for a year and survive it.
-- **Paper.** 80gsm cream text stock, low-glare.
-- **Ink.** Black, with one accent color (deep red, single-pass) for headers and tab markers.
-- **Tabs.** Cut-tab dividers for: Week · Decade · Mysteries · Dice · Bosses · Scoring · Sanctum.
-- **Cover.** *ROSARY · MANUAL · v1* embossed.
+- **Trim.** 5.5 × 8.5" (US Digest / Half-Letter). Standard KDP, IngramSpark, Lulu, and B&N Press hardcover trim.
+- **Pages.** 100–140, depending on appendix size. Within the 75–550-page hardcover window for all major US POD services.
+- **Binding.** Smyth-sewn case-laminate hardcover. Cloth spine if the printer offers it (Lulu does; KDP does not).
+- **Paper.** 80 lb cream text stock (≈118 gsm), low-glare, low show-through.
+- **Ink.** Black throughout. One accent color (deep red, dedicated plate or single-pass) for chapter heads and tab markers if the service permits at this trim.
+- **Tabs.** Printed tab markers along the foredge for: Week · Decade · Mysteries · Dice · Bosses · Scoring · Sanctum. (True die-cut tabs are not POD-standard; printed tabs read identically once thumb-stained.)
+- **Cover.** *ROSARY · MANUAL · v1* foil-stamped or printed. The version number lives on the cover so an outdated Manual is visibly outdated.
 
-A new edition each protocol revision. The version number is part of the cover so an outdated Manual is visibly outdated.
+A new edition each protocol revision.
 
 ---
 
@@ -119,14 +121,14 @@ Each spread is one bead. Two facing pages. Pre-printed static content includes t
 
 ### Print spec
 
-- **Size.** A5 (148 × 210mm). Big enough to write comfortably; small enough to carry.
-- **Pages.** ~128 (62 spreads × 2 pages + front matter + endpapers).
-- **Binding.** Smyth-sewn hardcover, lay-flat. Cloth spine.
-- **Paper.** 100gsm cream, pencil-and-ink friendly, low ghosting.
-- **Ink.** Black for prints. Operator writes in pencil (Logbook entries are correctable) or pen (their choice).
-- **Ribbon bookmark.** One, sewn into the spine.
-- **Die pocket.** A slim sewn-in pocket inside the front cover. Holds the operator's d6 (or d10) so it never leaves the kit.
-- **Cover.** *ROSARY · LOGBOOK · Year One* embossed. The year number is on the cover so Logbooks shelved together read as a sequence.
+- **Trim.** 5.5 × 8.5" (US Digest / Half-Letter). Matches the Manual and Codex.
+- **Pages.** ~150 (62 spreads × 2 pages, plus ~10 pages front matter — protocol summary, modality-at-a-glance, year ledger header — and ~16 pages back matter — annual ledger, weight chart, year-end Sanctum).
+- **Binding.** Wire-O (twin-loop wire) hardcover. Lays perfectly flat, both pages writable, durable for daily handling. Available from Lulu, Mixam, and most regional book printers. (Smyth-sewn is the second choice if Wire-O isn't available at the user's print service — lays nearly flat after break-in.)
+- **Paper.** 100 lb text cream (≈148 gsm), heavier than the Manual to handle daily writing in pen without ghosting.
+- **Ink.** Black for pre-printed content. Operator writes in pencil (corrigible, ages well) or fountain pen (permanent, archival ink). Operator's call.
+- **Ribbon bookmark.** One, sewn or tipped into the spine, marking the current bead.
+- **Die pocket.** A slim cloth pocket affixed inside the front cover at bindery. Holds the operator's d6 (or d10).
+- **Cover.** *ROSARY · LOGBOOK · Year One* foil-stamped. The year number is on the cover so Logbooks shelved together read as a sequence.
 
 A new Logbook every year. Old Logbooks shelve in chronological order. The shelf is the long arc.
 
@@ -173,12 +175,26 @@ The Codex is the book the operator may hand down. It is the only artifact in the
 
 ### Print spec
 
-- **Size.** A5 (148 × 210mm). Matches the Logbook so they shelve together.
-- **Pages.** ~32 (7 spreads + front matter + ample notes pages at back for re-fight overflow).
-- **Binding.** Hand-sewn (Smyth or coptic) hardcover. Heavy cloth-bound boards. Endpapers in a single deep color.
-- **Paper.** 120gsm cream archival stock. Acid-free. Made to last fifty years minimum.
+The Codex has two viable paths. Both are specified — the operator picks one at the start of Year One.
+
+**Path A — Print-on-demand (the practical start).**
+
+- **Trim.** 5.5 × 8.5" (matches the Manual and Logbook).
+- **Pages.** 80–96. The seven Year-One boss spreads (4 pages each = 28 pages) plus reserved spreads for Years 2–4 bosses (32 pages) plus front matter (dedication, inheritance page) and end matter (lifetime ledger, blank notes pages). Padding to ≥75 pages is what makes it POD-eligible at KDP/IngramSpark/Lulu.
+- **Binding.** Smyth-sewn case-laminate hardcover. The most archival POD option available.
+- **Paper.** 80 lb cream text (≈118 gsm). Acid-free where the service offers it (Lulu's premium paper is acid-free; KDP's is not specified).
+- **Cover.** *CODEX* foil-stamped or printed. Operator's name and year of inception inscribed by hand inside the front cover.
+
+**Path B — Hand-bound (the heirloom upgrade).**
+
+Commission from a US bookbinder at the close of Year One, once the boss spreads are filled in. The hand-bound version becomes the permanent record; the POD version may serve as Year-One working copy and then be retired.
+
+- **Trim.** 5.5 × 8.5".
+- **Pages.** As needed.
+- **Binding.** Hand-sewn (Smyth or coptic) hardcover. Cloth- or leather-bound boards. Endpapers in a single deep color.
+- **Paper.** 120 gsm cream archival, acid-free, expected fifty-year minimum lifespan.
 - **Ink.** Operator writes in fountain pen or archival ink. No pencil — the Codex is permanent.
-- **Cover.** *CODEX* embossed. The operator's name and the year of inception inside the front cover, in their own hand.
+- **Vendors.** Gibbs Bookbinding (Los Angeles), The Creaky Spine Bindery, or any local conservator. Base prices begin around $90 and rise with materials and craft.
 
 A single Codex is sufficient for Year One. Subsequent Mysteries — Sorrowful, Glorious, Luminous — may each get their own Codex, or all four may share one expanded volume. To be decided at the close of Year One.
 
@@ -186,7 +202,7 @@ A single Codex is sufficient for Year One. Subsequent Mysteries — Sorrowful, G
 
 ## The QR encoding scheme
 
-Every Logbook spread carries a QR code in the top-left corner. Codex spreads do too. The Manual carries none — it has no per-instance data.
+Every Logbook spread carries a QR code in the top-left corner, approximately 1 × 1" — large enough for any phone camera to scan from a foot away. Codex spreads carry one too. The Manual carries none — it has no per-instance data.
 
 The QR payload is a single line of human-readable structured text:
 
@@ -285,17 +301,25 @@ Static data (boss content, bead schedule, RELAY headers) lives in CSV/YAML separ
 
 ### Print specs (summary)
 
-| Book | Size | Paper | Binding | Cover |
+| Book | Trim | Pages | Paper | Binding |
 |---|---|---|---|---|
-| Manual | B6 (125×176mm) | 80gsm cream | Smyth-sewn hardcover | Embossed, cloth spine, tabbed |
-| Logbook | A5 (148×210mm) | 100gsm cream | Smyth-sewn hardcover, lay-flat | Embossed, cloth spine, ribbon, die pocket |
-| Codex | A5 (148×210mm) | 120gsm archival cream | Hand-sewn hardcover (coptic optional) | Embossed, cloth-bound boards |
+| Manual | 5.5 × 8.5" | 100–140 | 80 lb cream text (~118 gsm) | Smyth-sewn case-laminate hardcover |
+| Logbook | 5.5 × 8.5" | ~150 | 100 lb cream text (~148 gsm) | Wire-O hardcover, lay-flat |
+| Codex | 5.5 × 8.5" | 80–96 (POD) or open (hand-bound) | 80 lb cream POD / 120 gsm archival hand-bound | Smyth-sewn case-laminate (POD) or hand-sewn (heirloom) |
 
-All three books share A5/B6 dimensions and cream stock — the kit reads as a coordinated set on the shelf.
+All three books share the same 5.5 × 8.5" trim and cream stock. The kit reads as a coordinated set on the shelf, distinguished by cover treatment and binding character.
 
-### Printers
+### Where to print
 
-Short run is fine for the Manual and Logbook (small online binderies). The Codex is hand-bound — a one-off per year, made by a local bookbinder or by the operator themselves. The Codex is the only book where craft matters as much as content.
+The kit is designed against the off-the-shelf capabilities of US print-on-demand services as of 2026:
+
+- **KDP** (Amazon) — hardcover trim 5.5×8.5 supported; 75–550-page range. Cheapest, but no Wire-O and limited paper options. Workable for Manual.
+- **IngramSpark** — full POD with broader binding and paper options. Good for Manual and Codex.
+- **Lulu** — supports Wire-O hardcover at 5.5×8.5, acid-free premium paper, smaller minimum runs. The recommended single-vendor option that covers all three books.
+- **Mixam / regional book printers** — for Wire-O hardcover specifically, often higher quality than POD at slightly higher per-unit cost.
+- **Gibbs Bookbinding (LA), The Creaky Spine Bindery, local conservators** — for the heirloom Codex upgrade, single copies, acid-free archival materials, $90+.
+
+The operator does not need to pick a vendor up front. The LaTeX sources produce PDFs that work at any service supporting 5.5×8.5" trim.
 
 ---
 
@@ -311,9 +335,9 @@ Short run is fine for the Manual and Logbook (small online binderies). The Codex
 
 ## Open questions
 
-- **Printer access.** Whether the operator owns or has reliable access to a printer/bindery. Determines who prints the books vs. ordering from an online service.
-- **The Codex binding.** Smyth-sewn hardcover (durable, $$) vs. coptic-stitched (lay-flat, mid) vs. hand-bound by the operator (cheap, slow, ritual). Decide once.
-- **The die.** A6 wooden d6 vs. a standard plastic d6 vs. a d10 for finer rolls. Lives in the Logbook's front pocket.
+- **POD vendor selection.** Lulu is recommended for covering all three books in a single order with Wire-O support, but the operator may want to comparison-print one bead spread at KDP, Lulu, and IngramSpark before committing.
+- **The Codex binding path.** Path A (POD Smyth-sewn) at the start vs. Path B (commissioned hand-bound) at the close of Year One. Path A is the practical default; Path B is the ritual upgrade.
+- **The die.** Wooden d6 vs. standard plastic d6 vs. d10 for finer rolls. Lives in the Logbook's front pocket. Aesthetic call.
 - **The Vigil.** Specification pending research. Once specified, lives in the Manual's appendix.
 - **The shelf.** Year-One Logbook + Codex shelve as a pair. After Year Four, the shelf has four Logbooks and one or four Codices. The shelf itself becomes a record.
 
