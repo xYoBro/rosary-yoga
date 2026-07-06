@@ -1,6 +1,7 @@
 /* Rosary Yoga — design system
    Burgundy / antique cream on near-black. Serif body, small-caps labels.
-   Calibrated for night-time use: low blue, low overall luminance, generous line-height.
+   Calibrated for the quiet hours: low blue, low overall luminance, generous
+   line-height. Reads like candlelight before dawn.
 */
 
 :root {
@@ -230,13 +231,15 @@ body {
   filter: brightness(0.78) contrast(0.95) saturate(0.55) sepia(0.12);
 }
 
-.pose-figure.is-small {
-  max-width: 130px;
-  opacity: 0.78;
+.pose-figure.is-art {
+  max-width: 260px;
+  color: var(--accent);
 }
 
-.pose-figure.is-photo.is-small {
-  max-width: 110px;
+.pose-figure.is-art svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .pose-meta {
@@ -270,9 +273,14 @@ body {
   align-items: center;
   text-align: center;
   padding: 0 0.25rem;
-  min-height: 0;
+  /* Never collapse below a few prayer lines, even with the cues panel open */
+  min-height: 6.5rem;
   flex: 1 1 auto;
 }
+
+/* With cues open, the illustration yields space to the teaching text */
+.card.cues-open .pose-figure.is-art { max-width: 170px; }
+.card.cues-open .pose-figure.is-photo { max-width: 150px; }
 
 .prayer-label {
   font-family: "Cormorant SC", Georgia, serif;
@@ -342,6 +350,7 @@ body {
 .card.is-mystery .pose-meta { display: none; }
 .card.is-mystery .prayer-text { display: none; }
 .card.is-mystery .cue-toggle { display: none; }
+.card.is-mystery .cue-panel { display: none; }
 
 .mystery-block {
   text-align: center;
@@ -381,6 +390,95 @@ body {
   font-size: 1.2rem;
   letter-spacing: 0.6em;
   padding-left: 0.6em;
+}
+
+/* --- pose cues (the teaching surface) -------------------------------- */
+
+.cue-toggle {
+  background: transparent;
+  border: 0;
+  color: var(--ink-faint);
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: var(--size-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+  align-self: center;
+  position: relative;
+  z-index: 4;
+  transition: color 180ms;
+  flex: 0 0 auto;
+}
+
+.cue-toggle:hover, .cue-toggle:active {
+  color: var(--gold);
+}
+
+.cue-toggle[hidden] { display: none; }
+
+.cue-panel {
+  border-top: 1px solid var(--rule);
+  padding: 0.75rem 0.5rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  text-align: left;
+  max-height: 34vh;
+  min-height: 4.5rem;
+  flex: 0 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-faint) transparent;
+  position: relative;
+  z-index: 4;
+  flex: 0 0 auto;
+}
+
+.cue-panel[hidden] { display: none; }
+
+.cue-panel::-webkit-scrollbar { width: 4px; }
+.cue-panel::-webkit-scrollbar-track { background: transparent; }
+.cue-panel::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 2px; }
+
+.cue-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cue-heading {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: var(--size-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.cue-section p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.cue-target {
+  font-style: italic;
+  font-size: var(--size-small);
+  color: var(--ink-faint);
+}
+
+/* --- practice count on the final card -------------------------------- */
+
+.practice-count {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: var(--size-small);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.25rem;
+  opacity: 0.85;
 }
 
 /* --- tap zones ------------------------------------------------------ */

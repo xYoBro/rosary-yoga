@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Chair</title>
+  <circle cx="148" cy="50" r="11" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150,178 L142,144 L178,122"/>
+    <path d="M164,178 L156,144 L184,126"/>
+    <path d="M181,124 C174,100 166,80 154,62"/>
+    <path d="M154,62 L128,26"/>
+    <path d="M154,62 L140,20"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

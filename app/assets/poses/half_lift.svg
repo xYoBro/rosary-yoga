@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Half lift, flat back</title>
+  <circle cx="90" cy="88" r="10.5" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M161,106 L154,178"/>
+    <path d="M169,106 L164,178"/>
+    <path d="M165,104 C148,98 122,92 102,90"/>
+    <path d="M128,96 L146,140"/>
+    <path d="M136,98 L152,144"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

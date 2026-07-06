@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Breath-led arm floats</title>
+  <circle cx="160" cy="36" r="11" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160,47 L160,116"/>
+    <path d="M160,116 L150,178"/>
+    <path d="M160,116 L170,178"/>
+    <path d="M160,64 L118,38"/>
+    <path d="M160,64 L202,38"/>
+  </g>
+  <g fill="none" stroke="var(--gold, #c8a45a)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M124,96 C102,80 98,56 112,36"/>
+    <path d="M108,44 L112,36 L120,38"/>
+    <path d="M196,96 C218,80 222,56 208,36"/>
+    <path d="M212,44 L208,36 L200,38"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

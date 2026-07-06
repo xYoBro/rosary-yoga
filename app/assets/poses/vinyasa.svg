@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Vinyasa: plank, cobra, downward dog</title>
+  <g transform="translate(9,110.5) scale(0.55)">
+    <circle cx="14" cy="30" r="10" fill="currentColor"/>
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M26,36 L150,64"/>
+      <path d="M28,37 L24,88"/>
+      <path d="M150,64 L156,78"/>
+    </g>
+  </g>
+  <g transform="translate(99,112.7) scale(0.55)">
+    <circle cx="63" cy="42" r="9" fill="currentColor"/>
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M160,84 L100,82"/>
+      <path d="M100,82 C86,80 72,70 67,52"/>
+      <path d="M70,60 C64,68 62,76 63,84"/>
+    </g>
+  </g>
+  <g transform="translate(231,111.6) scale(0.55)">
+    <circle cx="26" cy="72" r="8" fill="currentColor"/>
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10,88 L58,26"/>
+      <path d="M58,26 L104,88"/>
+    </g>
+  </g>
+  <g fill="none" stroke="var(--gold, #c8a45a)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M92,134 C102,127 110,127 120,134"/>
+    <path d="M112,128 L120,134 L114,141"/>
+    <path d="M196,134 C206,127 214,127 224,134"/>
+    <path d="M216,128 L224,134 L218,141"/>
+  </g>
+  <path d="M24,166 L296,166" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

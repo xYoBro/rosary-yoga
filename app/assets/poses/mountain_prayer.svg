@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Mountain, hands at heart</title>
+  <circle cx="160" cy="32" r="11" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160,43 L160,114"/>
+    <path d="M160,114 L150,178"/>
+    <path d="M160,114 L170,178"/>
+    <path d="M160,60 L141,86 L156,71"/>
+    <path d="M160,60 L179,86 L164,71"/>
+    <path d="M160,62 L153,77 L160,92 L167,77 Z"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

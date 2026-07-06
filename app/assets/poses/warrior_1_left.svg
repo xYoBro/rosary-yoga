@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Warrior one, left foot forward</title>
+  <circle cx="142" cy="46" r="11" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82,178 L98,140 L142,118"/>
+    <path d="M142,118 L222,178"/>
+    <path d="M222,178 L236,174"/>
+    <path d="M142,118 L142,58"/>
+    <path d="M142,64 L126,24"/>
+    <path d="M142,64 L158,24"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

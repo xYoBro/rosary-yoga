@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Rosary Yoga" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="description" content="A nightly anchor for body, mind, and the work ahead." />
+  <meta name="description" content="A morning anchor for body, mind, and the day ahead." />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/icons/icon.svg" />
@@ -47,6 +47,9 @@
           <div class="prayer-label" id="prayerLabel"></div>
           <div class="prayer-text" id="prayerText"></div>
         </div>
+
+        <button class="cue-toggle" id="cueToggle" type="button" hidden>Show pose cues</button>
+        <div class="cue-panel" id="cuePanel" hidden></div>
       </article>
 
       <button class="tap-zone tap-zone-prev" id="tapZonePrev" aria-label="Previous" type="button"></button>
@@ -67,8 +70,9 @@
         <button class="menu-action" data-action="voice" type="button">Voice settings</button>
         <button class="menu-action" data-action="commands" type="button">Voice &amp; touch commands</button>
         <button class="menu-action" data-action="restart" type="button">Restart from the beginning</button>
-        <button class="menu-action" data-action="mysteries" type="button">Change tonight's mysteries</button>
-        <button class="menu-action" data-action="body" type="button">How is your body tonight?</button>
+        <button class="menu-action" data-action="practice" type="button">Practice</button>
+        <button class="menu-action" data-action="mysteries" type="button">Change today's mysteries</button>
+        <button class="menu-action" data-action="body" type="button">How is your body today?</button>
         <button class="menu-action" data-action="close" type="button">Close menu</button>
       </div>
       <p class="menu-footer">The poses do not change with the day.<br/>The body learns the cue.</p>
@@ -77,7 +81,7 @@
 
   <div class="body-overlay" id="bodyOverlay" hidden>
     <div class="body-panel" role="dialog" aria-modal="true" aria-label="Body check">
-      <h2 class="body-title">How is your body tonight?</h2>
+      <h2 class="body-title">How is your body today?</h2>
       <p class="body-subtitle">A teacher would ask. Answer honestly — the practice will adjust.</p>
       <div class="body-options" id="bodyOptions"></div>
     </div>

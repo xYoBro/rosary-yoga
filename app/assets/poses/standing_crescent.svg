@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Standing crescent side bend</title>
+  <circle cx="196" cy="36" r="10.5" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M156,116 L146,178"/>
+    <path d="M156,116 L168,178"/>
+    <path d="M156,116 C162,88 172,64 190,44"/>
+    <path d="M186,50 C202,36 214,28 226,22"/>
+    <path d="M181,56 C197,44 212,35 226,27"/>
+  </g>
+  <path d="M156,24 L156,108" fill="none" stroke="var(--gold, #c8a45a)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 7" opacity="0.4"/>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

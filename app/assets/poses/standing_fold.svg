@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="t">
+  <title id="t">Standing forward fold</title>
+  <circle cx="128" cy="166" r="10" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M161,106 L154,178"/>
+    <path d="M169,106 L164,178"/>
+    <path d="M165,104 C150,118 136,138 131,155"/>
+    <path d="M148,122 L140,164"/>
+    <path d="M154,128 L147,168"/>
+  </g>
+  <path d="M40,184 L280,184" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+</svg>

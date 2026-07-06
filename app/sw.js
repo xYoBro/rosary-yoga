@@ -1,16 +1,31 @@
 // Rosary Yoga service worker — offline-first cache for the practice.
 // Bump CACHE_NAME whenever app shell or data changes.
 
-const CACHE_NAME = "rosary-yoga-v18";
+const CACHE_NAME = "rosary-yoga-v19";
 
 const ASSETS = [
   "./",
   "index.html",
   "style.css",
   "app.js",
+  "sequence.js",
   "manifest.webmanifest",
   "data/practice.json",
   "assets/icons/icon.svg",
+  "assets/poses/mountain_prayer.svg",
+  "assets/poses/arm_floats.svg",
+  "assets/poses/half_salutation.svg",
+  "assets/poses/standing_crescent.svg",
+  "assets/poses/arms_up.svg",
+  "assets/poses/standing_fold.svg",
+  "assets/poses/half_lift.svg",
+  "assets/poses/plank.svg",
+  "assets/poses/cobra.svg",
+  "assets/poses/down_dog.svg",
+  "assets/poses/chair.svg",
+  "assets/poses/warrior_1_right.svg",
+  "assets/poses/warrior_1_left.svg",
+  "assets/poses/vinyasa.svg",
   "assets/poses/photos/seated_forward_fold.jpg",
   "assets/poses/photos/child_pose.jpg",
   "assets/poses/photos/supported_butterfly.jpg",
