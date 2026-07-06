@@ -1,18 +1,20 @@
 # Rosary Yoga — The Practice
 
-*A nightly anchor for body, mind, and the work ahead.*
+*A morning anchor for body, mind, and the day ahead.*
 
-Ten poses. Five mysteries. Thirty to forty minutes before sleep. Same poses, same order, every night — the body learns the cue, the mind follows the bead.
+Five Sun Salutations. Five mysteries. Thirty minutes at the start of the day. Same movements, same order, every morning — the body learns the cue, the mind follows the bead.
 
 ---
 
 ## Why this exists
 
-The body needs daily movement. The mind needs daily stillness. Doing them separately is two decisions, and decisions are what willpower spends itself on. Couple them and there is one decision: did I do the rosary tonight, yes or no. The body comes along because it has to.
+The body needs daily movement. The mind needs daily stillness. Doing them separately is two decisions, and decisions are what willpower spends itself on. Couple them and there is one decision: did I do the rosary this morning, yes or no. The body comes along because it has to.
 
-This practice is calibrated for **end of day**. It does not strengthen muscle in the gym sense — that is a different practice, done at a different time. What it does is keep the fascia long, the hips open, the low back decompressed, the nervous system shifted toward sleep, and the body ready for the next day's real work. Done nightly, it reverses the slow stiffening that comes from sitting, traveling, and skipping movement when life gets loud.
+This practice is calibrated for **the start of the day**. Sun Salutations are named for sunrise; they warm the body, wake the spine, and raise the breath — exactly what you do not want at midnight and exactly what you want before the day begins. Christian tradition has prayed at dawn, facing east, for two thousand years. The two lineages meet here without either one bending.
 
-It travels. A floor and a wall are enough. A folded towel substitutes for a yoga block. The poses do not change with the day — that is what makes it an anchor.
+The salutation's own shape carries the prayer: rise, bow, go down to the earth, rise again. It is the paschal shape. Under the Sorrowful Mysteries the descent means one thing; under the Glorious Mysteries the rising means another. The movements never change — the mysteries change what they mean. That is how the rosary has always worked.
+
+It travels. A patch of floor the length of your body is enough. No props, no wall, no equipment.
 
 ---
 
@@ -22,9 +24,13 @@ There are two ways to do this. **Pick one — don't mix.**
 
 1. **The Manual (this file).** Read it once or twice fully. Memorize the sequence. Then run it from memory. Phone away. This is the long-term goal — the practice should live in the body, not the screen.
 
-2. **The App.** Open [`app/index.html`](app/index.html) on your phone (or add it to your home screen as a Progressive Web App — see [README.md](README.md)). It will walk you bead by bead. Use it while you learn, on travel nights when the room is unfamiliar, or any night the routine wants a thread to hold.
+2. **The App.** Open [`app/index.html`](app/index.html) on your phone (or add it to your home screen as a Progressive Web App — see [README.md](README.md)). It walks you bead by bead, one pose per card.
 
-If you miss a night, do not start over and do not count days. The practice resumes the next night without ceremony.
+For the salutations, **use hands-free mode** (menu → Hands-free mode). You cannot swipe a phone from Plank. The app speaks each pose as the bead arrives — "Plank. Hail Mary." — and your spoken "amen" advances the bead. Prop the phone at the front of the mat and keep your hands where they belong.
+
+While learning, keep **Show pose cues** open (the button at the bottom of every card). It shows the setup and hold instructions for the current pose. Close it once the sequence lives in the body — that is the graduation.
+
+If you miss a morning, do not start over and do not count days. The practice resumes the next morning without ceremony.
 
 ---
 
@@ -56,230 +62,237 @@ The **opening pendant** (cross + 4 beads + medallion): Sign of the Cross, Apostl
 
 **Closing**: return to the medallion or cross for the Hail Holy Queen.
 
-If you are new to the rosary, that is enough. The app will speak the prayers; the body will follow.
+If you are new to the rosary, that is enough. The app will cue the poses; you pray the words; the body follows.
 
 ---
 
-## The ten poses
+## The shape of the practice
 
-The opening pendant has five poses, one per prayer slot. The five decades each repeat a three-pose cycle, where the deep hold is the only thing that changes between decades.
+The pendant is the warmup. The decades are the salutations. The closing is the return.
 
-### Opening Pendant — 12 to 15 minutes
+### Opening Pendant — 6 to 8 minutes — *the warmup*
 
-| # | Pose | Prayer | Time | What it does |
-|---|------|--------|------|--------------|
-| I | Seated Forward Fold | Apostles' Creed | 3–5 min | Posterior chain (hamstrings, low back, spine) |
-| II | Child's Pose | First Our Father | 3 min | Low back, hips, shoulders |
-| III | Supported Butterfly | Three Hail Marys | 5 min | Adductors, front of hips |
-| IV | Reclined Side Stretch *(Banana)* | Glory Be (both sides) | 2 min each side | QL, lateral chain — critical for the low back |
-| V | Savasana — Threshold | Mystery announcement | 1–2 min | Settle, transition |
+| # | Prayer | Movement | What it teaches |
+|---|--------|----------|-----------------|
+| I | Apostles' Creed | Mountain, hands at heart | Home base. Feet rooted, mind arriving |
+| II | Our Father | Breath-led arm floats | The link of breath to movement |
+| III | Three Hail Marys | Three Half Salutations | The entrance and exit of the full salutation |
+| IV | Glory Be | Standing Crescent, both sides | The side body |
+| V | Mystery announcement | Stillness, alternate-nostril breath | The threshold |
 
-### Each Decade — three poses, 4 to 5 minutes per decade
+This is exactly how a vinyasa class warms up. By the time the first decade begins, you already know six of Salutation A's ten shapes.
 
-| Slot | Pose | Prayer | Time |
-|------|------|--------|------|
-| A | Reclined Knees-to-Chest *(Apanasana)* | Our Father | 1–2 min |
-| B | Deep Hold *(varies — see below)* | Ten Hail Marys | ~5 min |
-| C | Neutral on Back, hands on belly | Glory Be | 1 min |
+### Decades 1–3 — one Sun Salutation A each, ~5 minutes per decade
 
-Then a brief mystery-announcement card moves you into the next decade. Same A–B–C cycle, new deep hold.
+One shape per bead, held for the length of the prayer. A spoken Hail Mary is about three breath cycles — a teacher's hold.
 
-### The Five Deep Holds, in fixed order
+| Bead | Shape | Breath entry |
+|------|-------|--------------|
+| Our Father | Mountain, hands at heart | — |
+| 1 | Upward Salute | inhale, rise |
+| 2 | Standing Forward Fold | exhale, fold |
+| 3 | Half Lift | inhale, lengthen |
+| 4 | Plank | exhale, step back |
+| 5 | Low Cobra | lower slowly, inhale the chest up |
+| 6 | Downward Dog | exhale, hips up and back |
+| 7 | Downward Dog | stay — the traditional long hold |
+| 8 | Half Lift | inhale, step forward |
+| 9 | Standing Forward Fold | exhale, fold |
+| 10 | Upward Salute | inhale, rise all the way |
+| Glory Be | Mountain, hands at heart | exhale home |
 
-| Decade | Deep Hold | Targets |
-|--------|-----------|---------|
-| 1 | Reclined Figure-Four | Outer hip, glute, piriformis |
-| 2 | Supported Bridge | Hip flexors, chest, anterior shoulder |
-| 3 | Happy Baby | Inner hips, low back decompression |
-| 4 | Supported Fish | Thoracic spine, chest — passive backbend |
-| 5 | Legs Up the Wall | Recovery, lymphatic flush, sleep |
+### Decades 4–5 — one Sun Salutation B each, ~5 minutes per decade
 
-The order is fixed. The body learns the cue.
+B adds Chair and Warrior I, and compresses its connecting flows into **vinyasa beads**: flow through plank → low cobra → Downward Dog on the first half of the prayer ("Hail Mary, full of grace…"), settle and breathe in the Dog on the second half ("Holy Mary, Mother of God…").
+
+| Bead | Shape |
+|------|-------|
+| Our Father | Mountain, hands at heart |
+| 1 | Chair |
+| 2 | Standing Forward Fold |
+| 3 | Half Lift |
+| 4 | Vinyasa → Downward Dog |
+| 5 | Warrior I — right foot forward |
+| 6 | Vinyasa → Downward Dog |
+| 7 | Warrior I — left foot forward |
+| 8 | Vinyasa → Downward Dog (hold) |
+| 9 | Half Lift, then fold on the second half |
+| 10 | Chair |
+| Glory Be | Mountain, hands at heart |
+
+### Closing — 3 to 4 minutes
+
+Hail Holy Queen standing in Mountain. Then the intention — for whom is this practice offered — and out into the day.
+
+### The breath is already written in
+
+Every prayer in the app is marked line by line: **↑ inhale lines, ↓ exhale lines.** The Hail Mary's two halves are the practice's metronome — first half moves you into the shape, second half deepens it. When you can pray a full Hail Mary on three slow breaths without the screen, the practice is doing what it was built to do.
+
+### On the body check
+
+The app asks each morning: *How is your body today?*
+
+- **Easy** — the full practice: three A's, two B's.
+- **Tender** — all five decades stay with Salutation A. Knees down whenever you want.
+- **Hurt** — the day goes to the **floor practice** (below). Sharp pain never meets a salutation.
 
 ---
 
 ## Each pose in detail
 
-Every pose below has a setup, a hold cue, a travel substitution for when you have no props, and external references. Yoga Journal is the primary reference; YinYoga.com is the deeper source for the yin-specific poses.
+Setup, hold, and modifications for every shape. Yoga Journal is the primary external reference.
 
-### I · Seated Forward Fold — *Apostles' Creed*
+### Mountain, Hands at Heart — *Tadasana · Anjali Mudra*
 
-**Setup.** Sit on the floor with legs extended in front of you. Bend the knees as much as you need — tight hamstrings should not turn this into a hamstring tug-of-war. Fold forward from the hips, let the head and shoulders hang heavy. Hands rest wherever they fall.
+**Setup.** Stand at the front of the mat, feet hip-width or together, weight even across both feet. Crown tall, shoulders soft. Palms together at the heart.
 
-**Hold cue.** A long pull along the back of the legs and the spine. Soft. Never forced. The Creed is long — let the body settle into the pose across the prayer.
+**Hold.** The standing prayer. Press the feet down to stand taller. The breath moves; the body is still. Every prayer that is not a bead of movement happens here — the Our Father, the Glory Be, the Creed, the Hail Holy Queen.
 
-**Travel substitution.** None needed. Floor only.
-
-**Modifications.** Sit on a folded towel under the hips if the pelvis tilts backward. Bend the knees deeply if the hamstrings are tight or the low back rounds painfully.
-
-**References.**
-- [Yoga Journal — Seated Forward Bend (Paschimottanasana)](https://www.yogajournal.com/poses/seated-forward-bend/)
-- [Yin Yoga — Caterpillar](https://yinyoga.com/) *(the yin variation of this pose)*
+**References.** [Yoga Journal — Mountain Pose (Tadasana)](https://www.yogajournal.com/poses/mountain-pose/)
 
 ---
 
-### II · Child's Pose — *First Our Father*
+### Breath-Led Arm Floats — *pendant Our Father*
 
-**Setup.** Kneel with big toes touching, knees as wide as feels good (wider for hip release, together for a more compressive low-back stretch). Sink the hips back toward the heels and stretch the arms forward. Forehead rests on the mat or a stacked fist.
+**Setup.** From Mountain: on each inhale line of the prayer, float the arms out and overhead. On each exhale line, draw the palms back down through the heart.
 
-**Hold cue.** Grounded, sheltered. The spine lengthens, the hips release, the breath slows. The pose for finding the floor at the start of the practice.
-
-**Travel substitution.** None needed.
-
-**Modifications.** Place a folded towel between the hips and heels if the heels feel far away. Stack the fists under the forehead if the head doesn't reach the floor comfortably.
-
-**References.**
-- [Yoga Journal — Child's Pose (Balasana)](https://www.yogajournal.com/poses/child-s-pose/)
+**Hold.** This is the first link of breath to movement, and the gentlest. Slow arcs, soft shoulders. Nothing is rushed. The prayer sets the tempo, not the other way around.
 
 ---
 
-### III · Supported Butterfly — *Three Hail Marys*
+### Half Salutation — *Ardha Surya Namaskara — pendant Hail Marys*
 
-**Setup.** Lie on your back. Bring the soles of the feet together and let the knees fall open. Place a folded towel, pillow, or block under **each** knee so the inner thighs don't have to hold any weight. Arms rest at the sides, palms up.
+**Setup.** One half salutation per Hail Mary, three in all. Inhale, arms sweep overhead. Exhale, fold over the legs. Inhale, half lift — flat back. Exhale, fold again. Inhale, rise all the way up. Exhale, hands to heart on the Amen.
 
-**Hold cue.** An opening through the inner thighs and front of the hips. Heavy. Yielding. The body lets go because the props are doing the work, not the muscles.
-
-**Travel substitution.** Hotel pillows or rolled-up clothing under the knees. Anything will do — the prop is just there so the legs can fully release.
-
-**Modifications.** If the inner thighs complain, raise the props higher (more pillow, less stretch). The knees should feel supported, not strained.
-
-**References.**
-- [Yoga Journal — Reclining Bound Angle (Supta Baddha Konasana)](https://www.yogajournal.com/poses/reclining-bound-angle-pose/)
+**Hold.** Each round rehearses the entrance and the exit of the full salutation. The hamstrings wake up gradually — the first fold of the morning is never the deepest.
 
 ---
 
-### IV · Reclined Side Stretch *(Banana)* — *Glory Be (both sides)*
+### Standing Crescent — *pendant Glory Be*
 
-**Setup.** Lie on your back, arms overhead. Walk both feet to the right and the upper body to the right so your whole body forms a long curve, like a banana, with the convex side facing left. Keep both shoulders and both hips on the floor. Optionally cross the right ankle over the left for a deeper stretch. Hold for one minute. Switch sides for the second minute.
+**Setup.** From Mountain, inhale the arms overhead and take hold of one wrist. Lean to the right for the first half of the prayer. Come through center at "as it was in the beginning" and lean to the left.
 
-**Hold cue.** A long opening down the left side of the body — ribs, waist, hip, IT band. This is the side-body work most yoga sequences skip. It is the most important pose for chronic low-back stiffness.
-
-**Travel substitution.** None needed.
-
-**Modifications.** Skip the ankle cross if the lower back complains. The pose works without it.
-
-**References.**
-- [Yin Yoga — Bananasana](https://yinyoga.com/)
-- [Search: "bananasana yoga pose"](https://duckduckgo.com/?q=bananasana+yoga+pose)
+**Hold.** A long line from heel to fingertips. This is the side-body work most practices skip — what the evening Banana does on the floor, standing up.
 
 ---
 
-### V · Savasana — Threshold — *Mystery announcement*
+### Upward Salute — *Urdhva Hastasana*
 
-**Setup.** Lie flat on the back. Legs fall open naturally. Arms slightly out from the body, palms facing up. Let everything be where it falls.
+**Setup.** Inhale. The arms sweep wide and overhead, palms facing each other. Gaze follows the thumbs if the neck allows.
 
-**Hold cue.** The pause before the mysteries begin. Body held by the ground. Mind held by the breath. This is a one-to-two-minute threshold, not the final Savasana — that comes at the end.
+**Hold.** The whole front body reaches. Ribs soft, shoulders away from the ears. Rooted below, rising above.
 
-**Travel substitution.** None needed.
-
-**References.**
-- [Yoga Journal — Corpse Pose (Savasana)](https://www.yogajournal.com/poses/corpse-pose/)
+**References.** [Yoga Journal — Upward Salute (Urdhva Hastasana)](https://www.yogajournal.com/poses/upward-salute/)
 
 ---
 
-### Decade Anchor · Reclined Knees-to-Chest *(Apanasana)*
+### Standing Forward Fold — *Uttanasana*
 
-**Setup.** Lying on the back, draw both knees toward the chest. Hands rest on the shins or behind the thighs. Breathe.
+**Setup.** Exhale. Hinge at the hips and fold over the legs. Bend the knees as much as they need — let the belly rest toward the thighs. Head hangs heavy.
 
-**Hold cue.** A gentle decompression of the low back. Returns the body to neutral between decades. One to two minutes — the length of the Our Father.
+**Hold.** Neck loose, jaw loose. Gravity does the work. With every exhale the fold deepens on its own. Never pull.
 
-**Travel substitution.** None needed.
+**Modifications.** Deep knee bend is not a compromise; it is the correct fold for tight hamstrings, which in the morning is everyone.
 
-**References.**
-- [Yoga Journal — Apanasana / Knees-to-Chest](https://www.yogajournal.com/poses/wind-relieving-pose/)
-
----
-
-### Decade Transition · Neutral on Back, hands on belly
-
-**Setup.** Lie flat, legs extended, hands resting on the belly so you can feel the breath rise and fall.
-
-**Hold cue.** One full minute. The Glory Be. Then the next mystery is announced and the body moves into the next anchor.
+**References.** [Yoga Journal — Standing Forward Bend (Uttanasana)](https://www.yogajournal.com/poses/standing-forward-bend/)
 
 ---
 
-### Deep Hold 1 · Reclined Figure-Four — *First Decade*
+### Half Lift — *Ardha Uttanasana*
 
-**Setup.** Lie on the back. Cross the right ankle over the left thigh, just above the knee. Draw the left thigh toward the chest, threading the hands behind the left hamstring (or use a strap or a folded towel looped behind the thigh if the hands don't meet). Hold for half the decade — five Hail Marys. Switch sides.
+**Setup.** Inhale. Slide the hands up the shins and lengthen the spine forward — flat back, crown reaching ahead. Gaze slightly forward, not up.
 
-**Hold cue.** A deep release through the outer hip and glute of the crossed leg. The body's most common cause of low-back stiffness lives here.
+**Hold.** A long line from tailbone to crown. This shape teaches the hinge that every fold and every rise passes through. If the back rounds, bend the knees more and shorten the reach.
 
-**Travel substitution.** None needed. Use a towel as a strap if the hands don't meet behind the thigh.
-
-**Modifications.** Keep the foot of the bottom leg on the floor (less intense) instead of drawing the thigh to the chest.
-
-**References.**
-- [Yoga Journal — Figure-Four Stretch](https://www.yogajournal.com/poses/eye-of-the-needle-pose/) *(Eye of the Needle / Sucirandhrasana)*
+**References.** [Yoga Journal — Standing Half Forward Bend (Ardha Uttanasana)](https://www.yogajournal.com/poses/standing-half-forward-bend/)
 
 ---
 
-### Deep Hold 2 · Supported Bridge — *Second Decade*
+### Plank — *Phalakasana*
 
-**Setup.** Lie on the back, knees bent, feet flat on the floor about hip-width apart. Lift the hips and slide a yoga block, firm bolster, or folded blanket under the **sacrum** — the bony plate above the tailbone, *not* the lower back. Lower the weight onto the prop. Arms rest at the sides.
+**Setup.** From Half Lift, plant the hands and step back one leg at a time. Hands under the shoulders, body one straight line from crown to heels. Press the floor away and reach the heels back.
 
-**Hold cue.** An unwinding of the hip flexors and a quiet opening across the chest. The whole front body softens. Hold for the full decade.
+**Hold.** Quietly hard work. Belly lifts, gaze down. **Knees down at any time — same line, less load.** If the low back sags, knees come down without apology. A full Hail Mary in Plank is honest work; it will get easier by the week, and that is the practice strengthening you.
 
-**⚠ Important.** The prop goes under the *sacrum*. If you feel pressure or pinching in the low back, the prop is too high — slide it down toward the tailbone.
+**⚠ Note on Chaturanga.** Traditional salutations lower through Chaturanga Dandasana and rise into Upward Dog. Both are earned shapes with real injury rates for solo learners. This practice substitutes Plank and Low Cobra deliberately. If you later train Chaturanga with a teacher, it slots straight in — the beads don't change.
 
-**Travel substitution.** A firm rolled towel or a stack of two folded towels works. Hotel pillows are usually too soft.
-
-**Modifications.** Use the lowest possible prop height for now. You can build up over weeks.
-
-**References.**
-- [Yoga Journal — Supported Bridge (Setu Bandha Sarvangasana)](https://www.yogajournal.com/poses/bridge-pose/)
+**References.** [Yoga Journal — Plank Pose](https://www.yogajournal.com/poses/plank-pose/)
 
 ---
 
-### Deep Hold 3 · Happy Baby — *Third Decade*
+### Low Cobra — *Bhujangasana*
 
-**Setup.** Lying on the back, draw the knees toward the chest. Reach up and grab the outside edges of the feet (or the shins or behind the knees — whatever your hands can reach without rounding the shoulders). Stack ankles over knees. Gently pull the knees toward the armpits.
+**Setup.** From Plank, lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows hugging the ribs. Inhale the chest forward and up; the hands barely press.
 
-**Hold cue.** A childlike decompression of the lower back and a wide opening through the hips. Release and re-grip whenever the grip tires — the pose is the position, not the grip.
+**Hold.** The spine does the lifting, not the arms. Low is honest — two inches of lift with the legs engaged does more than a tall push with the shoulders at the ears.
 
-**Travel substitution.** None needed.
-
-**Modifications.** Grab behind the thighs instead of the feet if the shoulders or hamstrings don't cooperate. One leg at a time (half happy baby, alternating) if both at once feels like too much.
-
-**References.**
-- [Yoga Journal — Happy Baby (Ananda Balasana)](https://www.yogajournal.com/poses/happy-baby-pose/)
+**References.** [Yoga Journal — Cobra Pose (Bhujangasana)](https://www.yogajournal.com/poses/cobra-pose/)
 
 ---
 
-### Deep Hold 4 · Supported Fish — *Fourth Decade*
+### Downward Dog — *Adho Mukha Svanasana*
 
-**Setup.** Place a yoga block (or two stacked firm pillows) running lengthwise along the spine — short edge of the block roughly at the bottom tip of the shoulder blades. Lie back over it so the block supports the upper back and the head rests on the floor (or on a second, lower prop if the head doesn't reach comfortably). Legs extend long, arms rest open at the sides.
+**Setup.** Tuck the toes and lift the hips up and back into a long upside-down V. Hands press the mat, fingers spread. Knees bend as generously as the hamstrings ask. Heels reach down without needing to land.
 
-**Hold cue.** A passive, gravity-led opening across the chest and the front of the shoulders. The upper back gently arches. Hold for the full decade. If the low back is grumbling, the block is too low — move it higher up the back.
+**Hold.** The whole back body lengthens. Head hangs between the arms. Pedal the feet if it helps — then be still and breathe. In Salutation A the Dog holds for two Hail Marys; this is the practice's resting heartbeat, which is a strange thing to say about an upside-down V until it becomes true.
 
-**Travel substitution.** A firmly rolled towel or two stacked firm pillows works. The prop must be firm, not soft — a soft prop just compresses under your weight.
-
-**Modifications.** Bend the knees and put the feet flat on the floor if the lower back complains. Use a smaller prop or a thicker book to start.
-
-**References.**
-- [Yoga Journal — Supported Fish Pose (Matsyasana)](https://www.yogajournal.com/poses/fish-pose/)
+**References.** [Yoga Journal — Downward-Facing Dog](https://www.yogajournal.com/poses/downward-facing-dog/)
 
 ---
 
-### Deep Hold 5 · Legs Up the Wall — *Fifth Decade*
+### Chair — *Utkatasana*
 
-**Setup.** Sit close to a wall, hip against the wall. Swing the legs up the wall as you lower the back to the floor. The body forms an L: legs vertical, back flat. Hips can be flat on the floor or supported on a folded blanket. Arms open at the sides. Stay for the full decade — this is the closing hold.
+**Setup.** Exhale, sit the hips back and down as if toward a chair, weight in the heels. Inhale the arms overhead in line with the torso.
 
-**Hold cue.** The legs flush, the heart rate drops, the nervous system shifts toward sleep. This pose is doing more work than it feels like.
+**Hold.** The thighs burn quietly; that is the pose. Chest lifted, low back long, breath even. Salutation B opens and closes here — it is the shape that makes B heating.
 
-**⚠ Contraindications.** Skip if you have uncontrolled high blood pressure, glaucoma, or are late in pregnancy. For everyone else, this is one of the most therapeutic poses in yoga.
+**References.** [Yoga Journal — Chair Pose (Utkatasana)](https://www.yogajournal.com/poses/chair-pose/)
 
-**Travel substitution.** None needed — every room has a wall.
+---
 
-**Modifications.** If you can't get to the wall easily, lie on the floor and prop the calves on the seat of a chair or a bed instead. Same nervous-system effect.
+### Warrior I — *Virabhadrasana I*
 
-**References.**
-- [Yoga Journal — Legs Up the Wall (Viparita Karani)](https://www.yogajournal.com/poses/legs-up-the-wall-pose/)
+**Setup.** From Downward Dog, step one foot forward between the hands. Spin the back heel down, hips facing forward. Inhale the torso up, arms overhead. The front knee bends toward ninety degrees, over the ankle.
+
+**Hold.** Grounded through both feet, rising through the arms — the old standing prayer, the *orans* posture, with the legs at work. The back hip wants to swing open; keep drawing it forward. Right side in bead 5, left side in bead 7 — the decade balances itself.
+
+**Modifications.** Shorten the stance and straighten the front leg as needed. Lift the back heel onto the ball of the foot (crescent lunge) if the hip complains.
+
+**References.** [Yoga Journal — Warrior I (Virabhadrasana I)](https://www.yogajournal.com/poses/warrior-i-pose/)
+
+---
+
+### Vinyasa — *the connecting flow of Salutation B*
+
+**Setup.** On the first half of the prayer, flow: Plank, lower with the knees down, Low Cobra, then press back to Downward Dog. On the second half, settle into the Dog and breathe.
+
+**Hold.** One moving breath-phrase, then stillness. Move with the words; rest with the words. Knees down is the default, not the exception — the flow should feel like a sentence, not a feat.
+
+---
+
+## The floor practice
+
+The original Rosary Yoga sequence — long passive holds, everything on the floor. It remains in the app as its own practice (menu → Practice) and is where **Hurt** days go automatically. Use it on injured days, hard evenings when the mind needs the beads but the body needs mercy, and travel nights.
+
+Its shape on the beads: the pendant runs Seated Forward Fold (Creed), Child's Pose (Our Father), Supported Butterfly (three Hail Marys), Reclined Side Stretch (Glory Be), Savasana threshold. Each decade holds Knees-to-Chest for the Our Father, one long **deep hold** for the ten Hail Marys, and a neutral rest for the Glory Be. The five deep holds, in fixed order:
+
+| Decade | Deep Hold | Targets |
+|--------|-----------|---------|
+| 1 | Reclined Figure-Four *(switch sides at bead 6)* | Outer hip, glute, piriformis |
+| 2 | Supported Bridge *(prop under the sacrum, never the low back)* | Hip flexors, chest |
+| 3 | Happy Baby | Inner hips, low back decompression |
+| 4 | Supported Fish *(prop firm, at the shoulder blades)* | Thoracic spine, chest |
+| 5 | Legs Up the Wall | Recovery, rest |
+
+Setup and hold cues for every floor pose live in the app under **Show pose cues**, and in [`app/data/practice.json`](app/data/practice.json). Two safety notes carry over: in Supported Bridge the prop goes under the *sacrum* — if the low back pinches, slide it toward the tailbone; skip Legs Up the Wall with uncontrolled high blood pressure, glaucoma, or late pregnancy.
+
+On Hurt days the app also swaps decades 3 and 4 to gentle Knees-to-Chest holds.
 
 ---
 
 ## The mysteries
 
-Each decade is associated with a meditation on a moment in the life of Christ. The mysteries rotate by day of the week.
+Each decade is associated with a meditation on a moment in the life of Christ. The mysteries rotate by day of the week. The poses never do.
 
 | Day | Set |
 |-----|-----|
@@ -353,14 +366,14 @@ Every prayer the practice uses, in full, in the order they appear.
 
 ## Notes on the practice
 
-**On consistency.** Try to do it every night. If you miss a night, you have not failed — you have simply not done it. Resume the next night. The anchor only breaks if you let a missed night become a missed week.
+**On consistency.** Try to do it every morning, before the day gets a vote. If you miss a morning, you have not failed — you have simply not done it. Resume the next morning. The anchor only breaks if you let a missed day become a missed week. The app keeps a lifetime count of completed practices — a total, never a streak. It only goes up.
 
-**On intensity.** If anything sharp, pinching, or radiating shows up — especially in the low back or down a leg — back out of the pose. The practice should produce a long, soft stretch, never a sharp signal.
+**On intensity.** The salutations should warm you, not wreck you. Plank and Chair are supposed to be work; anything sharp, pinching, or radiating is not work, it is a signal — back out. Knees down in every Plank and every vinyasa is a full and correct practice.
 
-**On timing.** The 30-to-40-minute estimate assumes prayers recited at a contemplative pace. If you find yourself rushing, slow down. If you find a decade has taken twelve minutes, you have probably found the right pace.
+**On pace.** A decade at prayer pace runs about five minutes; the whole practice, thirty to thirty-five. If a decade took eight minutes, you have probably found the right pace. The prayer is the metronome; never rush the words to reach a shape.
 
-**On the mysteries.** The mysteries change with the day. The poses do not. That is the structure — the body has one job, the mind has another. If you find yourself in the Sorrowful Mysteries on a hard day, that is the practice working.
+**On the mysteries.** The mysteries change with the day. The movements do not. The same descent to the floor is grief on Tuesday and threshold on Sunday. That is the structure — the body has one job, the mind has another.
 
-**On strength.** This is not strength work. Strength work is a separate practice, done at a different time, under a barbell or with a kettlebell. This is the practice that keeps the body open enough to *do* strength work tomorrow without injury and lets you sleep well enough tonight to have the energy for it.
+**On strength.** This practice touches strength — Plank, Chair, Warrior hold real load — but it is not the strength practice. Weight on the bar is a different hour of the week. This is the practice that makes that hour possible and makes the day that follows begin gathered instead of scattered.
 
 **On the long arc.** The goal is not perfection in any single session. The goal is to still be doing this in thirty years.

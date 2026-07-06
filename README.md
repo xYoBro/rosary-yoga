@@ -1,22 +1,34 @@
 # Rosary Yoga
 
-A nightly anchor for body, mind, and the work ahead.
+A morning anchor for body, mind, and the day ahead.
 
-Ten poses. Five mysteries. Thirty to forty minutes before sleep. The body learns the cue. The mind follows the bead.
+Five Sun Salutations. Five mysteries. Thirty minutes at the start of the day. The body learns the cue. The mind follows the bead.
 
 ---
 
 ## What's in this repo
 
-- **[practice.md](practice.md)** — the manual. Full sequence, every pose with setup/hold cues, modifications, travel substitutions, and external references. Read this first.
+- **[practice.md](practice.md)** — the manual. The full salutation practice bead by bead, every pose with setup and hold cues, the floor practice for hurt days, and external references. Read this first.
 - **[app/](app/)** — a small Progressive Web App that walks you through the practice bead by bead. Install once, run offline forever.
+- **[CLAUDE.md](CLAUDE.md)** — project structure, domains, and the contracts that keep data, docs, and cache in sync.
 - **[docs/archive/](docs/archive/)** — the original PDFs and source text. Historical reference; the active source of truth is `practice.md`.
+
+---
+
+## The two practices
+
+The app ships two practices on the same beads:
+
+- **Morning Salutations** *(default)* — Sun Salutation A (decades 1–3) and B (decades 4–5), one pose per Hail Mary bead, standing and breath-led. The pendant is the warmup: arm floats, three half salutations, a standing crescent.
+- **Restorative Floor** — the original sequence of long passive holds. Where **Hurt** days go automatically; also right for hard evenings and travel.
+
+Switch anytime from the menu (**⋮ → Practice**). The daily body check (Easy / Tender / Hurt) softens or reroutes the practice without you having to decide anything else.
 
 ---
 
 ## Using the app on iPhone
 
-The app is a Progressive Web App, not a native app. It installs to your home screen and runs fullscreen, but there is no App Store step and no developer account required.
+The app is a Progressive Web App, not a native app. It installs to your home screen and runs fullscreen — no App Store step, no developer account.
 
 ### Install
 
@@ -26,22 +38,22 @@ The app is a Progressive Web App, not a native app. It installs to your home scr
 4. Scroll down and tap **Add to Home Screen**.
 5. Name it "Rosary Yoga" and tap Add.
 
-You now have an icon on your home screen. Launching it opens the practice fullscreen — no browser chrome, no distractions. After the first launch the app is cached for offline use, so it works on planes, in hotels, anywhere.
+After the first launch the app is cached for offline use, so it works on planes, in hotels, anywhere.
 
 ### Using it
 
-- **Swipe left** to advance to the next prayer / next bead.
-- **Swipe right** to go back.
-- The current pose stays the same across the prayers of a decade (one pose, ten Hail Marys). The pose illustration shrinks on continuation cards to keep the prayer text foregrounded.
-- Tap **Show pose cues** at the bottom of any card to expand setup and hold instructions.
-- Tap the **⋮** in the top right for a menu — restart, or change tonight's mysteries.
-- The app remembers where you were for up to an hour, in case you leave mid-practice. After that it resets to the beginning.
+- **Hands-free mode** (menu → Hands-free mode) is the way to practice the salutations — you cannot swipe a phone from Plank. The app speaks each pose as its bead arrives ("Plank. Hail Mary.") and your spoken **"amen"** advances the bead. Prop the phone at the front of the mat.
+- **Tap right / swipe left** to advance manually; **tap left / swipe right** to go back. **Tap any bead** on the strip to jump.
+- **Show pose cues** at the bottom of any card unfolds the pose's setup and hold instructions. It stays open across cards and sessions — keep it open while learning, close it when the sequence lives in your body.
+- Transition notes ("Step back.", "Switch sides.") appear above the prayer text and are spoken first in hands-free mode.
+- The **⋮ menu**: hands-free toggle, voice settings, restart, switch practice, change today's mysteries, redo the body check.
+- The app remembers where you were for up to an hour. The final card shows your lifetime practice count — a total, never a streak.
 
 ### What it shows you when you open it
 
-Tonight's mysteries are picked from the day of the week — Monday and Saturday are Joyful, Tuesday and Friday are Sorrowful, Wednesday and Sunday are Glorious, Thursday is Luminous. You can override the choice from the menu if you want a different set.
+First, the body check: **How is your body today?** Easy runs the full practice; Tender keeps all five decades on Salutation A; Hurt hands the day to the floor practice.
 
-The first card is the Sign of the Cross and the Apostles' Creed, paired with the Seated Forward Fold. From there it walks you straight through — opening pendant, five decades, closing prayers — pose by pose, bead by bead.
+Today's mysteries are picked from the day of the week — Monday and Saturday are Joyful, Tuesday and Friday are Sorrowful, Wednesday and Sunday are Glorious, Thursday is Luminous. Override from the menu if you want a different set.
 
 ---
 
@@ -60,30 +72,36 @@ The app is static HTML, CSS, and JS. No build step. Any static host works.
 
 ```sh
 cd app
-python3 -m http.server 8000
+python3 -m http.server 8765
 ```
 
-Then open `http://localhost:8000` in your browser. The PWA install prompt only appears over HTTPS, so for actual install you need a real host — but the practice works fine locally for testing.
+Then open `http://localhost:8765`. The PWA install prompt only appears over HTTPS, so for actual install you need a real host — but the practice works fine locally for testing. Note the service worker caches aggressively: after changing files, bump `CACHE_NAME` in `app/sw.js` or unregister the worker in devtools.
 
 ### Any other static host
 
-Netlify, Vercel, Cloudflare Pages, S3, GitHub Pages — all work. Point them at the `app/` directory.
+Netlify, Vercel, Cloudflare Pages, S3 — all work. Point them at the `app/` directory.
 
 ---
 
 ## Customizing the practice
 
-The practice is data-driven. To change a prayer, pose description, or the mystery list, edit [`app/data/practice.json`](app/data/practice.json). To change the pose illustrations, edit the SVGs in `app/assets/poses/`. To bump the service worker cache so users see your changes, increment `CACHE_NAME` in `app/sw.js`.
+The practice is data-driven — including the sequence itself. Everything lives in [`app/data/practice.json`](app/data/practice.json):
 
-If you change the pose set itself (which deep holds go in which decade), update both `app/data/practice.json` (the `deep_holds` array and the pose definitions) and `practice.md` so the documentation stays in sync.
+- **Prayers, poses, mysteries** — text, names, setup/hold cues.
+- **`sequences`** — the practices. Each defines its `opening` cards, five `decades` (via reusable `decade_templates`: an Our Father pose, ten Hail Mary poses with optional per-bead notes, a Glory Be pose), `closing` cards, and per-body-state overrides (`tender` swaps decade templates; `hurt` can `switch_to` another sequence).
+- **`default_sequence`** — which practice the app opens into.
+
+Pose illustrations are line-art SVGs in `app/assets/poses/` — they render inline and inherit the app palette via `currentColor`. Poses with a `photo` field use the photo instead.
+
+After any change: increment `CACHE_NAME` in `app/sw.js` so installed apps pick it up, and keep `practice.md` in sync — the manual and the data must tell the same story (see [CLAUDE.md](CLAUDE.md) for the full contract list).
 
 ---
 
 ## Why this exists
 
-The body needs daily movement. The mind needs daily stillness. Doing them separately is two decisions; coupling them is one. The rosary provides the structure, the yoga provides the substance, and the practice happens whether you wanted to do it tonight or not — because the only question is "did I do the rosary."
+The body needs daily movement. The mind needs daily stillness. Doing them separately is two decisions; coupling them is one. The rosary provides the structure, the salutations provide the substance, and the practice happens whether you wanted to do it this morning or not — because the only question is "did I do the rosary."
 
-This is not a strength practice. Strength work goes in a different hour of the week, with weight on the bar. This is the practice that keeps the body open enough to do that strength work tomorrow without injury, and lets you sleep well enough tonight to have the energy for it.
+Sun Salutations are named for sunrise, and morning prayer is as old as the faith. This is the practice that starts the day gathered instead of scattered — warm body, quiet mind, intention set — and leaves the evening free for rest.
 
 The goal is not perfection in any single session. The goal is to still be doing this in thirty years.
 
