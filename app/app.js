@@ -1,7 +1,11 @@
 // Rosary Yoga — app entry
 //
-// Loads the practice data, builds the swipe sequence for tonight's mysteries,
-// and renders one card at a time. Vanilla ES module. No framework.
+// Loads the practice data, builds the card sequence for today's mysteries
+// (see sequence.js — the practice itself is defined in data/practice.json),
+// and renders one card at a time. Advance is voice ("amen") or touch; there
+// are no timers. Vanilla ES module. No framework.
+
+import { BEAD, buildBeads, buildSequence, ordinal } from "./sequence.js";
 
 const SWIPE_THRESHOLD = 50;
 const SWIPE_RATIO = 1.4;
@@ -10,6 +14,9 @@ const TRANSITION_HALF = 200;
 const SESSION_TTL_MS = 60 * 60 * 1000;
 const STATE_KEY = "rosary-yoga.state.v2";
 const HANDS_FREE_KEY = "rosary-yoga.hands-free";
+const PRACTICE_KEY = "rosary-yoga.practice";
+const CUES_KEY = "rosary-yoga.cues-open";
+const COMPLETIONS_KEY = "rosary-yoga.completions";
 const TTS_RATE_KEY = "rosary-yoga.tts.rate";
 const TTS_VOICE_KEY = "rosary-yoga.tts.voice";
 const TTS_RATE_DEFAULT = 1.15;
@@ -24,46 +31,7 @@ async function loadData() {
   return res.json();
 }
 
-// ---------- bead structure & sequence ----------------------------------
-
-const BEAD = {
-  CROSS: "cross",
-  OF: "of",
-  HM: "hm",
-  GB: "gb",
-  MEDALLION: "medallion",
-  MYSTERY: "mystery",
-  CLOSING: "closing",
-};
-
-// The fixed visual structure of the rosary — 74 beads. This represents the
-// physical rosary the user holds, independent of how the practice is grouped
-// into cards.
-function buildBeads() {
-  const beads = [];
-  const push = (type, group) => beads.push({ type, group });
-
-  // Opening pendant
-  push(BEAD.CROSS, "pendant");
-  push(BEAD.OF, "pendant");
-  push(BEAD.HM, "pendant");
-  push(BEAD.HM, "pendant");
-  push(BEAD.HM, "pendant");
-  push(BEAD.OF, "pendant");
-  push(BEAD.MEDALLION, "medallion");
-
-  for (let d = 1; d <= 5; d++) {
-    const g = `decade-${d}`;
-    push(BEAD.MYSTERY, g);
-    push(BEAD.OF, g);
-    for (let h = 0; h < 10; h++) push(BEAD.HM, g);
-    push(BEAD.GB, g);
-  }
-
-  push(BEAD.CLOSING, "closing");
-  push(BEAD.CLOSING, "closing");
-  return beads;
-}
+// ---------- mystery set & practice selection ---------------------------
 
 function mysterySetForToday(data, override) {
   if (override && data.mysteries[override]) return override;
@@ -71,160 +39,17 @@ function mysterySetForToday(data, override) {
   return data.day_to_mystery_set[dow] || "joyful";
 }
 
-// One card per logical practice step. Each card references a range of beads
-// it represents (start to end inclusive); the rosary strip highlights that
-// range as "current". `duration` is the auto-advance time in seconds; omit
-// it to require manual advance.
-//
-// bodyState: one of "easy", "tender", "hurt" — alters deep-hold durations
-//   and substitutes risky poses for safer ones.
-function buildSequence(data, mysterySetKey, bodyState) {
-  const mysteries = data.mysteries[mysterySetKey].items;
-  const setName = data.mysteries[mysterySetKey].name;
-  const mysterySet = data.mysteries[mysterySetKey];
-  const mods = (data.body_states[bodyState] || data.body_states.easy).modifications || {};
-  const seq = [];
-  let i = 0;
-
-  // --- opening pendant ---
-  seq.push({
-    kind: "prayer", poseId: "seated_forward_fold", prayerKey: "creed",
-    label: "Opening · The Cross", duration: 240,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  seq.push({
-    kind: "prayer", poseId: "child_pose", prayerKey: "our_father",
-    label: "Opening · Our Father", duration: 180,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  seq.push({
-    kind: "prayer", poseId: "supported_butterfly", prayerKey: "hail_mary",
-    label: "Opening · Three Hail Marys", duration: 300, count: 3,
-    beadStart: i, beadEnd: i + 2,
-  }); i += 3;
-
-  seq.push({
-    kind: "prayer", poseId: "banana", prayerKey: "glory_be",
-    label: "Opening · Glory Be · both sides",
-    note: "Hold the first side for one minute. Switch sides for the second.",
-    duration: 240,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  // --- threshold — pranayama before the mysteries ---
-  seq.push({
-    kind: "interlude", poseId: "savasana",
-    label: "Opening · Threshold · Nadi Shodhana",
-    title: "Threshold",
-    body: "Four cycles of alternate-nostril breath.\n\nClose the right nostril with the thumb. Inhale through the left.\nClose the left nostril with the ring finger. Exhale through the right.\nInhale through the right. Close it.\nExhale through the left.\n\nOne cycle. Repeat three more times.\nThen rest. The body settles. The mind comes into balance.",
-    duration: 120,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  // --- five decades ---
-  for (let d = 0; d < 5; d++) {
-    const decadeNum = d + 1;
-    const mystery = mysteries[d];
-    const isLastDecade = d === 4;
-
-    // determine deep hold pose + duration (allowing body-state substitutions)
-    let deepHoldId = data.deep_holds[d];
-    let deepDuration = 300;
-    if (d === 2) { // happy baby
-      deepDuration = mods.happy_baby_duration || 180;
-      if (mods.decade_3_pose) {
-        deepHoldId = mods.decade_3_pose;
-        deepDuration = mods.decade_3_duration || deepDuration;
-      }
-    } else if (d === 3) { // supported fish
-      deepDuration = mods.supported_fish_duration || 210;
-      if (mods.decade_4_pose) {
-        deepHoldId = mods.decade_4_pose;
-        deepDuration = mods.decade_4_duration || deepDuration;
-      }
-    }
-
-    seq.push({
-      kind: "mystery",
-      mysterySetName: setName,
-      mysteryName: mystery.name,
-      mysteryReflection: mystery.reflection,
-      breath: mysterySet.breath,
-      decadeNum,
-      label: ordinal(decadeNum) + " Decade",
-      duration: 20,
-      beadStart: i, beadEnd: i,
-    }); i += 1;
-
-    seq.push({
-      kind: "prayer", poseId: "knees_to_chest", prayerKey: "our_father",
-      label: `Decade ${decadeNum} · Our Father`, duration: 90,
-      beadStart: i, beadEnd: i,
-    }); i += 1;
-
-    // Ten individual Hail Mary cards — one bead per card. In hands-free
-    // mode, "amen" advances each. In non-hands-free mode, each card
-    // auto-advances after deepDuration/10. The first card carries the
-    // pose cue; subsequent identical cards have their TTS suppressed by
-    // goTo's cue-equality check. Hail Mary 6 of the figure-four decade
-    // gets a "Switch sides" note so the user knows when to switch.
-    const perHmDuration = Math.max(15, Math.round(deepDuration / 10));
-    for (let h = 0; h < 10; h++) {
-      seq.push({
-        kind: "prayer", poseId: deepHoldId, prayerKey: "hail_mary",
-        label: `Decade ${decadeNum} · Hail Mary ${h + 1} of 10`,
-        duration: perHmDuration,
-        note: deepHoldId === "figure_four" && h === 5 ? "Switch sides." : null,
-        beadStart: i, beadEnd: i,
-      }); i += 1;
-    }
-
-    // Glory Be after each decade. The 4th decade's neutral hold is slightly
-    // longer to fully release the spine after Supported Fish before Legs Up
-    // the Wall.
-    const gbDuration = d === 3 ? 90 : 60;
-    seq.push({
-      kind: "prayer",
-      poseId: isLastDecade ? "legs_up_wall" : "neutral_back",
-      prayerKey: "glory_be",
-      label: `Decade ${decadeNum} · Glory Be`,
-      duration: gbDuration,
-      beadStart: i, beadEnd: i,
-    }); i += 1;
+function loadPractice() {
+  try {
+    const v = localStorage.getItem(PRACTICE_KEY);
+    return v === "restorative" || v === "salutation" ? v : "salutation";
+  } catch (e) {
+    return "salutation";
   }
-
-  // --- closing ---
-  seq.push({
-    kind: "prayer", poseId: "legs_up_wall", prayerKey: "hail_holy_queen",
-    label: "Closing · Hail Holy Queen", duration: 90,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  // Intention — Krishnamacharya's samkalpa, the Jesuit dedication.
-  seq.push({
-    kind: "interlude", poseId: "legs_up_wall",
-    label: "Closing · Intention",
-    title: "Intention",
-    body: "For whom is tonight's practice offered?\n\nHold them in mind.\nLet the breath carry the offering.",
-    duration: 60,
-    beadStart: i, beadEnd: i,
-  }); i += 1;
-
-  seq.push({
-    kind: "interlude", poseId: "legs_up_wall",
-    label: "Closing · Practice Complete",
-    title: "Practice Complete",
-    body: "Rest here as long as you wish.\nWhen you are ready, roll to one side and rise slowly.",
-    beadStart: i, beadEnd: i,
-  });
-
-  return seq;
 }
 
-function ordinal(n) {
-  return ["First", "Second", "Third", "Fourth", "Fifth"][n - 1] || String(n);
+function savePractice(key) {
+  try { localStorage.setItem(PRACTICE_KEY, key); } catch (e) {}
 }
 
 // ---------- rosary visualization ---------------------------------------
@@ -622,10 +447,12 @@ function countAmenAndMaybeAdvance(text) {
 function voiceAdvance() {
   const cur = state.sequence[state.currentIndex];
   const nxt = state.sequence[state.currentIndex + 1];
-  // A short "tick" between identical repeated prayers (Hail Mary → Hail
-  // Mary). The regular chime when crossing into a new prayer/pose.
+  // A short "tick" between repeated prayers (Hail Mary → Hail Mary), even
+  // when the pose changes bead to bead as it does in the salutations —
+  // ten full chimes per decade would fatigue. The regular chime marks the
+  // crossing into a different prayer.
   let variant;
-  if (cur && nxt && cur.prayerKey && cur.prayerKey === nxt.prayerKey && cur.poseId === nxt.poseId) {
+  if (cur && nxt && cur.prayerKey && cur.prayerKey === nxt.prayerKey) {
     variant = "tick";
   } else {
     variant = chimeVariantForStation(cur);
@@ -636,13 +463,11 @@ function voiceAdvance() {
 
 function pauseHandsFree() {
   stopListening();
-  clearAutoAdvance();
 }
 
 function resumeHandsFree() {
   if (!state.handsFree) return;
   startListening();
-  scheduleAutoAdvance(state.sequence[state.currentIndex]);
 }
 
 // ---------- wake lock --------------------------------------------------
@@ -694,6 +519,24 @@ function hideAmenIndicator() {
 
 // ---------- rendering ---------------------------------------------------
 
+// Inline pose line art, keyed by pose id. Inlining (rather than <img src>)
+// lets the SVGs inherit the app palette through currentColor and CSS vars.
+// Photos win when a pose has one (the floor practice); a failed fetch just
+// leaves the figure area empty rather than blocking boot.
+const poseArt = {};
+
+async function preloadPoseArt(data) {
+  const entries = Object.values(data.poses).filter((p) => !p.photo && p.image);
+  await Promise.all(
+    entries.map(async (p) => {
+      try {
+        const res = await fetch(p.image);
+        if (res.ok) poseArt[p.id] = await res.text();
+      } catch (e) {}
+    })
+  );
+}
+
 function render(station, data) {
   const card = document.getElementById("card");
   const positionLabel = document.getElementById("positionLabel");
@@ -708,6 +551,7 @@ function render(station, data) {
 
   if (station.kind === "mystery") {
     card.classList.add("is-mystery");
+    prayerLabel.textContent = "";
     const existing = card.querySelector(".mystery-block");
     if (existing) existing.remove();
     const block = document.createElement("div");
@@ -730,29 +574,39 @@ function render(station, data) {
       ${breathBlock}
     `;
     card.appendChild(block);
+    updateCues(station, data);
     return;
   }
 
   const existingMystery = card.querySelector(".mystery-block");
   if (existingMystery) existingMystery.remove();
+  const existingCount = card.querySelector(".practice-count");
+  if (existingCount) existingCount.remove();
 
   const pose = data.poses[station.poseId];
 
   if (pose.photo) {
     poseFigure.classList.add("is-photo");
+    poseFigure.classList.remove("is-art");
     poseFigure.innerHTML = `<img src="${escapeHtml(pose.photo)}" alt="${escapeHtml(pose.name)}" loading="lazy"/>`;
-  } else {
+  } else if (poseArt[pose.id]) {
+    poseFigure.classList.add("is-art");
     poseFigure.classList.remove("is-photo");
+    poseFigure.innerHTML = poseArt[pose.id];
+  } else {
+    poseFigure.classList.remove("is-photo", "is-art");
     poseFigure.innerHTML = "";
   }
-  poseFigure.classList.remove("is-small");
 
   poseName.textContent = pose.name;
   poseLatin.textContent = pose.latin;
+  updateCues(station, data);
 
   if (station.kind === "interlude") {
     prayerLabel.textContent = (station.title || "").toUpperCase();
     renderPrayerText(prayerText, station.body);
+    // The count lives outside prayerText so the scroll fade mask never dims it.
+    if (station.isFinal) renderPracticeCount(prayerText.parentElement);
     return;
   }
 
@@ -764,9 +618,74 @@ function render(station, data) {
     prayerLabel.textContent = prayer.short;
   }
 
+  // Transition notes ("Step back.", "Switch sides.") lead the prayer text —
+  // the instruction has to land before the eyes settle into the words.
   let body = prayer.text;
-  if (station.note) body += `\n\n— ${station.note}`;
+  if (station.note) body = `— ${station.note}\n\n${body}`;
   renderPrayerText(prayerText, body);
+}
+
+// The lifetime practice count on the final card. A total, never a streak —
+// it only ever goes up, and a missed day subtracts nothing.
+function renderPracticeCount(container) {
+  const n = getCompletionCount();
+  if (n <= 0) return;
+  const div = document.createElement("div");
+  div.className = "practice-count";
+  div.textContent = `✦ The ${ordinalNumber(n)} practice ✦`;
+  container.appendChild(div);
+}
+
+function ordinalNumber(n) {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+// ---------- pose cues panel ---------------------------------------------
+//
+// The teaching surface: every pose card can unfold its setup and hold
+// instructions. The open/closed choice persists across cards and sessions —
+// leave it open while learning, close it once the sequence lives in the
+// body.
+
+function updateCues(station, data) {
+  const toggle = document.getElementById("cueToggle");
+  const panel = document.getElementById("cuePanel");
+  const card = document.getElementById("card");
+  if (!toggle || !panel) return;
+
+  const pose = station.poseId ? data.poses[station.poseId] : null;
+  if (station.kind === "mystery" || !pose || !(pose.setup || pose.hold)) {
+    toggle.hidden = true;
+    panel.hidden = true;
+    card.classList.remove("cues-open");
+    return;
+  }
+
+  toggle.hidden = false;
+  toggle.textContent = state.cuesOpen ? "Hide pose cues" : "Show pose cues";
+  panel.hidden = !state.cuesOpen;
+  card.classList.toggle("cues-open", state.cuesOpen);
+
+  let html = "";
+  if (pose.setup) {
+    html += `<div class="cue-section"><div class="cue-heading">Setup</div><p>${escapeHtml(pose.setup)}</p></div>`;
+  }
+  if (pose.hold) {
+    html += `<div class="cue-section"><div class="cue-heading">Hold</div><p>${escapeHtml(pose.hold)}</p></div>`;
+  }
+  if (pose.target) {
+    html += `<div class="cue-target">${escapeHtml(pose.target)}</div>`;
+  }
+  panel.innerHTML = html;
+}
+
+function toggleCues() {
+  state.cuesOpen = !state.cuesOpen;
+  saveCuesOpen(state.cuesOpen);
+  const station = state.sequence[state.currentIndex];
+  if (station) updateCues(station, state.data);
 }
 
 // Breath markers at the start of each prayer line:
@@ -830,6 +749,8 @@ let state = {
   currentIndex: 0,
   mysterySetOverride: null,
   bodyState: "easy",
+  practice: "salutation",
+  cuesOpen: false,
   transitionLock: false,
   handsFree: false,
   amenCount: 0,
@@ -876,6 +797,43 @@ function saveHandsFree(on) {
   try { localStorage.setItem(HANDS_FREE_KEY, on ? "1" : "0"); } catch (e) {}
 }
 
+function loadCuesOpen() {
+  try { return localStorage.getItem(CUES_KEY) === "1"; } catch (e) { return false; }
+}
+
+function saveCuesOpen(on) {
+  try { localStorage.setItem(CUES_KEY, on ? "1" : "0"); } catch (e) {}
+}
+
+// Lifetime completion count. Deliberately not a streak: {count, lastDate}
+// where lastDate only guards against double-counting the same day.
+function loadCompletions() {
+  try {
+    const raw = localStorage.getItem(COMPLETIONS_KEY);
+    if (!raw) return { count: 0, lastDate: null };
+    const parsed = JSON.parse(raw);
+    return {
+      count: Number.isFinite(parsed.count) ? parsed.count : 0,
+      lastDate: parsed.lastDate || null,
+    };
+  } catch (e) {
+    return { count: 0, lastDate: null };
+  }
+}
+
+function maybeCountCompletion() {
+  const today = new Date().toISOString().slice(0, 10);
+  const c = loadCompletions();
+  if (c.lastDate === today) return;
+  c.count += 1;
+  c.lastDate = today;
+  try { localStorage.setItem(COMPLETIONS_KEY, JSON.stringify(c)); } catch (e) {}
+}
+
+function getCompletionCount() {
+  return loadCompletions().count;
+}
+
 function loadTtsSettings() {
   try {
     const r = parseFloat(localStorage.getItem(TTS_RATE_KEY));
@@ -897,12 +855,6 @@ function saveTtsVoice(uri) {
     else localStorage.removeItem(TTS_VOICE_KEY);
   } catch (e) {}
 }
-
-// Timer auto-advance has been removed; the practice is voice + touch only.
-// clearAutoAdvance and scheduleAutoAdvance remain as no-ops so call sites
-// (boot, station change, menu actions) don't have to be edited.
-function clearAutoAdvance() {}
-function scheduleAutoAdvance(_station) {}
 
 function chimeVariantForStation(station) {
   if (station.kind === "mystery") return "open";
@@ -955,7 +907,6 @@ function goTo(index, direction) {
   const prevCue = state.handsFree && prevStation
     ? cueForStation(prevStation, state.data) : null;
 
-  clearAutoAdvance();
   state.transitionLock = true;
   const card = document.getElementById("card");
 
@@ -965,6 +916,7 @@ function goTo(index, direction) {
   setTimeout(() => {
     state.currentIndex = index;
     const station = state.sequence[state.currentIndex];
+    if (station.isFinal) maybeCountCompletion();
     render(station, state.data);
     saveState();
     updateRosary();
@@ -982,7 +934,6 @@ function goTo(index, direction) {
       requestAnimationFrame(() => {
         card.classList.remove("is-entering-right", "is-entering-left");
         card.classList.add("is-here");
-        scheduleAutoAdvance(station);
         if (state.handsFree) {
           const newCue = cueForStation(station, state.data);
           if (newCue && newCue !== prevCue) speakCue(newCue);
@@ -1075,6 +1026,7 @@ function attachButtons() {
   document.getElementById("tapZonePrev").addEventListener("click", tapZoneClick(prev));
 
   document.getElementById("menuButton").addEventListener("click", openMenu);
+  document.getElementById("cueToggle").addEventListener("click", tapZoneClick(toggleCues));
 
   document.querySelectorAll(".menu-action").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -1089,17 +1041,17 @@ function attachButtons() {
       else if (action === "restart") {
         closeMenu();
         clearState();
-        clearAutoAdvance();
         state.currentIndex = 0;
         render(state.sequence[0], state.data);
         updateRosary();
-        scheduleAutoAdvance(state.sequence[0]);
       } else if (action === "mysteries") {
         closeMenu();
         openMysteryPicker();
+      } else if (action === "practice") {
+        closeMenu();
+        setPractice(state.practice === "salutation" ? "restorative" : "salutation");
       } else if (action === "body") {
         closeMenu();
-        clearAutoAdvance();
         clearBodyState();
         showBodyCheck();
       } else if (action === "hands-free") {
@@ -1119,7 +1071,15 @@ function openMenu() {
   const setKey = mysterySetForToday(state.data, state.mysterySetOverride);
   subtitle.textContent = state.data.mysteries[setKey].name;
   updateHandsFreeMenuLabel();
+  updatePracticeMenuLabel();
   overlay.hidden = false;
+}
+
+function updatePracticeMenuLabel() {
+  const btn = document.querySelector('[data-action="practice"]');
+  if (!btn || !state.data) return;
+  const seq = state.data.sequences[state.practice];
+  btn.textContent = `Practice · ${seq ? seq.name : state.practice}`;
 }
 
 function closeMenu() {
@@ -1139,20 +1099,19 @@ function openMysteryPicker() {
     btn.className = "menu-action";
     if (key === currentKey) btn.classList.add("is-current");
     const label = state.data.mysteries[key].name;
-    btn.textContent = key === todayKey ? `${label} · tonight` : label;
+    btn.textContent = key === todayKey ? `${label} · today` : label;
     btn.addEventListener("click", () => {
       state.mysterySetOverride = key === todayKey ? null : key;
       state.sequence = buildSequence(
         state.data,
         mysterySetForToday(state.data, state.mysterySetOverride),
-        state.bodyState
+        state.bodyState,
+        state.practice
       );
-      clearAutoAdvance();
       state.currentIndex = 0;
       render(state.sequence[0], state.data);
       saveState();
       updateRosary();
-      scheduleAutoAdvance(state.sequence[0]);
       closeMysteryPicker();
     });
     options.appendChild(btn);
@@ -1173,7 +1132,7 @@ function closeHelp() {
   document.getElementById("helpOverlay").hidden = true;
 }
 
-const VOICE_SAMPLE_TEXT = "Child's pose. Our Father.";
+const VOICE_SAMPLE_TEXT = "Mountain, hands at heart. Our Father.";
 
 function openVoiceSettings() {
   ensureAudio();
@@ -1351,22 +1310,42 @@ function startPractice() {
   state.sequence = buildSequence(
     state.data,
     mysterySetForToday(state.data, state.mysterySetOverride),
-    state.bodyState
+    state.bodyState,
+    state.practice
   );
 
   const saved = loadState();
   state.currentIndex = saved ? Math.min(saved.currentIndex || 0, state.sequence.length - 1) : 0;
 
   const station = state.sequence[state.currentIndex];
+  if (station.isFinal) maybeCountCompletion();
   render(station, state.data);
   document.getElementById("card").classList.add("is-here");
   updateRosary();
-  scheduleAutoAdvance(station);
   if (state.handsFree) {
     enableHandsFree(true);
     // Speak the opening cue once everything is on screen.
     setTimeout(() => speakCue(cueForStation(station, state.data)), 250);
   }
+}
+
+// Switch between the salutation and restorative practices. Changing the
+// practice restarts it from the first card — the two sequences don't share
+// station indices.
+function setPractice(key) {
+  state.practice = key;
+  savePractice(key);
+  clearState();
+  state.sequence = buildSequence(
+    state.data,
+    mysterySetForToday(state.data, state.mysterySetOverride),
+    state.bodyState,
+    state.practice
+  );
+  state.currentIndex = 0;
+  render(state.sequence[0], state.data);
+  saveState();
+  updateRosary();
 }
 
 async function enableHandsFree(skipSpeak) {
@@ -1380,9 +1359,6 @@ async function enableHandsFree(skipSpeak) {
     const station = state.sequence[state.currentIndex];
     if (station) speakCue(cueForStation(station, state.data));
   }
-  // If we just entered hands-free on a prayer card, kill the pending timer.
-  const station = state.sequence[state.currentIndex];
-  if (station && station.kind === "prayer") clearAutoAdvance();
 }
 
 function disableHandsFree() {
@@ -1393,9 +1369,6 @@ function disableHandsFree() {
   releaseWakeLock();
   if (synth) { try { synth.cancel(); } catch (e) {} }
   hideAmenIndicator();
-  // If we disabled mid-prayer, restart the regular auto-advance.
-  const station = state.sequence[state.currentIndex];
-  if (station) scheduleAutoAdvance(station);
 }
 
 function updateHandsFreeMenuLabel() {
@@ -1421,8 +1394,12 @@ async function boot() {
   const saved = loadState();
   if (saved) state.mysterySetOverride = saved.mysterySetOverride || null;
 
+  state.practice = loadPractice();
+  state.cuesOpen = loadCuesOpen();
   state.handsFree = loadHandsFree();
   loadTtsSettings();
+
+  await preloadPoseArt(state.data);
 
   // We need gestures wired up before the body-check overlay buttons can dispatch.
   attachGestures();

@@ -1,5 +1,6 @@
 {
-  "version": 3,
+  "version": 4,
+  "default_sequence": "salutation",
   "prayers": {
     "creed": {
       "name": "Apostles' Creed",
@@ -33,6 +34,146 @@
     }
   },
   "poses": {
+    "mountain_prayer": {
+      "id": "mountain_prayer",
+      "name": "Mountain, Hands at Heart",
+      "latin": "Tadasana · Anjali Mudra",
+      "image": "assets/poses/mountain_prayer.svg",
+      "duration": "one prayer",
+      "setup": "Stand at the front of the mat, feet hip-width or together, weight even across both feet. Crown tall, shoulders soft. Palms together at the heart.",
+      "hold": "The standing prayer. Press the feet down to stand taller. The breath moves; the body is still.",
+      "target": "Posture, balance, attention"
+    },
+    "arm_floats": {
+      "id": "arm_floats",
+      "name": "Breath-Led Arm Floats",
+      "latin": "Tadasana · Urdhva Hastasana",
+      "image": "assets/poses/arm_floats.svg",
+      "duration": "one Our Father",
+      "setup": "From Mountain: on each inhale line, float the arms out and overhead. On each exhale line, draw the palms back down through the heart. The prayer sets the tempo — rise on ↑ lines, return on ↓ lines.",
+      "hold": "The first link of breath to movement. Slow arcs, soft shoulders. Nothing is rushed.",
+      "target": "Breath–movement link, shoulders"
+    },
+    "half_salutation": {
+      "id": "half_salutation",
+      "name": "Half Salutation",
+      "latin": "Ardha Surya Namaskara",
+      "image": "assets/poses/half_salutation.svg",
+      "duration": "one Hail Mary each",
+      "setup": "One half salutation per Hail Mary. Inhale, arms sweep overhead. Exhale, fold over the legs. Inhale, half lift — flat back. Exhale, fold again. Inhale, rise all the way up. Exhale, hands to heart on the Amen.",
+      "hold": "Three rounds, one per bead. Each round rehearses the entrance and the exit of the full salutation.",
+      "target": "Hamstrings wake, spine articulates, breath syncs"
+    },
+    "standing_crescent": {
+      "id": "standing_crescent",
+      "name": "Standing Crescent",
+      "latin": "Side bend · both sides",
+      "image": "assets/poses/standing_crescent.svg",
+      "duration": "one Glory Be",
+      "setup": "From Mountain, inhale the arms overhead and take hold of one wrist. Lean to the right for the first half of the prayer. Come through center at \"as it was in the beginning\" and lean to the left.",
+      "hold": "A long line from heel to fingertips. The side body — what the Banana does on the floor, standing up.",
+      "target": "QL, lateral chain, side body"
+    },
+    "arms_up": {
+      "id": "arms_up",
+      "name": "Upward Salute",
+      "latin": "Urdhva Hastasana",
+      "image": "assets/poses/arms_up.svg",
+      "duration": "one Hail Mary",
+      "setup": "Inhale. The arms sweep wide and overhead, palms facing each other. Gaze follows the thumbs if the neck allows.",
+      "hold": "The whole front body reaches. Ribs soft, shoulders away from the ears. Rooted below, rising above.",
+      "target": "Shoulders, side waist, extension"
+    },
+    "standing_fold": {
+      "id": "standing_fold",
+      "name": "Standing Forward Fold",
+      "latin": "Uttanasana",
+      "image": "assets/poses/standing_fold.svg",
+      "duration": "one Hail Mary",
+      "setup": "Exhale. Hinge at the hips and fold over the legs. Bend the knees as much as they need — let the belly rest toward the thighs. Head hangs heavy.",
+      "hold": "Neck loose, jaw loose. Gravity does the work. With every exhale the fold deepens on its own.",
+      "target": "Hamstrings, spine, calm"
+    },
+    "half_lift": {
+      "id": "half_lift",
+      "name": "Half Lift",
+      "latin": "Ardha Uttanasana",
+      "image": "assets/poses/half_lift.svg",
+      "duration": "one Hail Mary",
+      "setup": "Inhale. Slide the hands up the shins and lengthen the spine forward — flat back, crown reaching ahead. Gaze slightly forward, not up.",
+      "hold": "A long line from tailbone to crown. This shape teaches the hinge that every fold and every rise passes through.",
+      "target": "Back line, spinal awareness"
+    },
+    "plank": {
+      "id": "plank",
+      "name": "Plank",
+      "latin": "Phalakasana",
+      "image": "assets/poses/plank.svg",
+      "duration": "one Hail Mary",
+      "setup": "Step back one leg at a time. Hands under the shoulders, body one straight line from crown to heels. Press the floor away and reach the heels back. Knees down at any time — same line, less load.",
+      "hold": "Quietly hard work. Belly lifts, gaze down. If the low back sags, knees come down without apology.",
+      "target": "Shoulders, core, wrists"
+    },
+    "cobra": {
+      "id": "cobra",
+      "name": "Low Cobra",
+      "latin": "Bhujangasana",
+      "image": "assets/poses/cobra.svg",
+      "duration": "one Hail Mary",
+      "setup": "Lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows hugging the ribs. Inhale the chest forward and up; the hands barely press.",
+      "hold": "The spine does the lifting, not the arms. Low is honest. Shoulders melt away from the ears.",
+      "target": "Spinal extension, chest"
+    },
+    "down_dog": {
+      "id": "down_dog",
+      "name": "Downward Dog",
+      "latin": "Adho Mukha Svanasana",
+      "image": "assets/poses/down_dog.svg",
+      "duration": "one to two Hail Marys",
+      "setup": "Tuck the toes and lift the hips up and back into a long upside-down V. Hands press the mat, knees bend as generously as the hamstrings ask. Heels reach down without needing to land.",
+      "hold": "The whole back body lengthens. Head hangs between the arms. Pedal the feet if it helps — then be still and breathe.",
+      "target": "Shoulders, hamstrings, full back line"
+    },
+    "chair": {
+      "id": "chair",
+      "name": "Chair",
+      "latin": "Utkatasana",
+      "image": "assets/poses/chair.svg",
+      "duration": "one Hail Mary",
+      "setup": "Exhale, sit the hips back and down as if toward a chair, weight in the heels. Inhale the arms overhead in line with the torso.",
+      "hold": "The thighs burn quietly; that is the pose. Chest lifted, low back long, breath even.",
+      "target": "Legs, glutes, endurance"
+    },
+    "warrior_1_right": {
+      "id": "warrior_1_right",
+      "name": "Warrior I · Right",
+      "latin": "Virabhadrasana I",
+      "image": "assets/poses/warrior_1_right.svg",
+      "duration": "one Hail Mary",
+      "setup": "From Downward Dog, step the right foot forward between the hands. Spin the back heel down, hips facing forward. Inhale the torso up, arms overhead. The front knee bends over the ankle.",
+      "hold": "Grounded through both feet, rising through the arms — the old standing prayer, with the legs at work.",
+      "target": "Hip flexors, legs, chest"
+    },
+    "warrior_1_left": {
+      "id": "warrior_1_left",
+      "name": "Warrior I · Left",
+      "latin": "Virabhadrasana I",
+      "image": "assets/poses/warrior_1_left.svg",
+      "duration": "one Hail Mary",
+      "setup": "From Downward Dog, step the left foot forward between the hands. Spin the back heel down, hips facing forward. Inhale the torso up, arms overhead. The front knee bends over the ankle.",
+      "hold": "Grounded through both feet, rising through the arms — the old standing prayer, with the legs at work.",
+      "target": "Hip flexors, legs, chest"
+    },
+    "vinyasa": {
+      "id": "vinyasa",
+      "name": "Vinyasa",
+      "latin": "Plank · Cobra · Down Dog",
+      "image": "assets/poses/vinyasa.svg",
+      "duration": "one Hail Mary",
+      "setup": "On the first half of the prayer, flow: plank, lower with the knees down, low cobra, then press back to Downward Dog. On the second half, settle into the Dog and breathe.",
+      "hold": "One moving breath-phrase, then stillness. Move with the words; rest with the words. Knees down is the default, not the exception.",
+      "target": "The connecting flow of Salutation B"
+    },
     "seated_forward_fold": {
       "id": "seated_forward_fold",
       "name": "Seated Forward Fold",
@@ -174,8 +315,216 @@
       "photo_credit": "AI-generated illustration",
       "duration": "~5 min (full decade)",
       "setup": "Sit close to a wall, hip touching it. Swing the legs up as you lower the back to the floor. The body forms an L. Hips flat or supported on a folded blanket. Arms open.",
-      "hold": "The legs flush. The heart rate drops. The nervous system shifts toward sleep. The closing hold.",
-      "target": "Recovery, lymphatic flush, sleep"
+      "hold": "The legs flush. The heart rate drops. The nervous system settles. The closing hold.",
+      "target": "Recovery, lymphatic flush, rest"
+    }
+  },
+  "sequences": {
+    "salutation": {
+      "name": "Morning Salutations",
+      "description": "Sun Salutations A and B prayed on the beads. Standing, breath-led, for the start of the day.",
+      "opening": [
+        {
+          "kind": "prayer",
+          "pose": "mountain_prayer",
+          "prayer": "creed",
+          "label": "Opening · The Cross"
+        },
+        {
+          "kind": "prayer",
+          "pose": "arm_floats",
+          "prayer": "our_father",
+          "label": "Opening · Our Father"
+        },
+        {
+          "kind": "prayer",
+          "pose": "half_salutation",
+          "prayer": "hail_mary",
+          "count": 3,
+          "label": "Opening · Three Half Salutations"
+        },
+        {
+          "kind": "prayer",
+          "pose": "standing_crescent",
+          "prayer": "glory_be",
+          "note": "Lean right for the first half. Left for the second.",
+          "label": "Opening · Glory Be · both sides"
+        },
+        {
+          "kind": "interlude",
+          "pose": "mountain_prayer",
+          "label": "Opening · Threshold",
+          "title": "Threshold",
+          "body": "Stand still. Eyes soft, or closed.\n\nFour cycles of alternate-nostril breath.\nClose the right nostril with the thumb. Inhale through the left.\nClose the left nostril with the ring finger. Exhale through the right.\nInhale through the right. Close it.\nExhale through the left.\n\nOne cycle. Three more.\nThe mind gathers. The mysteries begin."
+        }
+      ],
+      "decade_templates": {
+        "sun_a": {
+          "our_father": "mountain_prayer",
+          "hail_marys": [
+            { "pose": "arms_up", "note": "Inhale, rise." },
+            "standing_fold",
+            "half_lift",
+            { "pose": "plank", "note": "Step back." },
+            { "pose": "cobra", "note": "Lower slowly — knees first." },
+            { "pose": "down_dog", "note": "Hips up and back." },
+            "down_dog",
+            { "pose": "half_lift", "note": "Step forward." },
+            "standing_fold",
+            { "pose": "arms_up", "note": "Rise on the inhale." }
+          ],
+          "glory_be": "mountain_prayer"
+        },
+        "sun_b": {
+          "our_father": "mountain_prayer",
+          "hail_marys": [
+            { "pose": "chair", "note": "Sit low, arms rise." },
+            "standing_fold",
+            "half_lift",
+            "vinyasa",
+            { "pose": "warrior_1_right", "note": "Right foot steps forward." },
+            "vinyasa",
+            { "pose": "warrior_1_left", "note": "Left foot steps forward." },
+            "vinyasa",
+            { "pose": "half_lift", "note": "Step forward. Fold on the second half." },
+            "chair"
+          ],
+          "glory_be": "mountain_prayer"
+        }
+      },
+      "decades": ["sun_a", "sun_a", "sun_a", "sun_b", "sun_b"],
+      "closing": [
+        {
+          "kind": "prayer",
+          "pose": "mountain_prayer",
+          "prayer": "hail_holy_queen",
+          "label": "Closing · Hail Holy Queen"
+        },
+        {
+          "kind": "interlude",
+          "pose": "mountain_prayer",
+          "label": "Closing · Intention",
+          "title": "Intention",
+          "body": "For whom is this morning's practice offered?\n\nHold them in mind.\nCarry them into the day."
+        },
+        {
+          "kind": "interlude",
+          "pose": "mountain_prayer",
+          "label": "Closing · Practice Complete",
+          "title": "Practice Complete",
+          "final": true,
+          "body": "The body is warm. The mind is gathered.\nGo meet the day."
+        }
+      ],
+      "body_states": {
+        "tender": {
+          "decades": ["sun_a", "sun_a", "sun_a", "sun_a", "sun_a"]
+        },
+        "hurt": {
+          "switch_to": "restorative"
+        }
+      }
+    },
+    "restorative": {
+      "name": "Restorative Floor",
+      "description": "Long passive holds on the floor. For hurt days, hard evenings, and travel.",
+      "opening": [
+        {
+          "kind": "prayer",
+          "pose": "seated_forward_fold",
+          "prayer": "creed",
+          "label": "Opening · The Cross"
+        },
+        {
+          "kind": "prayer",
+          "pose": "child_pose",
+          "prayer": "our_father",
+          "label": "Opening · Our Father"
+        },
+        {
+          "kind": "prayer",
+          "pose": "supported_butterfly",
+          "prayer": "hail_mary",
+          "count": 3,
+          "label": "Opening · Three Hail Marys"
+        },
+        {
+          "kind": "prayer",
+          "pose": "banana",
+          "prayer": "glory_be",
+          "note": "Hold the first side for one minute. Switch sides for the second.",
+          "label": "Opening · Glory Be · both sides"
+        },
+        {
+          "kind": "interlude",
+          "pose": "savasana",
+          "label": "Opening · Threshold · Nadi Shodhana",
+          "title": "Threshold",
+          "body": "Four cycles of alternate-nostril breath.\n\nClose the right nostril with the thumb. Inhale through the left.\nClose the left nostril with the ring finger. Exhale through the right.\nInhale through the right. Close it.\nExhale through the left.\n\nOne cycle. Repeat three more times.\nThen rest. The body settles. The mind comes into balance."
+        }
+      ],
+      "decade_templates": {
+        "rest_figure_four": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "figure_four",
+          "hail_mary_notes": { "6": "Switch sides." },
+          "glory_be": "neutral_back"
+        },
+        "rest_bridge": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "supported_bridge",
+          "glory_be": "neutral_back"
+        },
+        "rest_happy_baby": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "happy_baby",
+          "glory_be": "neutral_back"
+        },
+        "rest_fish": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "supported_fish",
+          "glory_be": "neutral_back"
+        },
+        "rest_legs_up": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "legs_up_wall",
+          "glory_be": "legs_up_wall"
+        },
+        "rest_gentle": {
+          "our_father": "knees_to_chest",
+          "hail_marys": "knees_to_chest",
+          "glory_be": "neutral_back"
+        }
+      },
+      "decades": ["rest_figure_four", "rest_bridge", "rest_happy_baby", "rest_fish", "rest_legs_up"],
+      "closing": [
+        {
+          "kind": "prayer",
+          "pose": "legs_up_wall",
+          "prayer": "hail_holy_queen",
+          "label": "Closing · Hail Holy Queen"
+        },
+        {
+          "kind": "interlude",
+          "pose": "legs_up_wall",
+          "label": "Closing · Intention",
+          "title": "Intention",
+          "body": "For whom is this practice offered?\n\nHold them in mind.\nLet the breath carry the offering."
+        },
+        {
+          "kind": "interlude",
+          "pose": "legs_up_wall",
+          "label": "Closing · Practice Complete",
+          "title": "Practice Complete",
+          "final": true,
+          "body": "Rest here as long as you wish.\nWhen you are ready, roll to one side and rise slowly."
+        }
+      ],
+      "body_states": {
+        "hurt": {
+          "decades": ["rest_figure_four", "rest_bridge", "rest_gentle", "rest_gentle", "rest_legs_up"]
+        }
+      }
     }
   },
   "mysteries": {
@@ -245,36 +594,18 @@
     "5": "sorrowful",
     "6": "joyful"
   },
-  "deep_holds": [
-    "figure_four",
-    "supported_bridge",
-    "happy_baby",
-    "supported_fish",
-    "legs_up_wall"
-  ],
   "body_states": {
     "easy": {
       "name": "Easy",
-      "description": "Body feels neutral or open tonight.",
-      "modifications": {}
+      "description": "Body feels neutral or open today."
     },
     "tender": {
       "name": "Tender",
-      "description": "Some stiffness or mild ache. Soften the practice.",
-      "modifications": {
-        "happy_baby_duration": 180,
-        "supported_fish_duration": 150
-      }
+      "description": "Some stiffness or mild ache. The practice softens — Salutation A only, knees down whenever you want."
     },
     "hurt": {
       "name": "Hurt",
-      "description": "Sharp or persistent pain. Replace the risky holds.",
-      "modifications": {
-        "decade_3_pose": "knees_to_chest",
-        "decade_3_duration": 180,
-        "decade_4_pose": "knees_to_chest",
-        "decade_4_duration": 180
-      }
+      "description": "Sharp or persistent pain. Today is the floor practice — gentle holds only."
     }
   }
 }
