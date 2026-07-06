@@ -1,6 +1,6 @@
 # Pose Images — How to Generate or Replace
 
-The app shows one image per pose. Wikipedia/Wikimedia Commons only has photos for 6 of the 12 figures in this practice, and the available photos are mixed in style (different photographers, different studios, different eras). For visual consistency the best path is to generate all 12 in a single matched style — either with an AI image model or by commissioning hand-drawn illustrations.
+The app shows one image per pose, chosen in this order: a `photo` (JPG) if the pose has one in `practice.json`, otherwise its line-art SVG from `app/assets/poses/`. The floor practice ships with generated photo-style images; the salutation practice ships with hand-authored SVGs that inherit the app palette. Either practice's poses can be upgraded to matched photo-style art with the prompt below — generate the image, drop it in `photos/`, and add a `"photo"` field to the pose in `app/data/practice.json`.
 
 This document gives a precise prompt you can paste into Gemini, ChatGPT image generation, Midjourney, or any other image model, plus the file names the app expects.
 
@@ -51,6 +51,32 @@ Append one of these to the style block above:
 
 (Optional 12th: **Neutral on Back** — Same as Savasana but with hands resting on the belly. The app uses the Savasana image as fallback if this one isn't generated.)
 
+### Standing poses — the Morning Salutations practice
+
+These currently render as line-art SVGs. To upgrade any of them to the photo style, generate with the same style block plus one of these lines, save to `photos/`, and add the `"photo"` field to the pose in `practice.json`:
+
+12. **Mountain, Hands at Heart** — Front view. The figure stands tall, feet together, palms pressed together at the center of the chest in a prayer position. A faint floor line runs beneath.
+
+13. **Upward Salute** — Side view. The figure stands tall with both arms sweeping overhead, palms facing each other, a gentle reach through the whole front body.
+
+14. **Standing Forward Fold** — Side view. The figure stands with knees softly bent, torso folded fully over the legs, head and arms hanging heavy toward the floor.
+
+15. **Half Lift** — Side view. The figure stands folded at the hips with a flat, lengthened back parallel to the floor, fingertips on the shins, crown reaching forward.
+
+16. **Plank** — Side view. The figure holds a straight-arm plank: hands under shoulders, body one straight line from head to heels.
+
+17. **Low Cobra** — Side view. The figure lies prone with hips and legs on the floor, chest lifted low and forward, elbows bent close to the ribs.
+
+18. **Downward Dog** — Side view. The figure forms an inverted V: hands and feet on the floor, hips lifted high, head hanging between the arms.
+
+19. **Chair** — Side view. The figure sits deep into an invisible chair: knees bent, hips back, torso and arms reaching up in one line.
+
+20. **Warrior I, right foot forward** — Side view facing right. Deep lunge: right knee bent over the ankle, left leg straight behind with the heel down, torso vertical, both arms reaching straight overhead.
+
+21. **Warrior I, left foot forward** — Same as above, mirrored to face left.
+
+(The composite cards — Breath-Led Arm Floats, Half Salutation, Standing Crescent, Vinyasa — are motion diagrams, not single shapes. Their SVG triptychs with gold flow arrows are deliberate; photos are not expected for them.)
+
 ---
 
 ## File names the app expects
@@ -72,7 +98,22 @@ app/assets/poses/photos/legs_up_wall.jpg
 app/assets/poses/photos/neutral_back.jpg   (optional)
 ```
 
-The app already references these paths — drop the files in and they appear next refresh. Any pose without a photo automatically falls back to its SVG.
+Standing poses (add the matching `"photo"` field in `practice.json` when you drop these in):
+
+```
+app/assets/poses/photos/mountain_prayer.jpg
+app/assets/poses/photos/arms_up.jpg
+app/assets/poses/photos/standing_fold.jpg
+app/assets/poses/photos/half_lift.jpg
+app/assets/poses/photos/plank.jpg
+app/assets/poses/photos/cobra.jpg
+app/assets/poses/photos/down_dog.jpg
+app/assets/poses/photos/chair.jpg
+app/assets/poses/photos/warrior_1_right.jpg
+app/assets/poses/photos/warrior_1_left.jpg
+```
+
+The floor-practice paths are already referenced in `practice.json` — drop the files in and they appear next refresh. Any pose without a photo automatically falls back to its SVG.
 
 ---
 

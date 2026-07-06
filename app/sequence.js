@@ -104,8 +104,10 @@ export function buildSequence(data, mysterySetKey, bodyState, practiceKey) {
 
   const pushStation = (def) => {
     const count = def.count || 1;
-    const beadStart = Math.min(i, totalBeads - 1);
-    const beadEnd = Math.min(i + count - 1, totalBeads - 1);
+    // The final card points past the last bead so the strip renders the whole
+    // rosary as done — the practice is complete, and the beads say so.
+    const beadStart = def.final ? totalBeads : Math.min(i, totalBeads - 1);
+    const beadEnd = def.final ? totalBeads : Math.min(i + count - 1, totalBeads - 1);
     const station = {
       kind: def.kind,
       poseId: def.pose,

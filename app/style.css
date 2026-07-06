@@ -484,7 +484,6 @@ body {
   scrollbar-color: var(--ink-faint) transparent;
   position: relative;
   z-index: 4;
-  flex: 0 0 auto;
 }
 
 .cue-panel[hidden] { display: none; }
