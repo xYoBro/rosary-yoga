@@ -34,9 +34,11 @@ app/
   assets/poses/      Line-art SVGs (inline-rendered, currentColor)
   assets/poses/photos/  Photos shown in place of SVGs (floor practice + any
                      standing pose with a "photo" field)
-art/masters/         Full-resolution originals of generated pose photography;
-                     app copies are downscaled (~800px, jpeg q62) into
-                     app/assets/poses/photos/
+  assets/poses/videos/  Looping muted clips for motion cards (a pose with a
+                     "video" field — autoplay/loop/playsinline, iOS-safe)
+art/masters/         Full-resolution originals of generated pose media;
+                     app copies are downscaled (photos ~800px jpeg q62 →
+                     photos/; videos square-cropped ~560px h264 → videos/)
 docs/archive/        Historical PDFs; inactive
 .claude/launch.json  Dev server config (python3 http.server on 8765)
 ```
@@ -47,7 +49,7 @@ docs/archive/        Historical PDFs; inactive
 |--------|-------|-------|
 | Practice data | `data/practice.json` | Version field; `sequences` block defines each practice |
 | Sequence interpretation | `sequence.js` | Pure: data → flat station list; bead math lives here only |
-| Rendering | `app.js` (render, updateCues, rosary strip) | One card per station; inline SVG art via preloaded map |
+| Rendering | `app.js` (render, updateCues, rosary strip) | One card per station; art precedence video > photo > inline SVG (preloaded map) |
 | Voice | `app.js` (TTS cues, SpeechRecognition amen/commands) | Interim-transcript amen counting; cue-equality suppression |
 | Persistence | `app.js` (localStorage) | Session resume (1h TTL), practice choice, body state (per-day), cues-open, completions |
 | Offline | `sw.js` | Cache-first, same-origin only |
@@ -57,8 +59,10 @@ docs/archive/        Historical PDFs; inactive
 1. **practice.json ↔ practice.md**: any change to poses, sequences, or notes
    in one must be reflected in the other. The manual and the data must tell
    the same story.
-2. **practice.json poses ↔ assets/poses/**: every pose needs `image` (SVG) or
-   `photo`. New SVGs follow the art language below.
+2. **practice.json poses ↔ assets/poses/**: every pose needs `image` (SVG),
+   `photo`, or `video`. Render precedence is video > photo > SVG, so a pose may
+   keep its `image` fallback alongside a `photo`/`video`. New SVGs follow the
+   art language below; videos are muted/looping/`playsinline` motion clips.
 3. **Any app-file change → bump `CACHE_NAME` in sw.js** and add new files to
    `ASSETS`. Installed PWAs serve stale cache otherwise (this bites in dev
    too — unregister the SW or bump the version when testing).

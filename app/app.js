@@ -526,7 +526,7 @@ function hideAmenIndicator() {
 const poseArt = {};
 
 async function preloadPoseArt(data) {
-  const entries = Object.values(data.poses).filter((p) => !p.photo && p.image);
+  const entries = Object.values(data.poses).filter((p) => !p.photo && !p.video && p.image);
   await Promise.all(
     entries.map(async (p) => {
       try {
@@ -585,16 +585,30 @@ function render(station, data) {
 
   const pose = data.poses[station.poseId];
 
-  if (pose.photo) {
+  if (pose.video) {
+    poseFigure.classList.add("is-video");
+    poseFigure.classList.remove("is-photo", "is-art");
+    // A looping motion clip for a flow card. muted + playsinline + autoplay is
+    // the only combination iOS Safari will autoplay inline. The muted attribute
+    // is unreliable when set through innerHTML, so we also set the property and
+    // call play() defensively after inserting.
+    poseFigure.innerHTML = `<video src="${escapeHtml(pose.video)}" autoplay muted loop playsinline preload="auto" aria-label="${escapeHtml(pose.name)}"></video>`;
+    const vid = poseFigure.querySelector("video");
+    if (vid) {
+      vid.muted = true;
+      const played = vid.play();
+      if (played && played.catch) played.catch(() => {});
+    }
+  } else if (pose.photo) {
     poseFigure.classList.add("is-photo");
-    poseFigure.classList.remove("is-art");
+    poseFigure.classList.remove("is-video", "is-art");
     poseFigure.innerHTML = `<img src="${escapeHtml(pose.photo)}" alt="${escapeHtml(pose.name)}" loading="lazy"/>`;
   } else if (poseArt[pose.id]) {
     poseFigure.classList.add("is-art");
-    poseFigure.classList.remove("is-photo");
+    poseFigure.classList.remove("is-photo", "is-video");
     poseFigure.innerHTML = poseArt[pose.id];
   } else {
-    poseFigure.classList.remove("is-photo", "is-art");
+    poseFigure.classList.remove("is-photo", "is-art", "is-video");
     poseFigure.innerHTML = "";
   }
 

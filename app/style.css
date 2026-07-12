@@ -265,7 +265,8 @@ body {
   display: block;
 }
 
-.pose-figure.is-photo {
+.pose-figure.is-photo,
+.pose-figure.is-video {
   max-width: 280px;
   border-radius: 4px;
   overflow: hidden;
@@ -273,7 +274,8 @@ body {
   background: var(--bg-card);
 }
 
-.pose-figure.is-photo img {
+.pose-figure.is-photo img,
+.pose-figure.is-video video {
   display: block;
   width: 100%;
   height: auto;
@@ -330,7 +332,8 @@ body {
 
 /* With cues open, the illustration yields space to the teaching text */
 .card.cues-open .pose-figure.is-art { max-width: 170px; }
-.card.cues-open .pose-figure.is-photo { max-width: 150px; }
+.card.cues-open .pose-figure.is-photo,
+.card.cues-open .pose-figure.is-video { max-width: 150px; }
 
 .prayer-label {
   font-family: "Cormorant SC", Georgia, serif;
