@@ -51,6 +51,8 @@
       "name": "Breath-Led Arm Floats",
       "latin": "Tadasana · Urdhva Hastasana",
       "image": "assets/poses/arm_floats.svg",
+      "photo": "assets/poses/photos/arm_floats.jpg",
+      "photo_credit": "AI-generated illustration",
       "duration": "one Our Father",
       "setup": "From Mountain: on each inhale line, float the arms out and overhead. On each exhale line, draw the palms back down through the heart. The prayer sets the tempo — rise on ↑ lines, return on ↓ lines.",
       "hold": "The first link of breath to movement. Slow arcs, soft shoulders. Nothing is rushed.",
@@ -69,12 +71,14 @@
     "standing_crescent": {
       "id": "standing_crescent",
       "name": "Standing Crescent",
-      "latin": "Side bend · both sides",
+      "latin": "Standing backbend",
       "image": "assets/poses/standing_crescent.svg",
+      "photo": "assets/poses/photos/standing_crescent.jpg",
+      "photo_credit": "AI-generated illustration",
       "duration": "one Glory Be",
-      "setup": "From Mountain, inhale the arms overhead and take hold of one wrist. Lean to the right for the first half of the prayer. Come through center at \"as it was in the beginning\" and lean to the left.",
-      "hold": "A long line from heel to fingertips. The side body — what the Banana does on the floor, standing up.",
-      "target": "QL, lateral chain, side body"
+      "setup": "From Mountain, inhale the arms overhead, then reach up and back into a gentle standing backbend — chest opening, gaze following the hands. Only as far as the low back stays easy.",
+      "hold": "A long crescent through the whole front body. Root down through the feet, lift up and over, and come back through center with control.",
+      "target": "Front body, spine, chest"
     },
     "arms_up": {
       "id": "arms_up",
@@ -163,6 +167,8 @@
       "name": "Warrior I · Right",
       "latin": "Virabhadrasana I",
       "image": "assets/poses/warrior_1_right.svg",
+      "photo": "assets/poses/photos/warrior_1_right.jpg",
+      "photo_credit": "AI-generated illustration",
       "duration": "one Hail Mary",
       "setup": "From Downward Dog, step the right foot forward between the hands. Spin the back heel down, hips facing forward. Inhale the torso up, arms overhead. The front knee bends over the ankle.",
       "hold": "Grounded through both feet, rising through the arms — the old standing prayer, with the legs at work.",
@@ -363,8 +369,8 @@
           "kind": "prayer",
           "pose": "standing_crescent",
           "prayer": "glory_be",
-          "note": "Lean right for the first half. Left for the second.",
-          "label": "Opening · Glory Be · both sides"
+          "note": "Lift into the backbend on the first half. Soften to center on the second.",
+          "label": "Opening · Glory Be"
         },
         {
           "kind": "interlude",

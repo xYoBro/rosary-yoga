@@ -7,38 +7,37 @@ This document gives a precise prompt you can paste into Gemini, ChatGPT image ge
 **Masters:** full-resolution originals live in `art/masters/` at the repo root;
 the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
 
-**Current status — the photoreal temple set is the active direction.** Shipping
-with photos: `mountain_prayer`, `arms_up`, `standing_fold`, `half_lift`,
-`down_dog`, `warrior_1_left`, `plank`, `cobra` (standing) and `child_pose`,
-`seated_forward_fold`, `supported_butterfly`, `savasana` (floor, replacing
-their line art; `savasana.jpg` is shared by Neutral on Back).
+**Current status — the photoreal temple set is the active direction, and every
+pose now renders a photo EXCEPT three**, all in the salutation flow: `chair`,
+`half_salutation`, `vinyasa`. The whole floor practice already shipped photos
+from the original May set. `warrior_1_right` uses a horizontal mirror of
+`warrior_1_left.jpg` (`magick … -flop`). `standing_crescent` reuses
+`arms_up_backbend.jpg`, its cue changed from a side-bend to a standing
+backbend to match. Several cards shipped by **adapting the cue to the image**
+rather than regenerating (user's standing preference, 2026-07-12): `plank` →
+forearm plank (latin "Forearm Plank"); `cobra` → higher take, name stays "Low
+Cobra", hold keeps the hips-down / no-low-back-pinch safety guardrail.
 
-`plank` and `cobra` shipped by adapting the cue to the image rather than
-regenerating (user call, 2026-07-12): `plank` now teaches a **forearm plank**
-(`masters/plank_forearm.jpg`; card latin updated to "Forearm Plank"), and
-`cobra` ships the higher take (`masters/cobra_high.jpg`) with the cue softened
-to allow more lift — the name stays "Low Cobra" and the hold keeps the
-hips-down / no-low-back-pinch guardrail as the safety anchor.
+The three still on SVG:
 
-Still needed to complete the set — regenerate these so the image teaches the
-card's own cue:
+- `chair` — `masters/chair_shallow.jpg` reads as standing tall (almost no
+  knee/hip bend); wiring it would mislabel a standing pose as a deep squat.
+  Needs a regen with a real deep sit ("hips back and down, thighs burn").
+- `half_salutation` — a 5-pose flow (up · fold · half-lift · fold · rise). No
+  single photo teaches it; the SVG triptych is intentional.
+- `vinyasa` — a 3-pose flow (plank · low cobra · down dog). Same. Both could
+  instead become a **photo triptych** built from the individual pose photos
+  now on hand, if the diagram look is unwanted.
 
-- `chair` — the generated take (`masters/chair_shallow.jpg`) barely bends the
-  knees; the cue says "sit the hips back and down… the thighs burn quietly."
-- `warrior_1_right` — mirror of `warrior_1_left`, right foot forward.
-- `legs_up_wall` — the generated take (`masters/legs_up_nowall.jpg`) balances
-  the legs vertically with no wall; the cue teaches a supported, restorative
-  hold ("sit close to a wall, hip touching it"). Regenerate with the wall.
-- `banana` — the generated take (`masters/banana_twist.jpg`) rolls the hips
-  with bent, stacked legs — a supine twist; the cue says "both shoulders and
-  hips stay on the floor" with legs long. Regenerate as a flat crescent.
-- The remaining floor poses, if the floor practice should match. A dedicated
-  `neutral_back` image (savasana with hands on the belly) would also free
-  that card from sharing the Savasana photo.
+Optional swaps (these poses already ship a photo; a held alt exists but
+conflicts with the cue): `banana` (`masters/banana_twist.jpg` is a supine
+twist, cue wants a flat lateral crescent), `legs_up_wall`
+(`masters/legs_up_nowall.jpg` has no wall). A dedicated `neutral_back` image
+(savasana with hands on the belly) would free that card from sharing
+`savasana.jpg`.
 
-Unplaced masters: `arms_up_backbend.jpg` (alternate Upward Salute),
-`arm_floats.jpg` / `half_salutation_guide.jpg` (composite cards keep their SVG
-triptychs), `seated_meditation.jpg` (no pose; candidate for mystery
+Unplaced masters: `half_salutation_guide.jpg` (infographic with baked-in text,
+not card-usable), `seated_meditation.jpg` (no pose; candidate for mystery
 interludes).
 
 ---

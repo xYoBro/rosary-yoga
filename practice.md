@@ -77,7 +77,7 @@ The pendant is the warmup. The decades are the salutations. The closing is the r
 | I | Apostles' Creed | Mountain, hands at heart | Home base. Feet rooted, mind arriving |
 | II | Our Father | Breath-led arm floats | The link of breath to movement |
 | III | Three Hail Marys | Three Half Salutations | The entrance and exit of the full salutation |
-| IV | Glory Be | Standing Crescent, both sides | The side body |
+| IV | Glory Be | Standing Crescent (backbend) | The front body opens |
 | V | Mystery announcement | Stillness, alternate-nostril breath | The threshold |
 
 This is exactly how a vinyasa class warms up. By the time the first decade begins, you already know six of Salutation A's ten shapes.
@@ -170,9 +170,9 @@ Setup, hold, and modifications for every shape. Yoga Journal is the primary exte
 
 ### Standing Crescent — *pendant Glory Be*
 
-**Setup.** From Mountain, inhale the arms overhead and take hold of one wrist. Lean to the right for the first half of the prayer. Come through center at "as it was in the beginning" and lean to the left.
+**Setup.** From Mountain, inhale the arms overhead, then reach up and back into a gentle standing backbend — chest opening, gaze following the hands. Only as far as the low back stays easy.
 
-**Hold.** A long line from heel to fingertips. This is the side-body work most practices skip — what the evening Banana does on the floor, standing up.
+**Hold.** A long crescent through the whole front body. Root down through the feet, lift up and over, and come back through center with control. Skip the backbend entirely on any day the low back is unhappy — the arms overhead alone are enough.
 
 ---
 
