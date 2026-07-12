@@ -1,7 +1,7 @@
 // Rosary Yoga service worker — offline-first cache for the practice.
 // Bump CACHE_NAME whenever app shell or data changes.
 
-const CACHE_NAME = "rosary-yoga-v20";
+const CACHE_NAME = "rosary-yoga-v21";
 
 const ASSETS = [
   "./",
@@ -47,7 +47,12 @@ const ASSETS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then((cache) =>
+      // cache: "reload" bypasses the browser's HTTP cache. Without it, a new
+      // cache version can be filled with stale copies the browser already
+      // held — a bumped CACHE_NAME serving old files (seen in the field).
+      cache.addAll(ASSETS.map((url) => new Request(url, { cache: "reload" })))
+    )
   );
   self.skipWaiting();
 });
