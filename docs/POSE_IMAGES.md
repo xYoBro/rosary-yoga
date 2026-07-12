@@ -5,11 +5,31 @@ The app shows one image per pose, chosen in this order: a `photo` (JPG) if the p
 This document gives a precise prompt you can paste into Gemini, ChatGPT image generation, Midjourney, or any other image model, plus the file names the app expects.
 
 **Masters:** full-resolution originals live in `art/masters/` at the repo root;
-the app serves downscaled copies (~800px, jpeg q62) from `photos/`. Current
-status: `mountain_prayer` and `arms_up` ship with photoreal temple-style
-photos — a different language than the line-art brief below. If that style
-becomes the direction, the remaining standing poses should be generated to
-match the masters, and this brief updated.
+the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
+
+**Current status — the photoreal temple set is the active direction.** Shipping
+with photos: `mountain_prayer`, `arms_up`, `standing_fold`, `half_lift`,
+`down_dog`, `warrior_1_left` (standing) and `child_pose`,
+`seated_forward_fold` (floor, replacing their line art). Still needed to
+complete the set — regenerate these so the image teaches the card's own cue:
+
+- `plank` — the generated take (`masters/plank_forearm.jpg`) is a forearm
+  plank; the cue says "hands under the shoulders" (straight arms).
+- `cobra` — the generated take (`masters/cobra_high.jpg`) is a high,
+  straight-arm cobra; the cue teaches Low Cobra ("elbows hugging the ribs…
+  low is honest"), the deliberate safety stand-in for Up Dog.
+- `chair` — the generated take (`masters/chair_shallow.jpg`) barely bends the
+  knees; the cue says "sit the hips back and down… the thighs burn quietly."
+- `warrior_1_right` — mirror of `warrior_1_left`, right foot forward.
+- `legs_up_wall` — the generated take (`masters/legs_up_nowall.jpg`) balances
+  the legs vertically with no wall; the cue teaches a supported, restorative
+  hold ("sit close to a wall, hip touching it"). Regenerate with the wall.
+- The remaining floor poses, if the floor practice should match.
+
+Unplaced masters: `arms_up_backbend.jpg` (alternate Upward Salute),
+`arm_floats.jpg` / `half_salutation_guide.jpg` (composite cards keep their SVG
+triptychs), `seated_meditation.jpg` (no pose; candidate for mystery
+interludes).
 
 ---
 
