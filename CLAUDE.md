@@ -32,7 +32,11 @@ app/
   data/practice.json The practice itself — prayers, poses, sequences,
                      mysteries, body states
   assets/poses/      Line-art SVGs (inline-rendered, currentColor)
-  assets/poses/photos/  Photos for the floor practice poses
+  assets/poses/photos/  Photos shown in place of SVGs (floor practice + any
+                     standing pose with a "photo" field)
+art/masters/         Full-resolution originals of generated pose photography;
+                     app copies are downscaled (~800px, jpeg q62) into
+                     app/assets/poses/photos/
 docs/archive/        Historical PDFs; inactive
 .claude/launch.json  Dev server config (python3 http.server on 8765)
 ```

@@ -4,6 +4,13 @@ The app shows one image per pose, chosen in this order: a `photo` (JPG) if the p
 
 This document gives a precise prompt you can paste into Gemini, ChatGPT image generation, Midjourney, or any other image model, plus the file names the app expects.
 
+**Masters:** full-resolution originals live in `art/masters/` at the repo root;
+the app serves downscaled copies (~800px, jpeg q62) from `photos/`. Current
+status: `mountain_prayer` and `arms_up` ship with photoreal temple-style
+photos — a different language than the line-art brief below. If that style
+becomes the direction, the remaining standing poses should be generated to
+match the masters, and this brief updated.
+
 ---
 
 ## The brief
