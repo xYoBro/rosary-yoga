@@ -1,7 +1,7 @@
 // Rosary Yoga service worker — offline-first cache for the practice.
 // Bump CACHE_NAME whenever app shell or data changes.
 
-const CACHE_NAME = "rosary-yoga-v25";
+const CACHE_NAME = "rosary-yoga-v26";
 
 const ASSETS = [
   "./",
@@ -38,6 +38,8 @@ const ASSETS = [
   "assets/poses/photos/standing_fold.jpg",
   "assets/poses/photos/down_dog.jpg",
   "assets/poses/photos/warrior_1_left.jpg",
+  "assets/poses/photos/plank.jpg",
+  "assets/poses/photos/cobra.jpg",
   "assets/poses/photos/seated_forward_fold.jpg",
   "assets/poses/photos/child_pose.jpg",
   "assets/poses/photos/supported_butterfly.jpg",

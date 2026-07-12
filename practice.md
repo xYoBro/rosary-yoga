@@ -208,9 +208,9 @@ Setup, hold, and modifications for every shape. Yoga Journal is the primary exte
 
 ---
 
-### Plank — *Phalakasana*
+### Plank — *Forearm Plank*
 
-**Setup.** From Half Lift, plant the hands and step back one leg at a time. Hands under the shoulders, body one straight line from crown to heels. Press the floor away and reach the heels back.
+**Setup.** From Half Lift, plant the forearms and step back one leg at a time. Elbows under the shoulders, forearms flat, body one straight line from crown to heels. Press the floor away and reach the heels back. The forearms keep the wrists out of it.
 
 **Hold.** Quietly hard work. Belly lifts, gaze down. **Knees down at any time — same line, less load.** If the low back sags, knees come down without apology. A full Hail Mary in Plank is honest work; it will get easier by the week, and that is the practice strengthening you.
 
@@ -222,9 +222,9 @@ Setup, hold, and modifications for every shape. Yoga Journal is the primary exte
 
 ### Low Cobra — *Bhujangasana*
 
-**Setup.** From Plank, lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows hugging the ribs. Inhale the chest forward and up; the hands barely press.
+**Setup.** From Plank, lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows in toward the ribs. Inhale and lift the chest forward and up, the arms assisting as much as feels open.
 
-**Hold.** The spine does the lifting, not the arms. Low is honest — two inches of lift with the legs engaged does more than a tall push with the shoulders at the ears.
+**Hold.** Lift only as far as the back stays comfortable — the hips stay grounded and the low back never pinches. The moment it pinches, you have gone too high; ease down. Legs engaged, shoulders away from the ears. The name still says *low*: when in doubt, keep it low.
 
 **References.** [Yoga Journal — Cobra Pose (Bhujangasana)](https://www.yogajournal.com/poses/cobra-pose/)
 

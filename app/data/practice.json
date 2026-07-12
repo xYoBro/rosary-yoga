@@ -115,21 +115,25 @@
     "plank": {
       "id": "plank",
       "name": "Plank",
-      "latin": "Phalakasana",
+      "latin": "Forearm Plank",
       "image": "assets/poses/plank.svg",
+      "photo": "assets/poses/photos/plank.jpg",
+      "photo_credit": "AI-generated illustration",
       "duration": "one Hail Mary",
-      "setup": "Step back one leg at a time. Hands under the shoulders, body one straight line from crown to heels. Press the floor away and reach the heels back. Knees down at any time — same line, less load.",
+      "setup": "Step back one leg at a time and lower onto the forearms — elbows under the shoulders, forearms flat, body one straight line from crown to heels. Press the floor away and reach the heels back. Knees down at any time — same line, less load.",
       "hold": "Quietly hard work. Belly lifts, gaze down. If the low back sags, knees come down without apology.",
-      "target": "Shoulders, core, wrists"
+      "target": "Shoulders, core"
     },
     "cobra": {
       "id": "cobra",
       "name": "Low Cobra",
       "latin": "Bhujangasana",
       "image": "assets/poses/cobra.svg",
+      "photo": "assets/poses/photos/cobra.jpg",
+      "photo_credit": "AI-generated illustration",
       "duration": "one Hail Mary",
-      "setup": "Lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows hugging the ribs. Inhale the chest forward and up; the hands barely press.",
-      "hold": "The spine does the lifting, not the arms. Low is honest. Shoulders melt away from the ears.",
+      "setup": "Lower to the floor — knees, then chest, then chin. Hands under the shoulders, elbows in toward the ribs. Inhale and lift the chest forward and up, the arms helping as much as feels open — hips and legs stay heavy on the floor.",
+      "hold": "Lift only as far as the back stays comfortable. The hips stay grounded and the low back never pinches. Shoulders melt away from the ears.",
       "target": "Spinal extension, chest"
     },
     "down_dog": {

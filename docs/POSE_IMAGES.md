@@ -9,16 +9,20 @@ the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
 
 **Current status — the photoreal temple set is the active direction.** Shipping
 with photos: `mountain_prayer`, `arms_up`, `standing_fold`, `half_lift`,
-`down_dog`, `warrior_1_left` (standing) and `child_pose`,
+`down_dog`, `warrior_1_left`, `plank`, `cobra` (standing) and `child_pose`,
 `seated_forward_fold`, `supported_butterfly`, `savasana` (floor, replacing
-their line art; `savasana.jpg` is shared by Neutral on Back). Still needed to
-complete the set — regenerate these so the image teaches the card's own cue:
+their line art; `savasana.jpg` is shared by Neutral on Back).
 
-- `plank` — the generated take (`masters/plank_forearm.jpg`) is a forearm
-  plank; the cue says "hands under the shoulders" (straight arms).
-- `cobra` — the generated take (`masters/cobra_high.jpg`) is a high,
-  straight-arm cobra; the cue teaches Low Cobra ("elbows hugging the ribs…
-  low is honest"), the deliberate safety stand-in for Up Dog.
+`plank` and `cobra` shipped by adapting the cue to the image rather than
+regenerating (user call, 2026-07-12): `plank` now teaches a **forearm plank**
+(`masters/plank_forearm.jpg`; card latin updated to "Forearm Plank"), and
+`cobra` ships the higher take (`masters/cobra_high.jpg`) with the cue softened
+to allow more lift — the name stays "Low Cobra" and the hold keeps the
+hips-down / no-low-back-pinch guardrail as the safety anchor.
+
+Still needed to complete the set — regenerate these so the image teaches the
+card's own cue:
+
 - `chair` — the generated take (`masters/chair_shallow.jpg`) barely bends the
   knees; the cue says "sit the hips back and down… the thighs burn quietly."
 - `warrior_1_right` — mirror of `warrior_1_left`, right foot forward.
