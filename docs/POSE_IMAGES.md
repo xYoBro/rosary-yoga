@@ -8,8 +8,8 @@ This document gives a precise prompt you can paste into Gemini, ChatGPT image ge
 the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
 
 **Current status — the photoreal temple set is the active direction, and every
-pose now renders a photo EXCEPT three**, all in the salutation flow: `chair`,
-`half_salutation`, `vinyasa`. The whole floor practice already shipped photos
+single pose now renders a photo EXCEPT two composite motion cards:**
+`half_salutation` and `vinyasa`. The whole floor practice already shipped photos
 from the original May set. `warrior_1_right` uses a horizontal mirror of
 `warrior_1_left.jpg` (`magick … -flop`). `standing_crescent` reuses
 `arms_up_backbend.jpg`, its cue changed from a side-bend to a standing
@@ -18,11 +18,8 @@ rather than regenerating (user's standing preference, 2026-07-12): `plank` →
 forearm plank (latin "Forearm Plank"); `cobra` → higher take, name stays "Low
 Cobra", hold keeps the hips-down / no-low-back-pinch safety guardrail.
 
-The three still on SVG:
+The two still on SVG (both intentional motion diagrams):
 
-- `chair` — `masters/chair_shallow.jpg` reads as standing tall (almost no
-  knee/hip bend); wiring it would mislabel a standing pose as a deep squat.
-  Needs a regen with a real deep sit ("hips back and down, thighs burn").
 - `half_salutation` — a 5-pose flow (up · fold · half-lift · fold · rise). No
   single photo teaches it; the SVG triptych is intentional.
 - `vinyasa` — a 3-pose flow (plank · low cobra · down dog). Same. Both could
