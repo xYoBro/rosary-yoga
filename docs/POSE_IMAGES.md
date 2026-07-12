@@ -10,7 +10,8 @@ the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
 **Current status — the photoreal temple set is the active direction.** Shipping
 with photos: `mountain_prayer`, `arms_up`, `standing_fold`, `half_lift`,
 `down_dog`, `warrior_1_left` (standing) and `child_pose`,
-`seated_forward_fold` (floor, replacing their line art). Still needed to
+`seated_forward_fold`, `supported_butterfly`, `savasana` (floor, replacing
+their line art; `savasana.jpg` is shared by Neutral on Back). Still needed to
 complete the set — regenerate these so the image teaches the card's own cue:
 
 - `plank` — the generated take (`masters/plank_forearm.jpg`) is a forearm
@@ -24,7 +25,12 @@ complete the set — regenerate these so the image teaches the card's own cue:
 - `legs_up_wall` — the generated take (`masters/legs_up_nowall.jpg`) balances
   the legs vertically with no wall; the cue teaches a supported, restorative
   hold ("sit close to a wall, hip touching it"). Regenerate with the wall.
-- The remaining floor poses, if the floor practice should match.
+- `banana` — the generated take (`masters/banana_twist.jpg`) rolls the hips
+  with bent, stacked legs — a supine twist; the cue says "both shoulders and
+  hips stay on the floor" with legs long. Regenerate as a flat crescent.
+- The remaining floor poses, if the floor practice should match. A dedicated
+  `neutral_back` image (savasana with hands on the belly) would also free
+  that card from sharing the Savasana photo.
 
 Unplaced masters: `arms_up_backbend.jpg` (alternate Upward Salute),
 `arm_floats.jpg` / `half_salutation_guide.jpg` (composite cards keep their SVG
