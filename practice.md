@@ -280,7 +280,7 @@ Its shape on the beads: the pendant runs Seated Forward Fold (Creed), Child's Po
 |--------|-----------|---------|
 | 1 | Reclined Figure-Four *(switch sides at bead 6)* | Outer hip, glute, piriformis |
 | 2 | Supported Bridge *(prop under the sacrum, never the low back)* | Hip flexors, chest |
-| 3 | Happy Baby | Inner hips, low back decompression |
+| 3 | Happy Baby | Hips, legs, low back decompression |
 | 4 | Supported Fish *(prop firm, at the shoulder blades)* | Thoracic spine, chest |
 | 5 | Legs Up the Wall | Recovery, rest |
 

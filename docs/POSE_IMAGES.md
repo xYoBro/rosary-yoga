@@ -7,10 +7,10 @@ This document gives a precise prompt you can paste into Gemini, ChatGPT image ge
 **Masters:** full-resolution originals live in `art/masters/` at the repo root;
 the app serves downscaled copies (~800px, jpeg q62) from `photos/`.
 
-**Current status — the photoreal temple set is the active direction. Every
-single pose now renders a photo, and `half_salutation` renders a looping video
-(see below). Only ONE card remains SVG: `vinyasa`.** The whole floor practice
-already shipped photos
+**Current status — DONE. Every pose renders a temple photo, and the two motion
+cards (`half_salutation`, `vinyasa`) render looping videos. No card is SVG
+anymore.** The original floor jpgs were burgundy line-art (not photos); the
+temple photos replaced them
 from the original May set. `warrior_1_right` uses a horizontal mirror of
 `warrior_1_left.jpg` (`magick … -flop`). `standing_crescent` reuses
 `arms_up_backbend.jpg`, its cue changed from a side-bend to a standing
@@ -19,27 +19,24 @@ rather than regenerating (user's standing preference, 2026-07-12): `plank` →
 forearm plank (latin "Forearm Plank"); `cobra` → higher take, name stays "Low
 Cobra", hold keeps the hips-down / no-low-back-pinch safety guardrail.
 
-Motion cards — a video is the natural fit here, better than a photo or the
-triptych. `half_salutation` now uses one: a `"video"` field (render precedence
-video > photo > SVG) pointing at `assets/poses/videos/half_salutation.mp4`, a
-looping muted `<video>` (autoplay/loop/playsinline, iOS-safe). It was trimmed
-from `masters/half_salutation_sunA.mp4` (a 10s Sun-A clip) to the standing arc
-before the step-back, centre-cropped square and downscaled to 560px h264
-(~180 KB — far smaller and cleaner than a GIF would be). To add another: drop
-the source in `art/masters/`, run
+Motion cards use looping video, not a still — the natural fit for a flow. Both
+`half_salutation` and `vinyasa` carry a `"video"` field (render precedence
+video > photo > SVG) pointing at `assets/poses/videos/*.mp4`: muted looping
+`<video>` (autoplay/loop/playsinline, iOS-safe). Each was trimmed from a 10s
+temple clip (masters `half_salutation_sunA.mp4`, `vinyasa_flow.mp4`),
+centre-cropped square and downscaled to 560px h264 (~180 KB each — far smaller
+and cleaner than a GIF). To add another: drop the source in `art/masters/`, run
 `ffmpeg -ss <start> -to <end> -i src.mp4 -vf "crop=720:720:280:0,scale=560:560" -an -c:v libx264 -profile:v main -pix_fmt yuv420p -crf 30 -preset veryslow -movflags +faststart out.mp4`,
 add the `"video"` field, list it in `sw.js`, bump `CACHE_NAME`.
 
-- `vinyasa` — the last SVG. A 3-pose flow (plank · low cobra · down dog); a
-  video of that flow (or a photo triptych from the plank/cobra/dog photos)
-  would retire the last diagram.
-
-Optional swaps (these poses already ship a photo; a held alt exists but
-conflicts with the cue): `banana` (`masters/banana_twist.jpg` is a supine
-twist, cue wants a flat lateral crescent), `legs_up_wall`
-(`masters/legs_up_nowall.jpg` has no wall). A dedicated `neutral_back` image
-(savasana with hands on the belly) would free that card from sharing
-`savasana.jpg`.
+Notes on a couple of cue-adapted temple photos: `happy_baby` shows a legs-up
+shin-hold rather than the textbook wide-knee grip — the cue was softened to
+match (the accurate line-art original is in git history + `masters/`). Held
+alts that conflict with their cue and were NOT used: `banana`
+(`masters/banana_twist.jpg` is a supine twist, cue wants a flat lateral
+crescent), `legs_up_wall` (`masters/legs_up_nowall.jpg` has no wall). A
+dedicated `neutral_back` image (savasana with hands on the belly) would free
+that card from sharing `savasana.jpg`.
 
 Unplaced masters: `half_salutation_guide.jpg` (infographic with baked-in text,
 not card-usable), `seated_meditation.jpg` (no pose; candidate for mystery
